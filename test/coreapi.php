@@ -5,11 +5,12 @@ require("../src/CoreAPI.php");
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ID Analyzer Core API Test</title>
+    <title>ID Analyzer Core API Test Page</title>
 </head>
 <body>
 <h1>ID Analyzer Core API Test</h1>
 <form enctype="multipart/form-data" method="post">
+    <p>Upload document image to check Core API result</p>
     Document Image (Front)*: <input type="file" name="DocumentFront"><br/>
     Document Image (Back):<input type="file" name="DocumentBack"><br/>
     Face Photo: <input type="file" name="FacePhoto">
