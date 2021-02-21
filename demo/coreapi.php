@@ -26,14 +26,15 @@ require("../src/CoreAPI.php");
             $coreapi->init("Your API Key", "US");
 
             /*
-             * optional parameters
-            $coreapi->setAccuracy(2); // Set OCR accuracy to highest
-            $coreapi->enableAuthentication(true, 'quick'); // Check if document is real using 'quick' module
-            $coreapi->enableBarcodeMode(false); // Disable OCR and scan for AAMVA barcodes only
+             * optional settings
+            $coreapi->setAccuracy(2); // set OCR accuracy to highest
+            $coreapi->setBiometricThreshold(0.6); // make face verification more strict
+            $coreapi->enableAuthentication(true, 'quick'); // check if document is real using 'quick' module
+            $coreapi->enableBarcodeMode(false); // disable OCR and scan for AAMVA barcodes only
             $coreapi->enableImageOutput(true,true,"url"); // output cropped document and face region in URL format
             $coreapi->enableDualsideCheck(true); // check if data on front and back of ID matches
             $coreapi->enableVault(true,true,false,false); // enable vault cloud storage to store document information and image
-            $coreapi->setVaultData("user@example.com",12345); // store customer information into vault
+            $coreapi->setVaultData("user@example.com",12345,"AABBCC"); // store custom data into vault
             $coreapi->restrictCountry("US,CA,AU"); // accept documents from United States, Canada and Australia
             $coreapi->restrictState("CA,TX,WA"); // accept documents from california, texas and washington
             $coreapi->restrictType("DI"); // accept only driver license and identification card
@@ -50,6 +51,9 @@ require("../src/CoreAPI.php");
 
             // perform a scan using uploaded image
             $result = $coreapi->scan($_FILES['DocumentFront']['tmp_name'],$_FILES['DocumentBack']['tmp_name'],$_FILES['FacePhoto']['tmp_name']);
+
+            // or perform a scan using image url
+            // $result = $coreapi->scan("https://www.idanalyzer.com/img/sampleid1.jpg");
 
             if($result['error']){
                 echo("Error Code: " . $result['error']['code'] . "<br/>Error Message: ". $result['error']['message']);
@@ -87,9 +91,6 @@ require("../src/CoreAPI.php");
                 if($matchrate<0.4) {
                     echo("The ID uploaded is too blurry, we couldn't capture most of the data<br>");
                 }
-
-
-
             }
 
 
