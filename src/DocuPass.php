@@ -464,19 +464,6 @@ class DocuPass
 
     }
 
-
-    /**
-     * Disable Visual OCR and read data from AAMVA Barcodes only
-     * @param boolean $enabled Enable/Disable Barcode Mode
-     * @return null
-     */
-    public function enableBarcodeMode($enabled = false)
-    {
-        $this->config['barcodemode'] = $enabled == true;
-
-    }
-
-
     /**
      * Save document image and parsed information in your secured vault. You can list, search and update document entries in your vault through Vault API or web portal.
      * @param boolean $enabled Enable/Disable Vault
@@ -485,26 +472,6 @@ class DocuPass
     public function enableVault($enabled = true)
     {
         $this->config['vault_save'] = $enabled == true;
-    }
-
-
-    /**
-     * Add up to 5 custom strings that will be associated with the vault entry, this can be useful for filtering and searching entries.
-     * @param string $data1 Custom data field 1
-     * @param string $data2 Custom data field 2
-     * @param string $data3 Custom data field 3
-     * @param string $data4 Custom data field 4
-     * @param string $data5 Custom data field 5
-     * @return null
-     */
-    public function setVaultData($data1 = "", $data2 = "", $data3 = "", $data4 = "", $data5 = "" )
-    {
-        $this->config['vault_customdata1'] = $data1;
-        $this->config['vault_customdata2'] = $data2;
-        $this->config['vault_customdata3'] = $data3;
-        $this->config['vault_customdata4'] = $data4;
-        $this->config['vault_customdata5'] = $data5;
-
     }
 
 
@@ -518,6 +485,7 @@ class DocuPass
     public function init($apikey, $companyName = "My Company Name", $region = "US")
     {
         $this->apikey = $apikey;
+        $this->config['companyname'] = $companyName;
         if($region === 'eu' || $region === "EU"){
             $this->apiendpoint = "https://api-eu.idanalyzer.com/";
         }else if($region === 'us' || $region === "US"){
@@ -598,6 +566,42 @@ class DocuPass
     }
 
 
+    /**
+     * Validate a data received through DocuPass Callback against DocuPass Server to prevent request spoofing
+     * @return bool
+     * @throws Exception
+     */
+    public function validate($reference, $hash){
+
+        if($this->apiendpoint=="" || $this->apikey==""){
+            throw new Exception("Please call init() with your API key.");
+        }
+
+
+        $payload["apikey"] = $this->apikey;
+        $payload["reference"] = $reference;
+        $payload["hash"] = $hash;
+
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->apiendpoint . "docupass/validate");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        $response = curl_exec($ch);
+
+        if(curl_error($ch)){
+            throw new Exception("Connecting to API Server failed: ".curl_error($ch));
+        }else{
+            $result = json_decode($response, true);
+
+            return $result['success'] === true;
+        }
+
+    }
 
 
 }
