@@ -2,6 +2,8 @@
 
 namespace IDAnalyzer;
 
+use Exception;
+
 class CoreAPI
 {
     private $apikey;
@@ -67,13 +69,14 @@ class CoreAPI
      * @param boolean $enabled Enable/Disable Document Authentication
      * @param mixed $module Module: 1, 2 or quick
      * @return null
+     * @throws Exception
      */
     public function enableAuthentication($enabled = false, $module = 2)
     {
         $this->config['authenticate'] = $enabled == true;
 
         if($enabled && $module != 1 && $module != 2 && $module != 'quick'){
-            throw new \Exception("Invalid authentication module, 1, 2 or 'quick' accepted.");
+            throw new Exception("Invalid authentication module, 1, 2 or 'quick' accepted.");
         }
 
         $this->config['authenticate_module'] = $module;
@@ -83,11 +86,12 @@ class CoreAPI
      * Scale down the uploaded image before sending to OCR engine. Adjust this value to fine tune recognition accuracy on large full-resolution images. Set 0 to disable image resizing.
      * @param int $maxScale 0 or 500~4000
      * @return null
+     * @throws Exception
      */
     public function setOCRImageResize($maxScale = 1500)
     {
         if($maxScale!=0 && ($maxScale<500 || $maxScale>4000)){
-            throw new \Exception("Invalid scale value, 0, or 500 to 4000 accepted.");
+            throw new Exception("Invalid scale value, 0, or 500 to 4000 accepted.");
         }
         $this->config['ocr_scaledown'] = $maxScale;
 
@@ -97,11 +101,12 @@ class CoreAPI
      * Set the minimum confidence score to consider faces being identical
      * @param float $threshold float between 0 to 1
      * @return null
+     * @throws Exception
      */
     public function setBiometricThreshold($threshold = 0.4)
     {
         if($threshold<=0 || $threshold>1){
-            throw new \Exception("Invalid threshold value, float between 0 to 1 accepted.");
+            throw new Exception("Invalid threshold value, float between 0 to 1 accepted.");
         }
 
         $this->config['biometric_threshold'] = $threshold;
@@ -114,11 +119,12 @@ class CoreAPI
      * @param bool $cropFace Crop face
      * @param string $outputFormat url/base64
      * @return null
+     * @throws Exception
      */
     public function enableImageOutput($cropDocument = false, $cropFace = false, $outputFormat = "url")
     {
         if($outputFormat !== 'url' && $outputFormat !== 'base64'){
-            throw new \Exception("Invalid output format, 'url' or 'base64' accepted.");
+            throw new Exception("Invalid output format, 'url' or 'base64' accepted.");
         }
         $this->config['outputimage'] = $cropDocument == true;
         $this->config['outputface'] = $cropFace == true;
@@ -151,6 +157,7 @@ class CoreAPI
      * Check if supplied document or personal number matches with document.
      * @param string $documentNumber Document or personal number requiring validation
      * @return null
+     * @throws Exception
      */
     public function verifyDocumentNumber($documentNumber = "X1234567")
     {
@@ -158,7 +165,7 @@ class CoreAPI
             $this->config['verify_documentno'] = "";
         }else{
             if($documentNumber == ""){
-                throw new \Exception("You must set a document or personal ID number you want to verify against.");
+                throw new Exception("You must set a document or personal ID number you want to verify against.");
             }
             $this->config['verify_documentno'] = $documentNumber;
         }
@@ -171,6 +178,7 @@ class CoreAPI
      * Check if supplied name matches with document.
      * @param string $fullName Full name requiring validation
      * @return null
+     * @throws Exception
      */
     public function verifyName($fullName = "ELON MUSK")
     {
@@ -179,7 +187,7 @@ class CoreAPI
             $this->config['verify_name'] = "";
         }else{
             if($fullName == ""){
-                throw new \Exception("You must set the full name you want to verify against.");
+                throw new Exception("You must set the full name you want to verify against.");
             }
             $this->config['verify_name'] = $fullName;
         }
@@ -193,6 +201,7 @@ class CoreAPI
      * Check if supplied date of birth matches with document.
      * @param string $dob Date of birth in YYYY/MM/DD
      * @return null
+     * @throws Exception
      */
     public function verifyDOB($dob = "1990/01/01")
     {
@@ -200,7 +209,7 @@ class CoreAPI
             $this->config['verify_dob'] = "";
         }else{
             if(DateTime::createFromFormat('!Y/m/d', $dob) === false){
-                throw new \Exception("Invalid birthday format (YYYY/MM/DD)");
+                throw new Exception("Invalid birthday format (YYYY/MM/DD)");
             }
 
             $this->config['verify_dob'] = $dob;
@@ -213,6 +222,7 @@ class CoreAPI
      * Check if the document holder is aged between the given range.
      * @param string $ageRange Age range, example: 18-40
      * @return null
+     * @throws Exception
      */
     public function verifyAge($ageRange = "18-99")
     {
@@ -220,7 +230,7 @@ class CoreAPI
             $this->config['verify_age'] = "";
         }else{
             if (!preg_match('/^\d+-\d+$/', $ageRange)) {
-                throw new \Exception("Invalid age range format (minAge-maxAge)");
+                throw new Exception("Invalid age range format (minAge-maxAge)");
             }
 
             $this->config['verify_age'] = $ageRange;
@@ -381,11 +391,12 @@ class CoreAPI
      * @param string $biometric_video Face Video (File path or URL)
      * @param string $biometric_video_passcode Face Video Passcode (4 Digit Number)
      * @return array
+     * @throws Exception
      */
     public function scan($document_primary, $document_secondary = "", $biometric_photo = "", $biometric_video = "", $biometric_video_passcode = ""){
 
         if($this->apiendpoint=="" || $this->apikey==""){
-            throw new \Exception("Please call init() with your API key.");
+            throw new Exception("Please call init() with your API key.");
         }
 
         $payload = $this->config;
@@ -393,14 +404,14 @@ class CoreAPI
 
 
         if($document_primary == ""){
-            throw new \Exception("Primary document image required.");
+            throw new Exception("Primary document image required.");
         }
         if(filter_var($document_primary, FILTER_VALIDATE_URL)){
             $payload['url'] = $document_primary;
         }else if(file_exists($document_primary)){
             $payload['file_base64'] = base64_encode(file_get_contents($document_primary));
         }else{
-            throw new \Exception("Invalid primary document image, file not found or malformed URL.");
+            throw new Exception("Invalid primary document image, file not found or malformed URL.");
         }
         if($document_secondary != ""){
             if(filter_var($document_secondary, FILTER_VALIDATE_URL)){
@@ -408,7 +419,7 @@ class CoreAPI
             }else if(file_exists($document_secondary)){
                 $payload['file_back_base64'] = base64_encode(file_get_contents($document_secondary));
             }else {
-                throw new \Exception("Invalid secondary document image, file not found or malformed URL.");
+                throw new Exception("Invalid secondary document image, file not found or malformed URL.");
             }
         }
         if($biometric_photo != ""){
@@ -417,7 +428,7 @@ class CoreAPI
             }else if(file_exists($biometric_photo)){
                 $payload['face_base64'] = base64_encode(file_get_contents($biometric_photo));
             }else {
-                throw new \Exception("Invalid face image, file not found or malformed URL.");
+                throw new Exception("Invalid face image, file not found or malformed URL.");
             }
         }
         if($biometric_video != ""){
@@ -426,10 +437,10 @@ class CoreAPI
             }else if(file_exists($biometric_video)){
                 $payload['video_base64'] = base64_encode(file_get_contents($biometric_video));
             }else {
-                throw new \Exception("Invalid face video, file not found or malformed URL.");
+                throw new Exception("Invalid face video, file not found or malformed URL.");
             }
             if (!preg_match('/^[0-9]{4}$/', $biometric_video_passcode)) {
-                throw new \Exception("Please provide a 4 digit passcode for video biometric verification.");
+                throw new Exception("Please provide a 4 digit passcode for video biometric verification.");
             }
         }
 
@@ -446,9 +457,9 @@ class CoreAPI
         $response = curl_exec($ch);
 
         if(curl_error($ch)){
-            throw new \Exception("Connecting to API Server failed: ".curl_error($ch));
+            throw new Exception("Connecting to API Server failed: ".curl_error($ch));
         }else{
-            $result = json_decode($response);
+            $result = json_decode($response,true);
 
             return $result;
         }
