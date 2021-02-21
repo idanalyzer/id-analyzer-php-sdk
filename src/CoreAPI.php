@@ -35,7 +35,8 @@ class CoreAPI
         "vault_customdata3" => "",
         "vault_customdata4" => "",
         "vault_customdata5" => "",
-        "barcodemode" => false
+        "barcodemode" => false,
+        "biometric_threshold" => 0.4
     );
 
 
@@ -92,6 +93,20 @@ class CoreAPI
 
     }
 
+    /**
+     * Set the minimum confidence score to consider faces being identical
+     * @param float $threshold float between 0 to 1
+     * @return null
+     */
+    public function setBiometricThreshold($threshold = 0.4)
+    {
+        if($threshold<=0 || $threshold>1){
+            throw new \Exception("Invalid threshold value, float between 0 to 1 accepted.");
+        }
+
+        $this->config['biometric_threshold'] = $threshold;
+
+    }
 
     /**
      * Generate cropped image of document and/or face, and set output format [url, base64]
@@ -341,8 +356,8 @@ class CoreAPI
 
     /**
      * Initialize Core API with an API key and optional region (US, EU)
-     * @param string $str_apikey You API key
-     * @param string $str_region US/EU
+     * @param string $apikey You API key
+     * @param string $region US/EU
      * @return null
      */
     public function init($apikey, $region = "US")
@@ -425,6 +440,9 @@ class CoreAPI
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         $response = curl_exec($ch);
 
         if(curl_error($ch)){
