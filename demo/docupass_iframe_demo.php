@@ -25,7 +25,7 @@ $api_region = "US"; // or EU if you are from Europe
 
         <div class="mb-3">
             <label class="form-label">Email *</label>
-            <input type="file" class="form-control" name="email" required>
+            <input type="email" class="form-control" name="email" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Start Identity Verification</button>
