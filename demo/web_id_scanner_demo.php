@@ -83,7 +83,7 @@ $api_region = "US"; // or EU if you are from Europe
 
 
                         // perform a scan using uploaded image
-                        $result = $coreapi->scan($_FILES['DocumentFront']['tmp_name'], $_FILES['DocumentBack']['tmp_name'], $_FILES['FacePhoto']['tmp_name']);
+                        $result = $coreapi->scan($_FILES['DocumentFront']['tmp_name'], $_FILES['DocumentBack']['tmp_name'], $_FILES['FacePhoto']['tmp_name'],);
 
                         // or perform a scan using remote image url
                         // $result = $coreapi->scan("https://www.idanalyzer.com/img/sampleid1.jpg");

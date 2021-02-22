@@ -5,6 +5,9 @@
   "keywords": ["idanalyzer","passport","driver license","id card","identity verification","id verification","id ocr"],
   "homepage": "https://www.idanalyzer.com",
   "license": "MIT",
+  "require": {
+    "php": ">=5.4"
+  },
   "authors": [
     {
       "name": "IDAnalyzer Team",
@@ -16,6 +19,6 @@
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {"IDAnalyzer\\": "src/"}
-  },
-  "require": {}
+  }
+
 }
