@@ -445,18 +445,21 @@ class CoreAPI
         }
 
 
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->apiendpoint);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_FAILONERROR, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         $response = curl_exec($ch);
 
-        if(curl_error($ch)){
+
+
+        if(curl_error($ch) || curl_errno($ch)){
             throw new Exception("Connecting to API Server failed: ".curl_error($ch));
         }else{
             $result = json_decode($response,true);

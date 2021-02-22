@@ -1,6 +1,7 @@
 <?php
 require("../src/DocuPass.php");
 
+use IDAnalyzer\DocuPass;
 
 $apikey = "Your API Key"; // ID Analyzer API key available under your web portal https://portal.idanalyzer.com
 $api_region = "US"; // or EU if you are from Europe
@@ -17,7 +18,7 @@ $api_region = "US"; // or EU if you are from Europe
 
 </head>
 <body>
-<div class="container">
+<div class="container mt-5 mb-5">
     <h1>DocuPass Mobile Demo</h1>
     <p>Enter your email to begin identity verification, please have your mobile phone ready with you.</p>
     <form method="post">
@@ -30,7 +31,7 @@ $api_region = "US"; // or EU if you are from Europe
         <button type="submit" class="btn btn-primary">Start Identity Verification</button>
     </form>
 
-    <div class="card">
+    <div class="card mt-5">
         <div class="card-header">
             Identity Verification Instructions
         </div>
@@ -42,7 +43,7 @@ $api_region = "US"; // or EU if you are from Europe
 
                     try{
 
-                        $docupass = new \IDAnalyzer\DocuPass();
+                        $docupass = new DocuPass();
 
                         // Initialize DocuPass with your credentials and company name
                         $docupass->init($apikey, "My Company Inc.", $api_region);
@@ -105,7 +106,7 @@ $api_region = "US"; // or EU if you are from Europe
                         }else{
                             echo("Scan the QR Code below to verify your identity: <br/>");
                             echo("<img src=\"{$result['qrcode']}\"><br/>");
-                            echo("Or open your mobile browser and type in:");
+                            echo("Or open your mobile browser and type in: ");
                             echo("<a href=\"{$result['url']}\">{$result['url']}</a>");
 
                             /*

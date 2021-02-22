@@ -1,7 +1,7 @@
 <?php
 require("../src/DocuPass.php");
 
-
+use IDAnalyzer\DocuPass;
 
 $apikey = "Your API Key"; // ID Analyzer API key available under your web portal https://portal.idanalyzer.com
 $api_region = "US"; // or EU if you are from Europe
@@ -11,7 +11,7 @@ if ($_POST['email'] != "") {
 
     try {
 
-        $docupass = new \IDAnalyzer\DocuPass();
+        $docupass = new DocuPass();
         // Initialize DocuPass with your credentials and company name
         $docupass->init($apikey, "My Company Inc.", $api_region);
         // We need to set an identifier so that we know internally who we are verifying, this string will be returned in the callback. You can use your own user/customer id.
@@ -77,9 +77,9 @@ if ($_POST['email'] != "") {
 
 </head>
 <body>
-<div class="container">
+<div class="container mt-5 mb-5">
     <h1>DocuPass Redirect Demo</h1>
-    <p>Enter your email to begin identity verification, please have your mobile phone ready with you.</p>
+    <p>Enter your email to begin identity verification.</p>
     <form method="post">
 
         <div class="mb-3">

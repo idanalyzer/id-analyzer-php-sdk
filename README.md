@@ -17,7 +17,15 @@ Alternatively, download this package and manually require the php files under **
 
 The sample code below will extract data from this sample Driver License issued in California, and check whether it is real or fake.
 
-    $coreapi = new \IDAnalyzer\CoreAPI();  
+    // use composer autoload
+    require("vendor/autoload.php);
+	
+	// or manually load CoreAPI class
+	//require("../src/CoreAPI.php");  
+  
+	use IDAnalyzer\CoreAPI; 
+
+    $coreapi = new CoreAPI();  
       
     // Initialize Core API US Region with your credentials  
     $coreapi->init("Your API Key", "US"); 
@@ -48,7 +56,7 @@ The sample code below will extract data from this sample Driver License issued i
 You could also set additional parameters before performing ID scan:
 	
     
-	$coreapi->enableVault(true,true,false,false);  // enable vault cloud storage to store document information and image
+	$coreapi->enableVault(true,false,false,false);  // enable vault cloud storage to store document information and image
 	$coreapi->setBiometricThreshold(0.6); // make face verification more strict  
 	$coreapi->enableAuthentication(true, 'quick'); // check if document is real using 'quick' module  
 	$coreapi->enableBarcodeMode(false); // disable OCR and scan for AAMVA barcodes only  
@@ -77,3 +85,10 @@ To perform **biometric video verification**:
 
 	$result = $coreapi->scan("path/to/id.jpg", "", "", "path/to/video.mp4", "1234");
 Check out sample response array fields visit [Core API reference](https://developer.idanalyzer.com/coreapi.html##readingresponse).
+
+## DocuPass API
+
+
+## Vault API
+
+## Demo

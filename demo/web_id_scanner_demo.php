@@ -3,6 +3,10 @@ require("../src/CoreAPI.php");
 require("../src/Vault.php");
 
 
+use IDAnalyzer\CoreAPI;
+use IDAnalyzer\Vault;
+
+
 $apikey = "Your API Key"; // ID Analyzer API key available under your web portal https://portal.idanalyzer.com
 $api_region = "US"; // or EU if you are from Europe
 
@@ -18,9 +22,9 @@ $api_region = "US"; // or EU if you are from Europe
 
 </head>
 <body>
-<div class="container">
+<div class="container mt-5">
     <h1>ID Scanner Demo using Core API</h1>
-    <p>Please upload a your identification document for verification (front of ID is mandatory).</p>
+    <p>Please upload your identification document for verification (front of ID is mandatory).</p>
     <form enctype="multipart/form-data" method="post">
 
         <div class="mb-3">
@@ -38,7 +42,7 @@ $api_region = "US"; // or EU if you are from Europe
         <button type="submit" class="btn btn-primary">Check My ID</button>
     </form>
 
-    <div class="card">
+    <div class="card mt-5 mb-5">
         <div class="card-header">
             Result
         </div>
@@ -50,20 +54,22 @@ $api_region = "US"; // or EU if you are from Europe
 
                     try{
 
-                        $coreapi = new \IDAnalyzer\CoreAPI();
+                        $coreapi = new CoreAPI();
 
                         // Initialize Core API with your credentials
                         $coreapi->init($apikey, $api_region);
 
                         // enable vault cloud storage to store document information and image
-                        $coreapi->enableVault(true,true,false,false);
+                        $coreapi->enableVault(true,false,false,false);
+
+                        // quick fake id check
+                        $coreapi->enableAuthentication(true, 'quick'); // check if document is real using 'quick' module
 
 
                         /*
                          * more settings
                         $coreapi->setAccuracy(2); // set OCR accuracy to highest
                         $coreapi->setBiometricThreshold(0.6); // make face verification more strict
-                        $coreapi->enableAuthentication(true, 'quick'); // check if document is real using 'quick' module
                         $coreapi->enableBarcodeMode(false); // disable OCR and scan for AAMVA barcodes only
                         $coreapi->enableImageOutput(true,true,"url"); // output cropped document and face region in URL format
                         $coreapi->enableDualsideCheck(true); // check if data on front and back of ID matches
@@ -83,7 +89,7 @@ $api_region = "US"; // or EU if you are from Europe
 
 
                         // perform a scan using uploaded image
-                        $result = $coreapi->scan($_FILES['DocumentFront']['tmp_name'], $_FILES['DocumentBack']['tmp_name'], $_FILES['FacePhoto']['tmp_name'],);
+                        $result = $coreapi->scan($_FILES['DocumentFront']['tmp_name'], $_FILES['DocumentBack']['tmp_name'], $_FILES['FacePhoto']['tmp_name']);
 
                         // or perform a scan using remote image url
                         // $result = $coreapi->scan("https://www.idanalyzer.com/img/sampleid1.jpg");
@@ -93,7 +99,7 @@ $api_region = "US"; // or EU if you are from Europe
                             echo("Error Code: {$result['error']['code']}<br/>Error Message: {$result['error']['message']}");
                         }else{
                             // We gotten the result array
-                            // print_r($result);
+
                             $data_result = $result['result'];
                             $face_result = $result['face'];
                             $authentication_result = $result['authentication'];
@@ -114,7 +120,7 @@ $api_region = "US"; // or EU if you are from Europe
                                     case "P":
                                         $documentType = "Passport";
                                         break;
-                                    case "O":
+                                    case "I":
                                         $documentType = "Identification Card";
                                         break;
                                     case "D":
@@ -156,12 +162,15 @@ $api_region = "US"; // or EU if you are from Europe
                                 echo("The document uploaded is too blurry, we couldn't capture some of the data<br>");
                             }
 
+                            // print Core API Results
+                            echo("<br><br>Core API Results:<br>");
+                            print_r($result);
 
                             // Retrieve the identity information from Vault
                             if($vaultid != ""){
-                                echo("Data from Vault:<br>");
+                                echo("<br><br>Data from Vault:<br>");
 
-                                $vault = new \IDAnalyzer\Vault();
+                                $vault = new Vault();
 
                                 // Initialize Vault API with your credentials
                                 $vault->init($apikey, $api_region);
