@@ -67,13 +67,13 @@ You could also set additional parameters before performing ID scan:
 	$coreapi->verifyAddress("123 Sunny Rd, California"); // Check if address on ID matches with provided address  
 	$coreapi->verifyPostcode("90001"); // check if postcode on ID matches with provided postcode
 
-To perform dual-side scan:
+To **scan both front and back of ID**:
 
 	$result = $coreapi->scan("path/to/id_front.jpg", "path/to/id_back.jpg");
-To perform biometric photo verification:
+To perform **biometric photo verification**:
 
 	$result = $coreapi->scan("path/to/id.jpg", "", "path/to/face.jpg");
-To perform biometric video verification:
+To perform **biometric video verification**:
 
 	$result = $coreapi->scan("path/to/id.jpg", "", "", "path/to/video.mp4", "1234");
-To check out sample response array fields visit [Core API reference](https://developer.idanalyzer.com/coreapi.html).
+Check out sample response array fields visit [Core API reference](https://developer.idanalyzer.com/coreapi.html##readingresponse).
