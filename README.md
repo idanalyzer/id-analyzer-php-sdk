@@ -130,21 +130,22 @@ To start, we will assume you are trying to **verify one of your user that has an
 	// We want to redirect user back to your website when they are done with verification  
 	$docupass->setRedirectionURL("https://www.your-website.com/verification_succeeded.php", "https://www.your-website.com/verification_failed.php");
 	
+	// Create a session using DocuPass Standard Mobile module
 	$result = $docupass->createMobile();
 	  
 	if($result['error']){  
-	  // Something went wrong  
-	  echo("Error Code: {$result['error']['code']}<br/>Error Message: {$result['error']['message']}");  
+		// Something went wrong  
+		echo("Error Code: {$result['error']['code']}<br/>Error Message: {$result['error']['message']}");  
 	}else{  
-	  echo("Scan the QR Code below to verify your identity: <br/>");  
-	  echo("<img src=\"{$result['qrcode']}\"><br/>");  
-	  echo("Or open your mobile browser and type in: ");  
-	  echo("<a href=\"{$result['url']}\">{$result['url']}</a>");  
-	  
-	  // If you are looking to embed DocuPass into your mobile App, simply embed $result['url'] inside a WebView
-	  // To tell if verification has been completed monitor the WebView URL and check if it matches the URLs set in setRedirectionURL * DocuPass Live Mobile currently cannot be embedded into native iOS App, you need to open it with Safari 
+		echo("Scan the QR Code below to verify your identity: <br/>");  
+		echo("<img src=\"{$result['qrcode']}\"><br/>");  
+		echo("Or open your mobile browser and type in: ");  
+		echo("<a href=\"{$result['url']}\">{$result['url']}</a>");  
+
 	}
-Now we need to write a **callback script** or if you prefer to call it a **webhook**, to receive the verification results. We will name it **docupass_callback.php**:
+If you are looking to embed DocuPass into your mobile application, simply embed `$result['url']` inside a WebView. To tell if verification has been completed monitor the WebView URL and check if it matches the URLs set in setRedirectionURL. (DocuPass Live Mobile currently cannot be embedded into native iOS App due to OS restrictions, you will need to open it with Safari)
+
+Now we need to write a **callback script** or if you prefer to call it a **webhook**, to receive the verification results. This script will be called as soon as user finishes identity verification. In this guide, we will name it **docupass_callback.php**:
 
 	// use composer autoload
 	require("vendor/autoload.php);
@@ -191,12 +192,12 @@ Now we need to write a **callback script** or if you prefer to call it a **webho
 				// Additional steps to store identity data into your own database
 			  
 			 }else{  
-				 // User did not pass identity verification  
-				 $fail_code = $data['failcode'];
-				 $fail_reason = $data['failreason'];
+				// User did not pass identity verification  
+				$fail_code = $data['failcode'];
+				$fail_reason = $data['failreason'];
 				 
-				 // Save failed reason so we can investigate further  
-				 file_put_contents("failed_verifications.txt", "$userID has failed identity verification, DocuPass Reference: {$data['reference']}, Fail Reason: {$fail_reason} Fail Code: {$fail_code}\n", FILE_APPEND);  
+				// Save failed reason so we can investigate further  
+				file_put_contents("failed_verifications.txt", "$userID has failed identity verification, DocuPass Reference: {$data['reference']}, Fail Reason: {$fail_reason} Fail Code: {$fail_code}\n", FILE_APPEND);  
 				
 				// Additional steps to store why identity verification failed into your own database
 			  
@@ -208,9 +209,36 @@ Now we need to write a **callback script** or if you prefer to call it a **webho
 		file_put_contents("docupass_exception.txt", $ex->getMessage()."\n", FILE_APPEND);  
 	}		
 	  
-For more details on exactly what DocuPass API returns in a callback, visit [DocuPass Callback reference](https://developer.idanalyzer.com/docupass_callback.html).
+Visit [DocuPass Callback reference](https://developer.idanalyzer.com/docupass_callback.html) to check out the full payload returned by DocuPass.
 
-Finally, you should create two web pages (URLS set via setRedirectionURL) that display the results to your user. DocuPass reference will be passed as a GET parameter when users are redirected, you could use the reference code to fetch the results from your database. (We will always send callbacks back to your server before redirecting your user to the success/fail URLs)
+For the final step, you could create two web pages (URLS set via setRedirectionURL) that display the results to your user. DocuPass reference will be passed as a GET parameter when users are redirected, for example: https://www.your-website.com/verification_succeeded.php?reference=XXXXXXXXX, you could use the reference code to fetch the results from your database. P.S. We will always send callbacks to your server before redirecting your user to the set URL.
 
+## Vault API
+ID Analyzer provides free cloud database storage (Vault) for you to store data obtained through Core API and DocuPass. You can set whether you want to store your user data into Vault through `enableVault` while making an API request with PHP SDK. Data stored in Vault can be looked up through [Web Portal](https://portal.idanalyzer.com) or via Vault API.
+
+If you have enabled Vault, Core API and DocuPass will both return a vault entry identifier string called `vaultid`,  you can use the identifier to look up your user data:
+
+	// use composer autoload
+	require("vendor/autoload.php);
+
+	// or manually load DocuPass class
+	require("../src/Vault.php");  
+
+	use IDAnalyzer\Vault;
+
+	$vault = new Vault();  
+	  
+	// Initialize Vault API with your credentials  
+	$vault->init("API Key", "US");  
+	  
+	// Get the vault entry using Vault Entry Identifier received from Core API/DocuPass 
+	$vaultdata = $vault->get("VAULTID");
+Alternatively, you may have a DocuPass reference code which you want to search through vault to check whether user has completed identity verification:
+
+	$vaultItems = $vault->list(["docupass_reference=XXXXXXXXXXXXX"]);
+Learn more about [Vault API](https://developer.idanalyzer.com/vaultapi.html).
 ## Demo
-Check out /demo folder for more PHP demo codes.
+Check out **demo/** folder for more PHP demo codes.
+
+## SDK Reference
+Check out [ID Analyzer PHP SDK Reference](https://idanalyzer.github.io/id-analyzer-php-sdk/)
