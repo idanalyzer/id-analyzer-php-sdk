@@ -2,7 +2,7 @@
 # ID Analyzer PHP SDK
 This is a PHP SDK for [ID Analyzer Identity Verification APIs](https://www.idanalyzer.com), though all the APIs can be called with without the SDK using simple HTTP requests as outlined in the [documentation](https://developer.idanalyzer.com), you can use this SDK to accelerate server-side development.
 
-We strongly discourage users to connect to ID Analyzer API endpoint directly  from client-side applications that will be distributed to end user, such as mobile app, or in-browser JavaScript. Your API key could be easily compromised therefore the best practice is always to call our APIs from the server-side.
+We strongly discourage users to connect to ID Analyzer API endpoint directly  from client-side applications that will be distributed to end user, such as mobile app, or in-browser JavaScript. Your API key could be easily compromised, and if you are storing your customer's information inside Vault they could use your API key to fetch all your user details. Therefore, the best practice is always to implement a client side connection to your server, and call our APIs from the server-side.
 
 ## Installation
 Install through composer
@@ -145,6 +145,25 @@ To start, we will assume you are trying to **verify one of your user that has an
 	}
 If you are looking to embed DocuPass into your mobile application, simply embed `$result['url']` inside a WebView. To tell if verification has been completed monitor the WebView URL and check if it matches the URLs set in setRedirectionURL. (DocuPass Live Mobile currently cannot be embedded into native iOS App due to OS restrictions, you will need to open it with Safari)
 
+Check out additional DocuPass settings:
+
+	$docupass->setReusable(true); // allow DocuPass URL/QR Code to be used by multiple users  
+	$docupass->setLanguage("en"); // override auto language detection  
+	$docupass->setQRCodeFormat("000000","FFFFFF",5,1); // generate a QR code using custom colors and size  
+	$docupass->setWelcomeMessage("We need to verify your driver license before you make a rental booking with our company."); // Display your own greeting message  
+	$docupass->setLogo("https://www.your-website.com/logo.png"); // change default logo to your own  
+	$docupass->hideBrandingLogo(true); // hide footer logo  
+	$docupass->restrictCountry("US,CA,AU"); // accept documents from United States, Canada and Australia  
+	$docupass->restrictState("CA,TX,WA"); // accept documents from california, texas and washington  
+	$docupass->restrictType("DI"); // accept only driver license and identification card  
+	$docupass->verifyExpiry(true); // check document expiry  
+	$docupass->verifyAge("18-120"); // check if person is above 18  
+	$docupass->verifyDOB("1990/01/01"); // check if person's birthday is 1990/01/01  
+	$docupass->verifyDocumentNumber("X1234567"); // check if the person's ID number is X1234567  
+	$docupass->verifyName("Elon Musk"); // check if the person is named Elon Musk  
+	$docupass->verifyAddress("123 Sunny Rd, California"); // Check if address on ID matches with provided address  
+	$docupass->verifyPostcode("90001"); // check if postcode on ID matches with provided postcode
+
 Now we need to write a **callback script** or if you prefer to call it a **webhook**, to receive the verification results. This script will be called as soon as user finishes identity verification. In this guide, we will name it **docupass_callback.php**:
 
 	// use composer autoload
@@ -238,7 +257,7 @@ Alternatively, you may have a DocuPass reference code which you want to search t
 	$vaultItems = $vault->list(["docupass_reference=XXXXXXXXXXXXX"]);
 Learn more about [Vault API](https://developer.idanalyzer.com/vaultapi.html).
 ## Demo
-Check out **demo/** folder for more PHP demo codes.
+Check out **/demo** folder for more PHP demo codes.
 
 ## SDK Reference
 Check out [ID Analyzer PHP SDK Reference](https://idanalyzer.github.io/id-analyzer-php-sdk/)

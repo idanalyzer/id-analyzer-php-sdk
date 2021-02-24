@@ -153,7 +153,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetCustomID\u0028\u0029",
             "name": "setCustomID",
-            "summary": "Set\u0020a\u0020custom\u0020user\u0020identifier\u0020string,\u0020this\u0020will\u0020be\u0020returned\u0020in\u0020the\u0020callback",
+            "summary": "Set\u0020a\u0020custom\u0020string\u0020that\u0020will\u0020be\u0020sent\u0020back\u0020to\u0020your\u0020server\u0027s\u0020callback\u0020URL,\u0020and\u0020appended\u0020to\u0020redirection\u0020URLs\u0020as\u0020a\u0020query\u0020string.\u0020It\u0020is\u0020useful\u0020for\u0020identifying\u0020your\u0020user\u0020within\u0020your\u0020database.\u0020This\u0020value\u0020will\u0020be\u0020stored\u0020under\u0020customdata1\u0020under\u0020Vault.",
             "url": "classes/IDAnalyzer-DocuPass.html#method_setCustomID"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetWelcomeMessage\u0028\u0029",
@@ -183,7 +183,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetRedirectionURL\u0028\u0029",
             "name": "setRedirectionURL",
-            "summary": "Redirect\u0020client\u0020browser\u0020to\u0020set\u0020URLs\u0020after\u0020verification",
+            "summary": "Redirect\u0020client\u0020browser\u0020to\u0020set\u0020URLs\u0020after\u0020verification.\u0020DocuPass\u0020reference\u0020code\u0020and\u0020customid\u0020will\u0020be\u0020appended\u0020to\u0020the\u0020end\u0020of\u0020URL,\u0020e.g.\u0020https\u003A\/\/www.example.com\/success.php\u003Freference\u003DXXXXXXXX\u0026customid\u003DXXXXXXXX",
             "url": "classes/IDAnalyzer-DocuPass.html#method_setRedirectionURL"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AenableAuthentication\u0028\u0029",
@@ -195,6 +195,11 @@ Search.appendIndex(
             "name": "enableFaceVerification",
             "summary": "Whether\u0020users\u0020will\u0020be\u0020required\u0020to\u0020submit\u0020a\u0020selfie\u0020photo\u0020or\u0020record\u0020selfie\u0020video\u0020for\u0020facial\u0020verification.",
             "url": "classes/IDAnalyzer-DocuPass.html#method_enableFaceVerification"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetReusable\u0028\u0029",
+            "name": "setReusable",
+            "summary": "Enabling\u0020this\u0020parameter\u0020will\u0020allow\u0020multiple\u0020users\u0020to\u0020verify\u0020their\u0020identity\u0020through\u0020the\u0020same\u0020URL,\u0020a\u0020new\u0020DocuPass\u0020reference\u0020code\u0020will\u0020be\u0020generated\u0020for\u0020each\u0020user\u0020automatically.",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_setReusable"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetCallbackImage\u0028\u0029",
             "name": "setCallbackImage",

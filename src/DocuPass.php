@@ -41,7 +41,8 @@ class DocuPass
         "nobranding" => "",
         "logo" => "",
         "language" => "",
-        "biometric_threshold" => 0.4
+        "biometric_threshold" => 0.4,
+        "reusable" => false
     );
 
     private $urlRegex = "#(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))#iS";
@@ -71,7 +72,7 @@ class DocuPass
     }
 
     /**
-     * Set a custom user identifier string, this will be returned in the callback
+     * Set a custom string that will be sent back to your server's callback URL, and appended to redirection URLs as a query string. It is useful for identifying your user within your database. This value will be stored under customdata1 under Vault.
      * @param string $customID A string used to identify your customer internally
      * @return null
      */
@@ -158,9 +159,9 @@ class DocuPass
 
 
     /**
-     * Redirect client browser to set URLs after verification
-     * @param string $successURL Redirection URL when verification succeed
-     * @param string $failURL Redirection URL when verification failed
+     * Redirect client browser to set URLs after verification. DocuPass reference code and customid will be appended to the end of URL, e.g. https://www.example.com/success.php?reference=XXXXXXXX&customid=XXXXXXXX
+     * @param string $successURL Redirection URL after verification succeeded
+     * @param string $failURL Redirection URL after verification failed
      * @return null
      * @throws Exception
      */
@@ -231,6 +232,18 @@ class DocuPass
     }
 
 
+    /**
+     * Enabling this parameter will allow multiple users to verify their identity through the same URL, a new DocuPass reference code will be generated for each user automatically.
+     * @param bool $reusable Set true to allow unlimited verification for a single DocuPass session
+     * @return null
+     */
+    public function setReusable($reusable = false)
+    {
+
+        $this->config['reusable'] = $reusable == true;
+
+
+    }
 
 
     /**

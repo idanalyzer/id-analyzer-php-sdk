@@ -32,6 +32,7 @@ if ($_POST['email'] != "") {
         $docupass->setRedirectionURL("https://www.your-website.com/verification_succeeded.html", "https://www.your-website.com/verification_failed.html");
         /*
          * more settings
+        $docupass->setReusable(true); // allow DocuPass URL/QR Code to be used by multiple users
         $docupass->setLanguage("en"); // override auto language detection
         $docupass->setQRCodeFormat("000000","FFFFFF",5,1); // generate a QR code using custom colors and size
         $docupass->setWelcomeMessage("We need to verify your driver license before you make a rental booking with our company."); // Display your own greeting message

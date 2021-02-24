@@ -77,6 +77,7 @@ $api_region = "US"; // or EU if you are from Europe
 
                         /*
                          * more settings
+                        $docupass->setReusable(true); // allow DocuPass URL/QR Code to be used by multiple users
                         $docupass->setLanguage("en"); // override auto language detection
                         $docupass->setQRCodeFormat("000000","FFFFFF",5,1); // generate a QR code using custom colors and size
                         $docupass->setWelcomeMessage("We need to verify your driver license before you make a rental booking with our company."); // Display your own greeting message
