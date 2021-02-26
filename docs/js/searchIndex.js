@@ -106,10 +106,10 @@ Search.appendIndex(
             "summary": "Add\u0020up\u0020to\u00205\u0020custom\u0020strings\u0020that\u0020will\u0020be\u0020associated\u0020with\u0020the\u0020vault\u0020entry,\u0020this\u0020can\u0020be\u0020useful\u0020for\u0020filtering\u0020and\u0020searching\u0020entries.",
             "url": "classes/IDAnalyzer-CoreAPI.html#method_setVaultData"
         },                {
-            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003Ainit\u0028\u0029",
-            "name": "init",
+            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
             "summary": "Initialize\u0020Core\u0020API\u0020with\u0020an\u0020API\u0020key\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
-            "url": "classes/IDAnalyzer-CoreAPI.html#method_init"
+            "url": "classes/IDAnalyzer-CoreAPI.html#method___construct"
         },                {
             "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003Ascan\u0028\u0029",
             "name": "scan",
@@ -271,10 +271,10 @@ Search.appendIndex(
             "summary": "Save\u0020document\u0020image\u0020and\u0020parsed\u0020information\u0020in\u0020your\u0020secured\u0020vault.\u0020You\u0020can\u0020list,\u0020search\u0020and\u0020update\u0020document\u0020entries\u0020in\u0020your\u0020vault\u0020through\u0020Vault\u0020API\u0020or\u0020web\u0020portal.",
             "url": "classes/IDAnalyzer-DocuPass.html#method_enableVault"
         },                {
-            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003Ainit\u0028\u0029",
-            "name": "init",
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
             "summary": "Initialize\u0020DocuPass\u0020API\u0020with\u0020an\u0020API\u0020key,\u0020company\u0020name\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
-            "url": "classes/IDAnalyzer-DocuPass.html#method_init"
+            "url": "classes/IDAnalyzer-DocuPass.html#method___construct"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AcreateIframe\u0028\u0029",
             "name": "createIframe",
@@ -381,10 +381,10 @@ Search.appendIndex(
             "summary": "Get\u0020vault\u0020training\u0020status",
             "url": "classes/IDAnalyzer-Vault.html#method_trainingStatus"
         },                {
-            "fqsen": "\\IDAnalyzer\\Vault\u003A\u003Ainit\u0028\u0029",
-            "name": "init",
+            "fqsen": "\\IDAnalyzer\\Vault\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
             "summary": "Initialize\u0020Vault\u0020API\u0020with\u0020an\u0020API\u0020key,\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
-            "url": "classes/IDAnalyzer-Vault.html#method_init"
+            "url": "classes/IDAnalyzer-Vault.html#method___construct"
         },                {
             "fqsen": "\\IDAnalyzer\\Vault\u003A\u003AcallAPI\u0028\u0029",
             "name": "callAPI",
