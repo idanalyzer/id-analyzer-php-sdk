@@ -9,11 +9,8 @@ $apikey = "Your API Key"; // ID Analyzer API key available under your web portal
 $api_region = "US"; // or EU if you are from Europe
 
 
-
-$coreapi = new CoreAPI();
-
 // Initialize Core API US Region with your credentials
-$coreapi->init($apikey, $api_region);
+$coreapi = new CoreAPI($apikey, $api_region);
 
 // Enable authentication module v2 to check if ID is authentic
 $coreapi->enableAuthentication(true, 2);

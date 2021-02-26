@@ -493,10 +493,13 @@ class DocuPass
      * @param string $apikey You API key
      * @param string $companyName Your company name
      * @param string $region US/EU
+     * @throws Exception
      * @return null
      */
-    public function init($apikey, $companyName = "My Company Name", $region = "US")
+    public function __construct($apikey, $companyName = "My Company Name", $region = "US")
     {
+        if($apikey == "") throw new Exception("Please provide an API key");
+        if($companyName == "") throw new Exception("Please provide your company name");
         $this->apikey = $apikey;
         $this->config['companyname'] = $companyName;
         if($region === 'eu' || $region === "EU"){

@@ -43,11 +43,8 @@ $api_region = "US"; // or EU if you are from Europe
                 if($_POST['email'] != ""){
 
                     try{
-
-                        $docupass = new DocuPass();
-
                         // Initialize DocuPass with your credentials and company name
-                        $docupass->init($apikey, "My Company Inc.", $api_region);
+                        $docupass = new DocuPass($apikey, "My Company Inc.", $api_region);
 
                         // We need to set an identifier so that we know internally who we are verifying, this string will be returned in the callback. You can use your own user/customer id.
                         $docupass->setCustomID($_POST['email']);

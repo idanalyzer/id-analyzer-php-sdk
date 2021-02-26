@@ -24,16 +24,14 @@ The sample code below will extract data from this sample Driver License issued i
 	//require("../src/CoreAPI.php");  
   
 	use IDAnalyzer\CoreAPI; 
+	
+	// Initialize Core API US Region with your credentials  
+    $coreapi = new CoreAPI("Your API Key", "US");  
 
-    $coreapi = new CoreAPI();  
-      
-    // Initialize Core API US Region with your credentials  
-    $coreapi->init("Your API Key", "US"); 
-    
     // Enable authentication module v2 to check if ID is authentic
     $coreapi->enableAuthentication(true, 2);
 	
-	// Analyze the ID image by passing URL of the ID image (you may also use a local file)
+	// Analyze ID image by passing URL of the ID image (you may also use a local file)
     $result = $coreapi->scan("https://www.idanalyzer.com/img/sampleid1.jpg");
     
     // All the information about this ID will be returned in an associative array
@@ -101,11 +99,9 @@ To start, we will assume you are trying to **verify one of your user that has an
 	
 	use IDAnalyzer\DocuPass;
 	
-	$docupass = new DocuPass();  
-	
 	// Initialize DocuPass with your credential, company name and API region
-	$docupass->init("API Key", "My Company Inc.", "US");  
-	
+	$docupass = new DocuPass("API Key", "My Company Inc.", "US");  
+
 	// We need to set an identifier so that we know internally who we are verifying, this string will be returned in the callback. You can use your own user/customer id.  
 	$docupass->setCustomID("5678");  
 	
@@ -187,11 +183,9 @@ Now we need to write a **callback script** or if you prefer to call it a **webho
 
 		// Check if we've gotten required data for validation against DocuPass server, we do this to prevent someone spoofing a callback  
 		if($data['reference'] =="" || $data['hash'] == "") die();  
-
-		$docupass = new DocuPass();  
-
+		
 		// Initialize DocuPass with your credentials and company name  
-		$docupass->init("Your API Key", "My Company Inc.", "US");  
+		$docupass = new DocuPass("Your API Key", "My Company Inc.", "US");  
 
 		// Validate result with DocuPass API Server  
 		$validation = $docupass->validate($data['reference'], $data['hash']);  
@@ -244,11 +238,9 @@ If you have enabled Vault, Core API and DocuPass will both return a vault entry 
 	require("../src/Vault.php");  
 
 	use IDAnalyzer\Vault;
-
-	$vault = new Vault();  
-	  
+	
 	// Initialize Vault API with your credentials  
-	$vault->init("API Key", "US");  
+	$vault = new Vault("API Key", "US");  
 	  
 	// Get the vault entry using Vault Entry Identifier received from Core API/DocuPass 
 	$vaultdata = $vault->get("VAULTID");

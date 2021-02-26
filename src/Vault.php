@@ -229,9 +229,11 @@ class Vault
      * @param string $apikey You API key
      * @param string $region US/EU
      * @return null
+     * @throws Exception
      */
-    public function init($apikey, $region = "US")
+    public function __construct($apikey, $region = "US")
     {
+        if($apikey == "") throw new Exception("Please provide an API key");
         $this->apikey = $apikey;
         if($region === 'eu' || $region === "EU"){
             $this->apiendpoint = "https://api-eu.idanalyzer.com/";

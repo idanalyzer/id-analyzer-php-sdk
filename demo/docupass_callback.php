@@ -24,10 +24,8 @@ try{
     // Store the callback payload for debugging
     writeDebugLog($input_raw);
 
-    $docupass = new DocuPass();
-
     // Initialize DocuPass with your credentials and company name
-    $docupass->init($apikey, "My Company Inc.", $api_region);
+    $docupass = new DocuPass($apikey, "My Company Inc.", $api_region);
 
     // Validate result with DocuPass API Server
     $validation = $docupass->validate($data['reference'],  $data['hash']);
@@ -76,10 +74,8 @@ try{
 
         // We could use the Vault ID and get verification results from Vault
         if($data['vaultid'] != ""){
-            $vault = new Vault();
-
             // Initialize Vault API with your credentials
-            $vault->init($apikey, $api_region);
+            $vault = new Vault($apikey, $api_region);
 
             // Get the vault entry using Vault Entry ID received from Core API
             $vaultdata = $vault->get($data['vaultid']);
@@ -91,10 +87,8 @@ try{
 
         // We could also query the vault with DocuPass reference
         if($data['vaultid'] != ""){
-            $vault = new Vault();
-
             // Initialize Vault API with your credentials
-            $vault->init($apikey, $api_region);
+            $vault = new Vault($apikey, $api_region);
 
             // Get the vault entry using Vault Entry ID received from Core API
             $vaultItems = $vault->list(["docupass_reference={$data['reference']}"]);

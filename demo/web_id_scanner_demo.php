@@ -53,11 +53,8 @@ $api_region = "US"; // or EU if you are from Europe
                 if($_FILES['DocumentFront']['tmp_name'] != ""){
 
                     try{
-
-                        $coreapi = new CoreAPI();
-
                         // Initialize Core API with your credentials
-                        $coreapi->init($apikey, $api_region);
+                        $coreapi = new CoreAPI($apikey, $api_region);
 
                         // enable vault cloud storage to store document information and image
                         $coreapi->enableVault(true,false,false,false);
@@ -170,10 +167,8 @@ $api_region = "US"; // or EU if you are from Europe
                             if($vaultid != ""){
                                 echo("<br><br>Data from Vault:<br>");
 
-                                $vault = new Vault();
-
                                 // Initialize Vault API with your credentials
-                                $vault->init($apikey, $api_region);
+                                $vault = new Vault($apikey, $api_region);
 
                                 // Get the vault entry using Vault Entry ID received from Core API
                                 $vaultdata = $vault->get($vaultid);
