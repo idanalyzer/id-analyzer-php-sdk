@@ -164,13 +164,8 @@ class CoreAPI
         if($documentNumber === false || $documentNumber == ""){
             $this->config['verify_documentno'] = "";
         }else{
-            if($documentNumber == ""){
-                throw new Exception("You must set a document or personal ID number you want to verify against.");
-            }
             $this->config['verify_documentno'] = $documentNumber;
         }
-
-
 
     }
 
@@ -186,9 +181,6 @@ class CoreAPI
         if($fullName === false || $fullName == ""){
             $this->config['verify_name'] = "";
         }else{
-            if($fullName == ""){
-                throw new Exception("You must set the full name you want to verify against.");
-            }
             $this->config['verify_name'] = $fullName;
         }
 
@@ -211,11 +203,8 @@ class CoreAPI
             if(DateTime::createFromFormat('!Y/m/d', $dob) === false){
                 throw new Exception("Invalid birthday format (YYYY/MM/DD)");
             }
-
             $this->config['verify_dob'] = $dob;
         }
-
-
     }
 
     /**

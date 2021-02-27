@@ -89,19 +89,14 @@ class Vault
         if($id == ""){
             throw new Exception("Vault entry ID required.");
         }
-        if(is_array($id)){
-            foreach($id as $i){
-                $result = $this->callAPI("delete", array("id"=>$i));
-            }
-            return true;
+
+        $result = $this->callAPI("delete", array("id"=>$id));
+        if($result['error']){
+            throw new Exception($result['error']['message'],$result['error']['code']);
         }else{
-            $result = $this->callAPI("delete", array("id"=>$id));
-            if($result['error']){
-                throw new Exception($result['error']['message'],$result['error']['code']);
-            }else{
-                return true;
-            }
+            return true;
         }
+
     }
 
 

@@ -239,10 +239,7 @@ class DocuPass
      */
     public function setReusable($reusable = false)
     {
-
         $this->config['reusable'] = $reusable == true;
-
-
     }
 
 
@@ -255,11 +252,9 @@ class DocuPass
      */
     public function setCallbackImage($return_documentimage = true, $return_faceimage = true, $return_type = 1)
     {
-
         $this->config['return_documentimage'] = $return_documentimage == true;
         $this->config['return_faceimage'] = $return_faceimage == true;
         $this->config['return_type'] = $return_type == 0? 0:1;
-
     }
 
 
@@ -327,9 +322,6 @@ class DocuPass
         if($documentNumber === false || $documentNumber == ""){
             $this->config['verify_documentno'] = "";
         }else{
-            if($documentNumber == ""){
-                throw new Exception("You must set a document or personal ID number you want to verify against.");
-            }
             $this->config['verify_documentno'] = $documentNumber;
         }
 
@@ -349,12 +341,8 @@ class DocuPass
         if($fullName === false || $fullName == ""){
             $this->config['verify_name'] = "";
         }else{
-            if($fullName == ""){
-                throw new Exception("You must set the full name you want to verify against.");
-            }
             $this->config['verify_name'] = $fullName;
         }
-
 
 
     }
