@@ -16,11 +16,12 @@ $coreapi = new CoreAPI($apikey, $api_region);
 $coreapi->enableAuthentication(true, 2);
 
 // Analyze the ID image by passing URL of the ID image (you may also use a local file)
-$result = $coreapi->scan("https://www.idanalyzer.com/img/sampleid1.jpg");
+$result = $coreapi->scan("https://www.idanalyzer.com/img/sampleid1.jpg","","https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png");
 
 // All the information about this ID will be returned in an associative array
 $data_result = $result['result'];
 $authentication_result = $result['authentication'];
+$face_result = $result['face'];
 
 // Print result
 echo("Hello your name is {$data_result['firstName']} {$data_result['lastName']}<br>");
@@ -34,4 +35,14 @@ if($authentication_result){
     }else{
         echo("The document uploaded is fake<br>");
     }
+}
+
+// Parse face verification results
+if($face_result){
+    if($face_result['isIdentical'] === true){
+        echo("Great! Your photo looks identical to the photo on document<br>");
+    }else{
+        echo("Oh no! Your photo looks different to the photo on document<br>");
+    }
+    echo("Similarity score: {$face_result['confidence']}<br>");
 }
