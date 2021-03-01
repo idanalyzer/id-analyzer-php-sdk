@@ -432,6 +432,8 @@ class CoreAPI
             }
             if (!preg_match('/^[0-9]{4}$/', $biometric_video_passcode)) {
                 throw new Exception("Please provide a 4 digit passcode for video biometric verification.");
+            }else{
+                $payload['passcode'] = $biometric_video_passcode;
             }
         }
 
