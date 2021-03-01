@@ -2,7 +2,7 @@
   "name": "idanalyzer/id-analyzer-php-sdk",
   "type": "library",
   "description": "ID Analyzer ID Verification API PHP SDK for driver license, passport, ID card scanning and identity verification.",
-  "keywords": ["idanalyzer","passport","driver license","id card","identity verification","id verification","id ocr"],
+  "keywords": ["id analyzer","passport","driver license","id card","identity verification","id verification","id ocr","pdf417","mrz","aamva"],
   "homepage": "https://www.idanalyzer.com",
   "license": "MIT",
   "require": {
