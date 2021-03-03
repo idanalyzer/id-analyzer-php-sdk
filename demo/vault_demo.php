@@ -12,8 +12,8 @@ try{
     // Initialize Vault API with your credentials
     $vault = new Vault($apikey, $api_region);
 
-    // Get 10 newest items from vault
-    $vaultItems = $vault->list("","createtime","DESC",10);
+    // List 5 items created on or after 2021/02/25, sort result by first name in ascending order, starting from first item.
+    $vaultItems = $vault->list(array("createtime>=2021/02/25"),"createtime","DESC",10, 0);
 
     // Print result
     print_r($vaultItems);

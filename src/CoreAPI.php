@@ -12,7 +12,7 @@ class CoreAPI
         "accuracy" => 2,
         "authenticate" => false,
         "authenticate_module" => 1,
-        "ocr_scaledown" => 1500,
+        "ocr_scaledown" => 2000,
         "outputimage" => false,
         "outputface" => false,
         "outputmode" => "url",
@@ -28,7 +28,7 @@ class CoreAPI
         "region" => "",
         "type" => "",
         "checkblocklist" => "",
-        "vault_save" => "",
+        "vault_save" => true,
         "vault_saveunrecognized" => "",
         "vault_noduplicate" => "",
         "vault_automerge" => "",
@@ -88,7 +88,7 @@ class CoreAPI
      * @return null
      * @throws Exception
      */
-    public function setOCRImageResize($maxScale = 1500)
+    public function setOCRImageResize($maxScale = 2000)
     {
         if($maxScale!=0 && ($maxScale<500 || $maxScale>4000)){
             throw new Exception("Invalid scale value, 0, or 500 to 4000 accepted.");

@@ -17,7 +17,7 @@ Alternatively, download this package and manually require the php files under **
 
 ![Sample ID](https://www.idanalyzer.com/img/sampleid1.jpg)
 
-The sample code below will extract data from this sample Driver License issued in California, and check whether it is real or fake.
+The sample code below will extract data from this sample Driver License issued in California, compare it with a [photo of Lena](https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png), and check whether the ID is real or fake.
 
 ```php
 // use composer autoload
@@ -31,8 +31,8 @@ use IDAnalyzer\CoreAPI;
 // Initialize Core API US Region with your credentials  
 $coreapi = new CoreAPI("Your API Key", "US");  
 
-// Enable authentication module v2 to check if ID is authentic
-$coreapi->enableAuthentication(true, 2);
+// Enable authentication and use 'quick' module to check if ID is authentic
+$coreapi->enableAuthentication(true, 'quick');
 
 // Analyze ID image by passing URL of the ID image and a face photo (you may also use a local file)
 $result = $coreapi->scan("https://www.idanalyzer.com/img/sampleid1.jpg","","https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png");
@@ -65,9 +65,7 @@ if($face_result){
     echo("Similarity score: {$face_result['confidence']}<br>");  
 }
 ```
-You could also set additional parameters before performing ID scan:
-    
-    
+You could also set additional parameters before performing ID scan:  
 ```php
 $coreapi->enableVault(true,false,false,false);  // enable vault cloud storage to store document information and image
 $coreapi->setBiometricThreshold(0.6); // make face verification more strict  
@@ -273,8 +271,16 @@ use IDAnalyzer\Vault;
 $vault = new Vault("API Key", "US");  
   
 // Get the vault entry using Vault Entry Identifier received from Core API/DocuPass 
-$vaultdata = $vault->get("VAULTID");
+$vaultdata = $vault->get("VAULT_ID");
 ```
+You can also list some of the items in your vault:
+
+```php
+# List 5 items created on or after 2021/02/25
+# sort result by first name in ascending order, starting from first item.
+$vaultItems = $vault->list(array("createtime>=2021/02/25"), "firstName","ASC", 5, 0);
+```
+
 Alternatively, you may have a DocuPass reference code which you want to search through vault to check whether user has completed identity verification:
 
 ```php

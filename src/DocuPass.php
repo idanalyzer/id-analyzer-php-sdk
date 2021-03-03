@@ -29,10 +29,11 @@ class DocuPass
         "successredir" => "",
         "failredir" => "",
         "customid" => "",
-        "vault_save" => "",
-        "return_documentimage" => "",
-        "return_faceimage" => "",
-        "return_type" => "",
+        "vault_save" => true,
+        "return_documentimage" => true,
+        "return_faceimage" => true,
+        "return_type" => 1,
+        "return_type" => 1,
         "qr_color" => "",
         "qr_bgcolor" => "",
         "qr_size" => "",
@@ -72,7 +73,7 @@ class DocuPass
     }
 
     /**
-     * Set a custom string that will be sent back to your server's callback URL, and appended to redirection URLs as a query string. It is useful for identifying your user within your database. This value will be stored under customdata1 under Vault.
+     * Set a custom string that will be sent back to your server's callback URL, and appended to redirection URLs as a query string. It is useful for identifying your user within your database. This value will be stored under docupass_customid under Vault.
      * @param string $customID A string used to identify your customer internally
      * @return null
      */
@@ -574,6 +575,8 @@ class DocuPass
 
     /**
      * Validate a data received through DocuPass Callback against DocuPass Server to prevent request spoofing
+     * @param string $reference DocuPass reference
+     * @param string $hash DocuPass callback hash
      * @return bool
      * @throws Exception
      */
