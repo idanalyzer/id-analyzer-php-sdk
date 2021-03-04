@@ -5,8 +5,11 @@ require("../src/Vault.php");
 use IDAnalyzer\DocuPass;
 use IDAnalyzer\Vault;
 
-$apikey = "Your API Key"; // ID Analyzer API key available under your web portal https://portal.idanalyzer.com
-$api_region = "US"; // or EU if you are from Europe
+// ID Analyzer API key available under your web portal https://portal.idanalyzer.com
+$apikey = "Your API Key";
+
+// API region: US or EU
+$api_region = "US";
 
 try{
     // Get raw post body
@@ -103,9 +106,12 @@ try{
         writeDebugLog("Could not validate the authenticity of this request");
     }
 
-
+}catch(\IDAnalyzer\APIException $ex){
+    writeDebugLog("Error Code: " . $ex->getCode() . ", Error Message: " . $ex->getMessage());
+}catch(InvalidArgumentException $ex){
+    writeDebugLog("Argument Error! " . $ex->getMessage());
 }catch(Exception $ex){
-    writeDebugLog("Exception: ".$ex->getMessage());
+    writeDebugLog("Unexpected Error! " . $ex->getMessage());
 }
 
 function writeDebugLog($message){

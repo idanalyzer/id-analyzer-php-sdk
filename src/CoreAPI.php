@@ -3,9 +3,14 @@
 namespace IDAnalyzer;
 
 use Exception;
+use InvalidArgumentException;
+
+class APIException extends Exception {}
+
 
 class CoreAPI
 {
+
     private $apikey;
     private $apiendpoint = "";
     private $config, $defaultconfig = array(
@@ -38,14 +43,34 @@ class CoreAPI
         "vault_customdata4" => "",
         "vault_customdata5" => "",
         "barcodemode" => false,
-        "biometric_threshold" => 0.4
+        "biometric_threshold" => 0.4,
+        "client" => 'php-sdk'
     );
 
+    /**
+     * Initialize Core API with an API key and optional region (US, EU)
+     * @param string $apikey You API key
+     * @param string $region US/EU
+     * @return void
+     * @throws InvalidArgumentException
+     */
+    function __construct($apikey, $region = "US")
+    {
+        if($apikey == "") throw new InvalidArgumentException("Please provide an API key");
+        $this->apikey = $apikey;
+        if($region === 'eu' || $region === "EU"){
+            $this->apiendpoint = "https://api-eu.idanalyzer.com/";
+        }else if($region === 'us' || $region === "US"){
+            $this->apiendpoint = "https://api.idanalyzer.com/";
+        }else{
+            $this->apiendpoint = $region;
+        }
 
+    }
 
     /**
      * Reset all API configurations except API key and region.
-     * @return null
+     * @return void
      */
     public function resetConfig()
     {
@@ -55,7 +80,7 @@ class CoreAPI
     /**
      * Set OCR Accuracy
      * @param integer $accuracy 0 = Fast, 1 = Balanced, 2 = Accurate
-     * @return null
+     * @return void
      */
     public function setAccuracy($accuracy = 2)
     {
@@ -68,15 +93,15 @@ class CoreAPI
      * Validate the document to check whether the document is authentic and has not been tampered, and set authentication module
      * @param boolean $enabled Enable/Disable Document Authentication
      * @param mixed $module Module: 1, 2 or quick
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function enableAuthentication($enabled = false, $module = 2)
     {
         $this->config['authenticate'] = $enabled == true;
 
         if($enabled && $module != 1 && $module != 2 && $module != 'quick'){
-            throw new Exception("Invalid authentication module, 1, 2 or 'quick' accepted.");
+            throw new InvalidArgumentException("Invalid authentication module, 1, 2 or 'quick' accepted.");
         }
 
         $this->config['authenticate_module'] = $module;
@@ -85,13 +110,13 @@ class CoreAPI
     /**
      * Scale down the uploaded image before sending to OCR engine. Adjust this value to fine tune recognition accuracy on large full-resolution images. Set 0 to disable image resizing.
      * @param int $maxScale 0 or 500~4000
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function setOCRImageResize($maxScale = 2000)
     {
         if($maxScale!=0 && ($maxScale<500 || $maxScale>4000)){
-            throw new Exception("Invalid scale value, 0, or 500 to 4000 accepted.");
+            throw new InvalidArgumentException("Invalid scale value, 0, or 500 to 4000 accepted.");
         }
         $this->config['ocr_scaledown'] = $maxScale;
 
@@ -100,13 +125,13 @@ class CoreAPI
     /**
      * Set the minimum confidence score to consider faces being identical
      * @param float $threshold float between 0 to 1
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function setBiometricThreshold($threshold = 0.4)
     {
         if($threshold<=0 || $threshold>1){
-            throw new Exception("Invalid threshold value, float between 0 to 1 accepted.");
+            throw new InvalidArgumentException("Invalid threshold value, float between 0 to 1 accepted.");
         }
 
         $this->config['biometric_threshold'] = $threshold;
@@ -118,13 +143,13 @@ class CoreAPI
      * @param bool $cropDocument Crop document
      * @param bool $cropFace Crop face
      * @param string $outputFormat url/base64
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function enableImageOutput($cropDocument = false, $cropFace = false, $outputFormat = "url")
     {
         if($outputFormat !== 'url' && $outputFormat !== 'base64'){
-            throw new Exception("Invalid output format, 'url' or 'base64' accepted.");
+            throw new InvalidArgumentException("Invalid output format, 'url' or 'base64' accepted.");
         }
         $this->config['outputimage'] = $cropDocument == true;
         $this->config['outputface'] = $cropFace == true;
@@ -135,7 +160,7 @@ class CoreAPI
     /**
      * Check if the names, document number and document type matches between the front and the back of the document when performing dual-side scan. If any information mismatches error 14 will be thrown.
      * @param boolean $enabled
-     * @return null
+     * @return void
      */
     public function enableDualsideCheck($enabled = false)
     {
@@ -146,7 +171,7 @@ class CoreAPI
     /**
      * Check if the document is still valid based on its expiry date.
      * @param boolean $enabled Enable/Disable expiry check
-     * @return null
+     * @return void
      */
     public function verifyExpiry($enabled = false)
     {
@@ -156,8 +181,7 @@ class CoreAPI
     /**
      * Check if supplied document or personal number matches with document.
      * @param string $documentNumber Document or personal number requiring validation
-     * @return null
-     * @throws Exception
+     * @return void
      */
     public function verifyDocumentNumber($documentNumber = "X1234567")
     {
@@ -172,8 +196,7 @@ class CoreAPI
     /**
      * Check if supplied name matches with document.
      * @param string $fullName Full name requiring validation
-     * @return null
-     * @throws Exception
+     * @return void
      */
     public function verifyName($fullName = "ELON MUSK")
     {
@@ -184,16 +207,14 @@ class CoreAPI
             $this->config['verify_name'] = $fullName;
         }
 
-
-
     }
 
 
     /**
      * Check if supplied date of birth matches with document.
      * @param string $dob Date of birth in YYYY/MM/DD
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function verifyDOB($dob = "1990/01/01")
     {
@@ -201,7 +222,7 @@ class CoreAPI
             $this->config['verify_dob'] = "";
         }else{
             if(DateTime::createFromFormat('!Y/m/d', $dob) === false){
-                throw new Exception("Invalid birthday format (YYYY/MM/DD)");
+                throw new InvalidArgumentException("Invalid birthday format (YYYY/MM/DD)");
             }
             $this->config['verify_dob'] = $dob;
         }
@@ -210,8 +231,8 @@ class CoreAPI
     /**
      * Check if the document holder is aged between the given range.
      * @param string $ageRange Age range, example: 18-40
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function verifyAge($ageRange = "18-99")
     {
@@ -219,19 +240,18 @@ class CoreAPI
             $this->config['verify_age'] = "";
         }else{
             if (!preg_match('/^\d+-\d+$/', $ageRange)) {
-                throw new Exception("Invalid age range format (minAge-maxAge)");
+                throw new InvalidArgumentException("Invalid age range format (minAge-maxAge)");
             }
 
             $this->config['verify_age'] = $ageRange;
         }
-
 
     }
 
     /**
      * Check if supplied address matches with document.
      * @param string $address Address requiring validation
-     * @return null
+     * @return void
      */
     public function verifyAddress($address = "123 Sample St, California, US")
     {
@@ -246,7 +266,7 @@ class CoreAPI
     /**
      * Check if supplied postcode matches with document.
      * @param string $postcode Postcode requiring validation
-     * @return null
+     * @return void
      */
     public function verifyPostcode($postcode = "90001")
     {
@@ -261,7 +281,7 @@ class CoreAPI
     /**
      * Check if the document was issued by specified countries, if not error code 10 will be thrown. Separate multiple values with comma. For example "US,CA" would accept documents from United States and Canada.
      * @param string $countryCodes ISO ALPHA-2 Country Code separated by comma
-     * @return null
+     * @return void
      */
     public function restrictCountry($countryCodes = "US,CA,UK")
     {
@@ -276,7 +296,7 @@ class CoreAPI
     /**
      * Check if the document was issued by specified state, if not error code 11 will be thrown. Separate multiple values with comma. For example "CA,TX" would accept documents from California and Texas.
      * @param string $states State full name or abbreviation separated by comma
-     * @return null
+     * @return void
      */
     public function restrictState($states = "CA,TX")
     {
@@ -291,7 +311,7 @@ class CoreAPI
     /**
      * Check if the document was one of the specified types, if not error code 12 will be thrown. For example, "PD" would accept both passport and drivers license.
      * @param string $documentType P: Passport, D: Driver's License, I: Identity Card
-     * @return null
+     * @return void
      */
     public function restrictType($documentType = "DIP")
     {
@@ -307,7 +327,7 @@ class CoreAPI
     /**
      * Disable Visual OCR and read data from AAMVA Barcodes only
      * @param boolean $enabled Enable/Disable Barcode Mode
-     * @return null
+     * @return void
      */
     public function enableBarcodeMode($enabled = false)
     {
@@ -322,7 +342,7 @@ class CoreAPI
      * @param boolean $saveUnrecognized Save document image in your vault even if the document cannot be recognized.
      * @param boolean $noDuplicateImage Prevent duplicated images from being saved.
      * @param boolean $autoMergeDocument Automatically merge images with same document number into a single entry inside vault.
-     * @return null
+     * @return void
      */
     public function enableVault($enabled = true, $saveUnrecognized = false, $noDuplicateImage = false, $autoMergeDocument = false)
     {
@@ -340,7 +360,7 @@ class CoreAPI
      * @param string $data3 Custom data field 3
      * @param string $data4 Custom data field 4
      * @param string $data5 Custom data field 5
-     * @return null
+     * @return void
      */
     public function setVaultData($data1 = "", $data2 = "", $data3 = "", $data4 = "", $data5 = "" )
     {
@@ -354,27 +374,6 @@ class CoreAPI
 
 
     /**
-     * Initialize Core API with an API key and optional region (US, EU)
-     * @param string $apikey You API key
-     * @param string $region US/EU
-     * @return null
-     * @throws Exception
-     */
-    function __construct($apikey, $region = "US")
-    {
-        if($apikey == "") throw new Exception("Please provide an API key");
-        $this->apikey = $apikey;
-        if($region === 'eu' || $region === "EU"){
-            $this->apiendpoint = "https://api-eu.idanalyzer.com/";
-        }else if($region === 'us' || $region === "US"){
-            $this->apiendpoint = "https://api.idanalyzer.com/";
-        }else{
-            $this->apiendpoint = $region;
-        }
-
-    }
-
-    /**
      * Scan an ID document with Core API, optionally specify document back image, face verification image, face verification video and video passcode
      * @param string $document_primary Front of Document (File path or URL)
      * @param string $document_secondary Back of Document (File path or URL)
@@ -382,27 +381,24 @@ class CoreAPI
      * @param string $biometric_video Face Video (File path or URL)
      * @param string $biometric_video_passcode Face Video Passcode (4 Digit Number)
      * @return array
-     * @throws Exception
+     * @throws InvalidArgumentException
+     * @throws APIException
      */
     public function scan($document_primary, $document_secondary = "", $biometric_photo = "", $biometric_video = "", $biometric_video_passcode = ""){
-
-        if($this->apiendpoint=="" || $this->apikey==""){
-            throw new Exception("Please call init() with your API key.");
-        }
 
         $payload = $this->config;
         $payload["apikey"] = $this->apikey;
 
 
         if($document_primary == ""){
-            throw new Exception("Primary document image required.");
+            throw new InvalidArgumentException("Primary document image required.");
         }
         if(filter_var($document_primary, FILTER_VALIDATE_URL)){
             $payload['url'] = $document_primary;
         }else if(file_exists($document_primary)){
             $payload['file_base64'] = base64_encode(file_get_contents($document_primary));
         }else{
-            throw new Exception("Invalid primary document image, file not found or malformed URL.");
+            throw new InvalidArgumentException("Invalid primary document image, file not found or malformed URL.");
         }
         if($document_secondary != ""){
             if(filter_var($document_secondary, FILTER_VALIDATE_URL)){
@@ -410,7 +406,7 @@ class CoreAPI
             }else if(file_exists($document_secondary)){
                 $payload['file_back_base64'] = base64_encode(file_get_contents($document_secondary));
             }else {
-                throw new Exception("Invalid secondary document image, file not found or malformed URL.");
+                throw new InvalidArgumentException("Invalid secondary document image, file not found or malformed URL.");
             }
         }
         if($biometric_photo != ""){
@@ -419,7 +415,7 @@ class CoreAPI
             }else if(file_exists($biometric_photo)){
                 $payload['face_base64'] = base64_encode(file_get_contents($biometric_photo));
             }else {
-                throw new Exception("Invalid face image, file not found or malformed URL.");
+                throw new InvalidArgumentException("Invalid face image, file not found or malformed URL.");
             }
         }
         if($biometric_video != ""){
@@ -428,10 +424,10 @@ class CoreAPI
             }else if(file_exists($biometric_video)){
                 $payload['video_base64'] = base64_encode(file_get_contents($biometric_video));
             }else {
-                throw new Exception("Invalid face video, file not found or malformed URL.");
+                throw new InvalidArgumentException("Invalid face video, file not found or malformed URL.");
             }
             if (!preg_match('/^[0-9]{4}$/', $biometric_video_passcode)) {
-                throw new Exception("Please provide a 4 digit passcode for video biometric verification.");
+                throw new InvalidArgumentException("Please provide a 4 digit passcode for video biometric verification.");
             }else{
                 $payload['passcode'] = $biometric_video_passcode;
             }
@@ -453,11 +449,17 @@ class CoreAPI
 
 
         if(curl_error($ch) || curl_errno($ch)){
-            throw new Exception("Connecting to API Server failed: ".curl_error($ch));
+            throw new APIException("Failed to connect to API server: ".curl_error($ch), curl_errno($ch) );
         }else{
             $result = json_decode($response,true);
+            if(is_array($result['error'])){
 
-            return $result;
+                throw new APIException($result['error']['message'], $result['error']['code'] );
+
+            }else{
+                return $result;
+            }
+
         }
 
     }

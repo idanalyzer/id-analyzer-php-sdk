@@ -4,8 +4,11 @@ require("../src/Vault.php");
 
 use IDAnalyzer\Vault;
 
-$apikey = "Your API Key"; // ID Analyzer API key available under your web portal https://portal.idanalyzer.com
-$api_region = "US"; // or EU if you are from Europe
+// ID Analyzer API key available under your web portal https://portal.idanalyzer.com
+$apikey = "Your API Key";
+
+// API region: US or EU
+$api_region = "US";
 
 try{
 
@@ -19,9 +22,13 @@ try{
     print_r($vaultItems);
 
     // Or get a single items with vaultid
-    // $vaultItems = $vault->get("Vault ID");
+    // $vaultItem = $vault->get("Vault ID");
 
+}catch(\IDAnalyzer\APIException $ex){
+    echo("Error Code: " . $ex->getCode() . ", Error Message: " . $ex->getMessage());
+}catch(InvalidArgumentException $ex){
+    echo("Argument Error! " . $ex->getMessage());
 }catch(Exception $ex){
-    die("Exception: ".$ex->getMessage());
+    echo("Unexpected Error! " . $ex->getMessage());
 }
 

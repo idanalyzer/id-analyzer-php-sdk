@@ -6,10 +6,11 @@ require("../src/Vault.php");
 use IDAnalyzer\CoreAPI;
 use IDAnalyzer\Vault;
 
+// ID Analyzer API key available under your web portal https://portal.idanalyzer.com
+$apikey = "Your API Key";
 
-$apikey = "Your API Key"; // ID Analyzer API key available under your web portal https://portal.idanalyzer.com
-$api_region = "US"; // or EU if you are from Europe
-
+// API region: US or EU
+$api_region = "US";
 
 ?>
 <!DOCTYPE html>
@@ -91,50 +92,51 @@ $api_region = "US"; // or EU if you are from Europe
                         // or perform a scan using remote image url
                         // $result = $coreapi->scan("https://www.idanalyzer.com/img/sampleid1.jpg");
 
-                        if($result['error']){
-                            // Something went wrong
-                            echo("Error Code: {$result['error']['code']}<br/>Error Message: {$result['error']['message']}");
-                        }else{
-                            // We gotten the result array
 
-                            $data_result = $result['result'];
-                            $face_result = $result['face'];
-                            $authentication_result = $result['authentication'];
-                            $verification_result = $result['verification'];
-                            $vaultid = $result['vaultid'];
-                            $matchrate = $result['matchrate'];
+                        // We gotten the result array
+
+                        $data_result = $result['result'];
+                        $face_result = $result['face'];
+                        $authentication_result = $result['authentication'];
+                        $verification_result = $result['verification'];
+                        $vaultid = $result['vaultid'];
+                        $matchrate = $result['matchrate'];
 
 
-                            // Print some data from OCR results
-                            if($data_result['firstName'] != ""){
-                                echo("Hello your name is {$data_result['firstName']} {$data_result['lastName']}<br>");
+                        // Print some data from OCR results
+                        if($data_result['firstName'] != ""){
+                            echo("Hello your name is {$data_result['firstName']} {$data_result['lastName']}<br>");
+                        }
+                        if($data_result['dob']!=""){
+                            echo("You were born on {$data_result['dob']}<br>");
+                        }
+                        if($data_result['documentType'] != ""){
+                            switch($data_result['documentType']){
+                                case "P":
+                                    $documentType = "Passport";
+                                    break;
+                                case "I":
+                                    $documentType = "Identification Card";
+                                    break;
+                                case "D":
+                                    $documentType = "Driver License";
+                                    break;
+                                case "V":
+                                    $documentType = "Visa";
+                                    break;
+                                default:
+                                    $documentType = "Other";
                             }
-                            if($data_result['dob']!=""){
-                                echo("You were born on {$data_result['dob']}<br>");
-                            }
-                            if($data_result['documentType'] != ""){
-                                switch($data_result['documentType']){
-                                    case "P":
-                                        $documentType = "Passport";
-                                        break;
-                                    case "I":
-                                        $documentType = "Identification Card";
-                                        break;
-                                    case "D":
-                                        $documentType = "Driver License";
-                                        break;
-                                    case "V":
-                                        $documentType = "Visa";
-                                        break;
-                                    default:
-                                        $documentType = "Other";
-                                }
-                                echo("Thank you for uploading your {$documentType} issued by {$data_result['issuerOrg_region_full']} {$data_result['issuerOrg_full']}<br>");
-                            }
+                            echo("Thank you for uploading your {$documentType} issued by {$data_result['issuerOrg_region_full']} {$data_result['issuerOrg_full']}<br>");
+                        }
 
 
-                            // Parse face verification results
-                            if($face_result){
+                        // Parse face verification results
+                        if($face_result){
+                            if($face_result['error']){
+                                // View complete error codes under API reference: https://developer.idanalyzer.com/coreapi.html
+                                echo("Face verification failed! Code: {$face_result['error']}, Reason: {$face_result['error_message']}<br>");
+                            }else{
                                 if($face_result['isIdentical'] === true){
                                     echo("Great! Your photo looks identical to the photo on document<br>");
                                 }else{
@@ -142,41 +144,60 @@ $api_region = "US"; // or EU if you are from Europe
                                 }
                                 echo("Similarity score: {$face_result['confidence']}<br>");
                             }
+                        }
 
-                            // Parse document authentication results
-                            if($authentication_result){
-                                if($authentication_result['score'] > 0.5) {
-                                    echo("The document uploaded is authentic<br>");
-                                }else if($authentication_result['score'] > 0.3){
-                                    echo("The document uploaded looks little bit suspicious<br>");
-                                }else{
-                                    echo("The document uploaded is fake<br>");
-                                }
-                            }
-
-                            // Check if document is blurry
-                            if($matchrate<0.4) {
-                                echo("The document uploaded is too blurry, we couldn't capture some of the data<br>");
-                            }
-
-                            // print Core API Results
-                            echo("<br><br>Core API Results:<br>");
-                            print_r($result);
-
-                            // Retrieve the identity information from Vault
-                            if($vaultid != ""){
-                                echo("<br><br>Data from Vault:<br>");
-
-                                // Initialize Vault API with your credentials
-                                $vault = new Vault($apikey, $api_region);
-
-                                // Get the vault entry using Vault Entry ID received from Core API
-                                $vaultdata = $vault->get($vaultid);
-
-                                print_r($vaultdata);
+                        // Parse document authentication results
+                        if($authentication_result){
+                            if($authentication_result['score'] > 0.5) {
+                                echo("The document uploaded is authentic<br>");
+                            }else if($authentication_result['score'] > 0.3){
+                                echo("The document uploaded looks little bit suspicious<br>");
+                            }else{
+                                echo("The document uploaded is fake<br>");
                             }
                         }
 
+                        // Check if document is blurry
+                        if($matchrate<0.4) {
+                            echo("The document uploaded is too blurry, we couldn't capture some of the data<br>");
+                        }
+
+                        // print Core API Results
+                        echo("<br><br>Core API Results:<br>");
+                        print_r($result);
+
+                        // Retrieve the identity information from Vault
+                        if($vaultid != ""){
+                            echo("<br><br>Data from Vault:<br>");
+
+                            // Initialize Vault API with your credentials
+                            $vault = new Vault($apikey, $api_region);
+
+                            // Get the vault entry using Vault Entry ID received from Core API
+                            $vaultdata = $vault->get($vaultid);
+
+                            print_r($vaultdata);
+                        }
+
+                    }catch(\IDAnalyzer\APIException $ex){
+                        echo("Error Code: " . $ex->getCode() . ", Error Message: " . $ex->getMessage());
+
+                        // View complete error codes under API reference: https://developer.idanalyzer.com/coreapi.html
+                        switch($ex->getCode()){
+                            case 1:
+                                // Invalid API Key
+                                break;
+                            case 8:
+                                // Out of API quota
+                                break;
+                            case 9:
+                                // Document not recognized
+                                break;
+                            default:
+                                // Other error
+                        }
+                    }catch(InvalidArgumentException $ex){
+                        echo("Argument Error! " . $ex->getMessage());
                     }catch(Exception $ex){
                         echo("Error! " . $ex->getMessage());
                     }

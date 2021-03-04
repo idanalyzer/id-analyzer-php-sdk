@@ -3,6 +3,9 @@
 namespace IDAnalyzer;
 
 use Exception;
+use InvalidArgumentException;
+
+
 
 class DocuPass
 {
@@ -43,14 +46,16 @@ class DocuPass
         "logo" => "",
         "language" => "",
         "biometric_threshold" => 0.4,
-        "reusable" => false
+        "reusable" => false,
+        "client" => 'php-sdk'
+
     );
 
     private $urlRegex = "#(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))#iS";
 
     /**
      * Reset all API configurations except API key and region.
-     * @return null
+     * @return void
      */
     public function resetConfig()
     {
@@ -60,13 +65,13 @@ class DocuPass
     /**
      * Set max verification attempt per user
      * @param int $max_attempt 1 to 10
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function setMaxAttempt($max_attempt = 1)
     {
         if(!is_numeric($max_attempt) || $max_attempt<1 || $max_attempt>10){
-            throw new Exception("Invalid max attempt, please specify integer between 1 to 10.");
+            throw new InvalidArgumentException("Invalid max attempt, please specify integer between 1 to 10.");
 
         }
         $this->config['maxattempt'] = $max_attempt;
@@ -75,7 +80,7 @@ class DocuPass
     /**
      * Set a custom string that will be sent back to your server's callback URL, and appended to redirection URLs as a query string. It is useful for identifying your user within your database. This value will be stored under docupass_customid under Vault.
      * @param string $customID A string used to identify your customer internally
-     * @return null
+     * @return void
      */
     public function setCustomID($customID = "12345")
     {
@@ -85,7 +90,7 @@ class DocuPass
     /**
      * Display a custom message to the user in the beginning of verification
      * @param string $message Plain text string
-     * @return null
+     * @return void
      */
     public function setWelcomeMessage($message)
     {
@@ -96,7 +101,7 @@ class DocuPass
     /**
      * Replace footer logo with your own logo
      * @param string $url Logo URL
-     * @return null
+     * @return void
      */
     public function setLogo($url = "https://docupass.app/asset/logo1.png")
     {
@@ -107,7 +112,7 @@ class DocuPass
     /**
      * Hide all branding logo
      * @param bool $hide
-     * @return null
+     * @return void
      */
     public function hideBrandingLogo($hide = false)
     {
@@ -117,7 +122,7 @@ class DocuPass
     /**
      * DocuPass automatically detects user device language and display corresponding language. Set this parameter to override automatic language detection.
      * @param string $language Language Code: en fr nl de es zh-TW zh-CN
-     * @return null
+     * @return void
      */
     public function setLanguage($language)
     {
@@ -129,13 +134,13 @@ class DocuPass
     /**
      * Set server-side callback URL to receive verification results
      * @param string $url Callback URL
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function setCallbackURL($url = "https://www.example.com/docupass_callback.php")
     {
         if (!preg_match($this->urlRegex, $url)) {
-            throw new Exception("Invalid URL format");
+            throw new InvalidArgumentException("Invalid URL format");
         }
 
         $urlinfo = parse_url($url);
@@ -146,14 +151,14 @@ class DocuPass
                 FILTER_VALIDATE_IP,
                 FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE |  FILTER_FLAG_NO_RES_RANGE
             )){
-                throw new Exception("Invalid URL, the host does not appear to be a remote host.");
+                throw new InvalidArgumentException("Invalid URL, the host does not appear to be a remote host.");
             }
         }
         if(strtolower($urlinfo['host'])=='localhost'){
-            throw new Exception("Invalid URL, the host does not appear to be a remote host.");
+            throw new InvalidArgumentException("Invalid URL, the host does not appear to be a remote host.");
         }
         if($urlinfo['scheme']!='http' && $urlinfo['scheme']!='https'){
-            throw new Exception("Invalid URL, only http and https protocols are allowed.");
+            throw new InvalidArgumentException("Invalid URL, only http and https protocols are allowed.");
         }
         $this->config['callbackurl'] = $url;
     }
@@ -163,16 +168,16 @@ class DocuPass
      * Redirect client browser to set URLs after verification. DocuPass reference code and customid will be appended to the end of URL, e.g. https://www.example.com/success.php?reference=XXXXXXXX&customid=XXXXXXXX
      * @param string $successURL Redirection URL after verification succeeded
      * @param string $failURL Redirection URL after verification failed
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function setRedirectionURL($successURL = "https://www.example.com/success.php", $failURL = "https://www.example.com/failed.php")
     {
         if (!preg_match($this->urlRegex,$successURL)) {
-            throw new Exception("Invalid URL format for success URL");
+            throw new InvalidArgumentException("Invalid URL format for success URL");
         }
         if (!preg_match($this->urlRegex,$failURL)) {
-            throw new Exception("Invalid URL format for fail URL");
+            throw new InvalidArgumentException("Invalid URL format for fail URL");
         }
 
         $this->config['successredir'] = $successURL;
@@ -185,8 +190,8 @@ class DocuPass
      * @param boolean $enabled Enable/Disable Document Authentication
      * @param mixed $module Module: 1, 2 or quick
      * @param float $minimum_score Minimum score to pass verification
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function enableAuthentication($enabled = false, $module = 2, $minimum_score = 0.3)
     {
@@ -194,14 +199,14 @@ class DocuPass
             $this->config['authenticate_minscore'] = 0;
         }else{
             if(!is_numeric($minimum_score)){
-                throw new Exception("Invalid minimum score, please specify float between 0 to 1.");
+                throw new InvalidArgumentException("Invalid minimum score, please specify float between 0 to 1.");
             }else{
                 if($minimum_score<0 || $minimum_score>1){
-                    throw new Exception("Invalid minimum score, please specify float between 0 to 1.");
+                    throw new InvalidArgumentException("Invalid minimum score, please specify float between 0 to 1.");
                 }
             }
             if($enabled && $module != 1 && $module != 2 && $module != 'quick'){
-                throw new Exception("Invalid authentication module, 1, 2 or 'quick' accepted.");
+                throw new InvalidArgumentException("Invalid authentication module, 1, 2 or 'quick' accepted.");
             }
             $this->config['authenticate_module'] = $module;
             $this->config['authenticate_minscore'] = $minimum_score;
@@ -215,8 +220,8 @@ class DocuPass
      * @param boolean $enabled Enable/Disable Facial Biometric Verification
      * @param int $verification_type 1 for photo verification, 2 for video verification
      * @param float $threshold Minimum confidence score required to pass verification, value between 0 to 1
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function enableFaceVerification($enabled = false, $verification_type = 1, $threshold = 0.4)
     {
@@ -227,7 +232,7 @@ class DocuPass
                 $this->config['biometric'] = $verification_type;
                 $this->config['biometric_threshold'] = $threshold;
             }else{
-                throw new Exception("Invalid verification type, 1 for photo verification, 2 for video verification.");
+                throw new InvalidArgumentException("Invalid verification type, 1 for photo verification, 2 for video verification.");
             }
         }
     }
@@ -236,7 +241,7 @@ class DocuPass
     /**
      * Enabling this parameter will allow multiple users to verify their identity through the same URL, a new DocuPass reference code will be generated for each user automatically.
      * @param bool $reusable Set true to allow unlimited verification for a single DocuPass session
-     * @return null
+     * @return void
      */
     public function setReusable($reusable = false)
     {
@@ -249,7 +254,7 @@ class DocuPass
      * @param bool $return_documentimage Return document image in callback data
      * @param bool $return_faceimage Return face image in callback data
      * @param int $return_type Image type: 0=base64, 1=url
-     * @return null
+     * @return void
      */
     public function setCallbackImage($return_documentimage = true, $return_faceimage = true, $return_type = 1)
     {
@@ -265,23 +270,23 @@ class DocuPass
      * @param string $backgroundColor Image background color HEX code
      * @param int $size Image size: 1 to 50
      * @param int $margin Image margin: 1 to 50
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function setQRCodeFormat($foregroundColor = "000000", $backgroundColor = "FFFFFF", $size = 5, $margin = 1)
     {
         if(!ctype_xdigit($foregroundColor) || strlen($foregroundColor)!==6){
-            throw new Exception("Invalid foreground color HEX code");
+            throw new InvalidArgumentException("Invalid foreground color HEX code");
         }
         if(!ctype_xdigit($foregroundColor) || strlen($foregroundColor)!==6){
-            throw new Exception("Invalid background color HEX code");
+            throw new InvalidArgumentException("Invalid background color HEX code");
         }
 
         if(!is_numeric($size)){
-            throw new Exception("Invalid image size");
+            throw new InvalidArgumentException("Invalid image size");
         }
         if(!is_numeric($margin)){
-            throw new Exception("Invalid margin");
+            throw new InvalidArgumentException("Invalid margin");
         }
 
 
@@ -294,7 +299,7 @@ class DocuPass
     /**
      * Check if the names, document number and document type matches between the front and the back of the document when performing dual-side scan. If any information mismatches error 14 will be thrown.
      * @param boolean $enabled
-     * @return null
+     * @return void
      */
     public function enableDualsideCheck($enabled = false)
     {
@@ -305,7 +310,7 @@ class DocuPass
     /**
      * Check if the document is still valid based on its expiry date.
      * @param boolean $enabled Enable/Disable expiry check
-     * @return null
+     * @return void
      */
     public function verifyExpiry($enabled = false)
     {
@@ -315,8 +320,7 @@ class DocuPass
     /**
      * Check if supplied document or personal number matches with document.
      * @param string $documentNumber Document or personal number requiring validation
-     * @return null
-     * @throws Exception
+     * @return void
      */
     public function verifyDocumentNumber($documentNumber = "X1234567")
     {
@@ -333,8 +337,7 @@ class DocuPass
     /**
      * Check if supplied name matches with document.
      * @param string $fullName Full name requiring validation
-     * @return null
-     * @throws Exception
+     * @return void
      */
     public function verifyName($fullName = "ELON MUSK")
     {
@@ -352,8 +355,8 @@ class DocuPass
     /**
      * Check if supplied date of birth matches with document.
      * @param string $dob Date of birth in YYYY/MM/DD
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function verifyDOB($dob = "1990/01/01")
     {
@@ -361,7 +364,7 @@ class DocuPass
             $this->config['verify_dob'] = "";
         }else{
             if(DateTime::createFromFormat('!Y/m/d', $dob) === false){
-                throw new Exception("Invalid birthday format (YYYY/MM/DD)");
+                throw new InvalidArgumentException("Invalid birthday format (YYYY/MM/DD)");
             }
 
             $this->config['verify_dob'] = $dob;
@@ -373,8 +376,8 @@ class DocuPass
     /**
      * Check if the document holder is aged between the given range.
      * @param string $ageRange Age range, example: 18-40
-     * @return null
-     * @throws Exception
+     * @return void
+     * @throws InvalidArgumentException
      */
     public function verifyAge($ageRange = "18-99")
     {
@@ -382,7 +385,7 @@ class DocuPass
             $this->config['verify_age'] = "";
         }else{
             if (!preg_match('/^\d+-\d+$/', $ageRange)) {
-                throw new Exception("Invalid age range format (minAge-maxAge)");
+                throw new InvalidArgumentException("Invalid age range format (minAge-maxAge)");
             }
 
             $this->config['verify_age'] = $ageRange;
@@ -394,7 +397,7 @@ class DocuPass
     /**
      * Check if supplied address matches with document.
      * @param string $address Address requiring validation
-     * @return null
+     * @return void
      */
     public function verifyAddress($address = "123 Sample St, California, US")
     {
@@ -409,7 +412,7 @@ class DocuPass
     /**
      * Check if supplied postcode matches with document.
      * @param string $postcode Postcode requiring validation
-     * @return null
+     * @return void
      */
     public function verifyPostcode($postcode = "90001")
     {
@@ -424,7 +427,7 @@ class DocuPass
     /**
      * Check if the document was issued by specified countries, if not error code 10 will be thrown. Separate multiple values with comma. For example "US,CA" would accept documents from United States and Canada.
      * @param string $countryCodes ISO ALPHA-2 Country Code separated by comma
-     * @return null
+     * @return void
      */
     public function restrictCountry($countryCodes = "US,CA,UK")
     {
@@ -439,7 +442,7 @@ class DocuPass
     /**
      * Check if the document was issued by specified state, if not error code 11 will be thrown. Separate multiple values with comma. For example "CA,TX" would accept documents from California and Texas.
      * @param string $states State full name or abbreviation separated by comma
-     * @return null
+     * @return void
      */
     public function restrictState($states = "CA,TX")
     {
@@ -454,7 +457,7 @@ class DocuPass
     /**
      * Only accept document of specified types. For example, "PD" would accept both passport and drivers license.
      * @param string $documentType P: Passport, D: Driver's License, I: Identity Card
-     * @return null
+     * @return void
      */
     public function restrictType($documentType = "DIP")
     {
@@ -469,7 +472,7 @@ class DocuPass
     /**
      * Save document image and parsed information in your secured vault. You can list, search and update document entries in your vault through Vault API or web portal.
      * @param boolean $enabled Enable/Disable Vault
-     * @return null
+     * @return void
      */
     public function enableVault($enabled = true)
     {
@@ -482,13 +485,13 @@ class DocuPass
      * @param string $apikey You API key
      * @param string $companyName Your company name
      * @param string $region US/EU
-     * @throws Exception
-     * @return null
+     * @throws InvalidArgumentException
+     * @return void
      */
     public function __construct($apikey, $companyName = "My Company Name", $region = "US")
     {
-        if($apikey == "") throw new Exception("Please provide an API key");
-        if($companyName == "") throw new Exception("Please provide your company name");
+        if($apikey == "") throw new InvalidArgumentException("Please provide an API key");
+        if($companyName == "") throw new InvalidArgumentException("Please provide your company name");
         $this->apikey = $apikey;
         $this->config['companyname'] = $companyName;
         if($region === 'eu' || $region === "EU"){
@@ -504,7 +507,7 @@ class DocuPass
     /**
      * Create a DocuPass session for embedding in web page as iframe
      * @return array
-     * @throws Exception
+     * @throws APIException
      */
     public function createIframe(){
         return $this->create(0);
@@ -513,7 +516,7 @@ class DocuPass
     /**
      * Create a DocuPass session for users to open on mobile phone, or embedding in mobile app
      * @return array
-     * @throws Exception
+     * @throws APIException
      */
     public function createMobile(){
         return $this->create(1);
@@ -522,7 +525,7 @@ class DocuPass
     /**
      * Create a DocuPass session for users to open in any browser
      * @return array
-     * @throws Exception
+     * @throws APIException
      */
     public function createRedirection(){
         return $this->create(2);
@@ -531,18 +534,17 @@ class DocuPass
     /**
      * Create a DocuPass Live Mobile verification session for users to open on mobile phone
      * @return array
-     * @throws Exception
+     * @throws APIException
      */
     public function createLiveMobile(){
         return $this->create(3);
     }
 
-
+    /**
+     * @return array
+     * @throws APIException
+     */
     private function create($docupass_module){
-
-        if($this->apiendpoint=="" || $this->apikey==""){
-            throw new Exception("Please call init() with your API key.");
-        }
 
         $payload = $this->config;
         $payload["apikey"] = $this->apikey;
@@ -563,11 +565,14 @@ class DocuPass
         $response = curl_exec($ch);
 
         if(curl_error($ch)){
-            throw new Exception("Connecting to API Server failed: ".curl_error($ch));
+            throw new APIException("Failed to connect to API server: ".curl_error($ch), curl_errno($ch) );
         }else{
-            $result = json_decode($response, true);
-
-            return $result;
+            $result = json_decode($response,true);
+            if(is_array($result['error'])){
+                throw new APIException($result['error']['message'], $result['error']['code'] );
+            }else{
+                return $result;
+            }
         }
 
     }
@@ -578,19 +583,15 @@ class DocuPass
      * @param string $reference DocuPass reference
      * @param string $hash DocuPass callback hash
      * @return bool
-     * @throws Exception
+     * @throws APIException
      */
     public function validate($reference, $hash){
 
-        if($this->apiendpoint=="" || $this->apikey==""){
-            throw new Exception("Please call init() with your API key.");
-        }
-
-
-        $payload["apikey"] = $this->apikey;
-        $payload["reference"] = $reference;
-        $payload["hash"] = $hash;
-
+        $payload = array(
+            "apikey"=>$this->apikey,
+            "reference"=>$reference,
+            "hash"=>$hash
+        );
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->apiendpoint . "docupass/validate");
@@ -603,7 +604,7 @@ class DocuPass
         $response = curl_exec($ch);
 
         if(curl_error($ch)){
-            throw new Exception("Connecting to API Server failed: ".curl_error($ch));
+            throw new APIException("Failed to connect to API server: ".curl_error($ch), curl_errno($ch) );
         }else{
             $result = json_decode($response, true);
 

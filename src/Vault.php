@@ -3,30 +3,46 @@
 namespace IDAnalyzer;
 
 use Exception;
+use InvalidArgumentException;
 
 class Vault
 {
     private $apikey;
     private $apiendpoint = "";
 
+    /**
+     * Initialize Vault API with an API key, and optional region (US, EU)
+     * @param string $apikey You API key
+     * @param string $region US/EU
+     * @return void
+     * @throws InvalidArgumentException
+     */
+    public function __construct($apikey, $region = "US")
+    {
+        if($apikey == "") throw new InvalidArgumentException("Please provide an API key");
+        $this->apikey = $apikey;
+        if($region === 'eu' || $region === "EU"){
+            $this->apiendpoint = "https://api-eu.idanalyzer.com/";
+        }else if($region === 'us' || $region === "US"){
+            $this->apiendpoint = "https://api.idanalyzer.com/";
+        }else{
+            $this->apiendpoint = $region;
+        }
+    }
 
     /**
      * Get a single vault entry
-     * @param string $id Vault entry ID
+     * @param string $vault_id Vault entry ID
      * @return array
-     * @throws Exception
+     * @throws InvalidArgumentException
+     * @throws APIException
      */
-    public function get($id)
+    public function get($vault_id)
     {
-        if($id == ""){
-            throw new Exception("Vault entry ID required.");
+        if($vault_id == ""){
+            throw new InvalidArgumentException("Vault entry ID required.");
         }
-        $result = $this->callAPI("get", array("id"=>$id));
-        if($result['error']){
-            throw new Exception($result['error']['message'],$result['error']['code']);
-        }else{
-            return $result['data'];
-        }
+        return $this->callAPI("get", array("id"=>$vault_id));
 
     }
 
@@ -39,123 +55,118 @@ class Vault
      * @param int $limit Number of results to return
      * @param int $offset Offset the first result using specified index
      * @return array
-     * @throws Exception
+     * @throws APIException
      */
     public function list($filter = array(), $orderby = "createtime", $sort = "DESC", $limit = 10, $offset = 0)
     {
-        $result = $this->callAPI("list", array("filter"=>$filter,"orderby"=>$orderby,"sort"=>$sort,"limit"=>$limit,"offset"=>$offset));
-        if($result['error']){
-            throw new Exception($result['error']['message'],$result['error']['code']);
-        }else{
-            return $result;
+        if($filter == "" || $filter == null ) $filter = array();
+        if(!is_array($filter) || count($filter)>5 ){
+            throw new InvalidArgumentException("Filter should be an array containing maximum of 5 filter statements.");
         }
+        return $this->callAPI("list", array(
+            "filter"=>$filter,
+            "orderby"=>$orderby,
+            "sort"=>$sort,
+            "limit"=>$limit,
+            "offset"=>$offset)
+        );
+
 
     }
 
 
     /**
      * List multiple vault entries with optional filter, sorting and paging arguments
-     * @param string $id Vault entry ID
+     * @param string $vault_id Vault entry ID
      * @param array $data Key-value pairs of the field name and its value
      * @return bool
-     * @throws Exception
+     * @throws InvalidArgumentException
+     * @throws APIException
      */
-    public function update($id, $data = array())
+    public function update($vault_id, $data = array())
     {
-        if($id == ""){
-            throw new Exception("Vault entry ID required.");
+        if($vault_id == ""){
+            throw new InvalidArgumentException("Vault entry ID required.");
         }
         if(count($data)<1){
-            throw new Exception("Data required.");
+            throw new InvalidArgumentException("Data required.");
         }
-        $data['id'] = $id;
-        $result = $this->callAPI("update", $data);
-        if($result['error']){
-            throw new Exception($result['error']['message'],$result['error']['code']);
-        }else{
-            return true;
-        }
+        $data['id'] = $vault_id;
+        $this->callAPI("update", $data);
+        return true;
 
     }
 
     /**
      * Delete a single or multiple vault entries
-     * @param mixed $id Vault entry ID or array of IDs
+     * @param mixed $vault_id Vault entry ID or array of IDs
      * @return bool
-     * @throws Exception
+     * @throws InvalidArgumentException
+     * @throws APIException
      */
-    public function delete($id)
+    public function delete($vault_id)
     {
-        if($id == ""){
-            throw new Exception("Vault entry ID required.");
+        if($vault_id == ""){
+            throw new InvalidArgumentException("Vault entry ID required.");
         }
+        $result = $this->callAPI("delete", array("id"=>$vault_id));
+        return true;
 
-        $result = $this->callAPI("delete", array("id"=>$id));
-        if($result['error']){
-            throw new Exception($result['error']['message'],$result['error']['code']);
-        }else{
-            return true;
-        }
 
     }
 
 
     /**
      * Delete a single or multiple vault entries
-     * @param string $id Vault entry ID or array of IDs
+     * @param string $vault_id Vault entry ID or array of IDs
      * @param string $image Image file path or URL
      * @param int $type Type of image: 0 = document, 1 = person
      * @return array New image information array
-     * @throws Exception
+     * @throws InvalidArgumentException
+     * @throws APIException
      */
-    public function addImage($id, $image, $type = 0)
+    public function addImage($vault_id, $image, $type = 0)
     {
-        if($id == ""){
-            throw new Exception("Vault entry ID required.");
+        if($vault_id == ""){
+            throw new InvalidArgumentException("Vault entry ID required.");
         }
         if($type !== 0 && $type!==1){
-            throw new Exception("Invalid image type, 0 or 1 accepted.");
+            throw new InvalidArgumentException("Invalid image type, 0 or 1 accepted.");
         }
-        $payload = array("id"=>$id, "type"=>$type);
+        $payload = array("id"=>$vault_id, "type"=>$type);
         if(filter_var($image, FILTER_VALIDATE_URL)){
             $payload['imageurl'] = $image;
         }else if(file_exists($image)){
             $payload['image'] = base64_encode(file_get_contents($image));
         }else{
-            throw new Exception("Invalid image, file not found or malformed URL.");
+            throw new InvalidArgumentException("Invalid image, file not found or malformed URL.");
         }
 
-        $result = $this->callAPI("addimage", $payload);
-        if($result['error']){
-            throw new Exception($result['error']['message'],$result['error']['code']);
-        }else{
-            return $result['image'];
-        }
+        return $this->callAPI("addimage", $payload);
+
     }
 
 
     /**
      * Delete an image from vault
-     * @param string $vaultId Vault entry ID
-     * @param string $imageId Image ID
+     * @param string $vault_id Vault entry ID
+     * @param string $image_id Image ID
      * @return bool
-     * @throws Exception
+     * @throws InvalidArgumentException
+     * @throws APIException
      */
-    public function deleteImage($vaultId,$imageId)
+    public function deleteImage($vault_id, $image_id)
     {
-        if($vaultId == ""){
-            throw new Exception("Vault entry ID required.");
+        if($vault_id == ""){
+            throw new InvalidArgumentException("Vault entry ID required.");
         }
-        if($imageId == ""){
-            throw new Exception("Image ID required.");
+        if($image_id == ""){
+            throw new InvalidArgumentException("Image ID required.");
         }
 
-        $result = $this->callAPI("deleteimage", array("id"=>$vaultId,"imageid"=>$imageId));
-        if($result['error']){
-            throw new Exception($result['error']['message'],$result['error']['code']);
-        }else{
-            return true;
-        }
+        $this->callAPI("deleteimage", array("id"=>$vault_id,"imageid"=>$image_id));
+        return true;
+
 
     }
 
@@ -166,7 +177,8 @@ class Vault
      * @param int $maxEntry Number of entries to return, 1 to 10.
      * @param float $threshold Minimum confidence score required for face matching
      * @return array List of vault entries
-     * @throws Exception
+     * @throws InvalidArgumentException
+     * @throws APIException
      */
     public function searchFace($image, $maxEntry = 10, $threshold = 0.5)
     {
@@ -177,78 +189,45 @@ class Vault
         }else if(file_exists($image)){
             $payload['image'] = base64_encode(file_get_contents($image));
         }else{
-            throw new Exception("Invalid image, file not found or malformed URL.");
+            throw new InvalidArgumentException("Invalid image, file not found or malformed URL.");
         }
 
-        $result = $this->callAPI("searchface", $payload);
-        if($result['error']){
-            throw new Exception($result['error']['message'],$result['error']['code']);
-        }else{
-            return $result['items'];
-        }
+        return $this->callAPI("searchface", $payload);
+
     }
 
     /**
      * Train vault for face search
-     * @return bool
-     * @throws Exception
+     * @return array
+     * @throws APIException
      */
     public function trainFace()
     {
-        $result = $this->callAPI("train");
-        if($result['error']){
-            throw new Exception($result['error']['message'],$result['error']['code']);
-        }else{
-            return true;
-        }
+        return $this->callAPI("train");
     }
 
     /**
      * Get vault training status
      * @return array
-     * @throws Exception
+     * @throws APIException
      */
     public function trainingStatus()
     {
-        $result = $this->callAPI("trainstatus");
-        if($result['error']){
-            throw new Exception($result['error']['message'],$result['error']['code']);
-        }else{
-            return $result;
-        }
+        return $this->callAPI("trainstatus");
+
     }
 
 
     /**
-     * Initialize Vault API with an API key, and optional region (US, EU)
-     * @param string $apikey You API key
-     * @param string $region US/EU
-     * @return null
-     * @throws Exception
+     * @param string $action
+     * @param array $payload
+     * @return array
+     * @throws APIException
      */
-    public function __construct($apikey, $region = "US")
-    {
-        if($apikey == "") throw new Exception("Please provide an API key");
-        $this->apikey = $apikey;
-        if($region === 'eu' || $region === "EU"){
-            $this->apiendpoint = "https://api-eu.idanalyzer.com/";
-        }else if($region === 'us' || $region === "US"){
-            $this->apiendpoint = "https://api.idanalyzer.com/";
-        }else{
-            $this->apiendpoint = $region;
-        }
-
-    }
-
-    private function callAPI($action, $payload = array()){
-
-        if($this->apiendpoint=="" || $this->apikey==""){
-            throw new Exception("Please call init() with your API key.");
-        }
-
+    private function callAPI(string $action, array $payload = array()){
 
         $payload["apikey"] = $this->apikey;
-
+        $payload["client"] = "php-sdk";
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->apiendpoint . "vault/" . $action);
@@ -262,12 +241,16 @@ class Vault
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         $response = curl_exec($ch);
 
-        if(curl_error($ch)){
-            throw new Exception("Connecting to API Server failed: ".curl_error($ch));
+        if(curl_error($ch) || curl_errno($ch)){
+            throw new APIException("Failed to connect to API server: ".curl_error($ch), curl_errno($ch) );
         }else{
-            $result = json_decode($response, true);
+            $result = json_decode($response,true);
+            if(is_array($result['error'])){
+                throw new APIException($result['error']['message'], $result['error']['code'] );
+            }else{
+                return $result;
+            }
 
-            return $result;
         }
 
     }

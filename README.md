@@ -10,7 +10,7 @@ Install through composer
 ```shell
 composer require idanalyzer/id-analyzer-php-sdk
 ```
-Alternatively, download this package and manually require the php files under **src** folder.
+Alternatively, download this package and manually require the PHP files under **src** folder.
 
 ## Core API
 [ID Analyzer Core API](https://www.idanalyzer.com/products/id-analyzer-core-api.html) allows you to perform OCR data extraction, facial biometric verification, identity verification, age verification, document cropping, document authentication (fake ID check) using an ID image (JPG, PNG, PDF accepted) and user selfie photo or video. Core API has great global coverage, supporting over 98% of the passports, driver licenses and identification cards currently being circulated around the world.
@@ -56,13 +56,18 @@ if($authentication_result){
     }
 }
 // Parse face verification results  
-if($face_result){  
-    if($face_result['isIdentical'] === true){  
-        echo("Great! Your photo looks identical to the photo on document<br>");  
-    }else{  
-        echo("Oh no! Your photo looks different to the photo on document<br>");  
-    }  
-    echo("Similarity score: {$face_result['confidence']}<br>");  
+if($face_result){
+    if($face_result['error']){
+        // View complete error codes under API reference: https://developer.idanalyzer.com/coreapi.html
+        echo("Face verification failed! Code: {$face_result['error']}, Reason: {$face_result['error_message']}<br>");
+    }else{
+        if($face_result['isIdentical'] === true){
+            echo("Great! Your photo looks identical to the photo on document<br>");
+        }else{
+            echo("Oh no! Your photo looks different to the photo on document<br>");
+        }
+        echo("Similarity score: {$face_result['confidence']}<br>");
+    }
 }
 ```
 You could also set additional parameters before performing ID scan:  
@@ -251,7 +256,7 @@ try{
 
 Visit [DocuPass Callback reference](https://developer.idanalyzer.com/docupass_callback.html) to check out the full payload returned by DocuPass.
 
-For the final step, you could create two web pages (URLS set via setRedirectionURL) that display the results to your user. DocuPass reference will be passed as a GET parameter when users are redirected, for example: https://www.your-website.com/verification_succeeded.php?reference=XXXXXXXXX, you could use the reference code to fetch the results from your database. P.S. We will always send callbacks to your server before redirecting your user to the set URL.
+For the final step, you could create two web pages (URLS set via `setRedirectionURL`) that display the results to your user. DocuPass reference will be passed as a GET parameter when users are redirected, for example: https://www.your-website.com/verification_succeeded.php?reference=XXXXXXXXX, you could use the reference code to fetch the results from your database. P.S. We will always send callbacks to your server before redirecting your user to the set URL.
 
 ## Vault API
 ID Analyzer provides free cloud database storage (Vault) for you to store data obtained through Core API and DocuPass. You can set whether you want to store your user data into Vault through `enableVault` while making an API request with PHP SDK. Data stored in Vault can be looked up through [Web Portal](https://portal.idanalyzer.com) or via Vault API.
@@ -273,11 +278,9 @@ $vault = new Vault("API Key", "US");
 // Get the vault entry using Vault Entry Identifier received from Core API/DocuPass 
 $vaultdata = $vault->get("VAULT_ID");
 ```
-You can also list some of the items in your vault:
+You can also list the items in your vault, the following example list 5 items created on or after 2021/02/25, sorted by first name in ascending order, starting from first item:
 
 ```php
-# List 5 items created on or after 2021/02/25
-# sort result by first name in ascending order, starting from first item.
 $vaultItems = $vault->list(array("createtime>=2021/02/25"), "firstName","ASC", 5, 0);
 ```
 
@@ -287,6 +290,37 @@ Alternatively, you may have a DocuPass reference code which you want to search t
 $vaultItems = $vault->list(["docupass_reference=XXXXXXXXXXXXX"]);
 ```
 Learn more about [Vault API](https://developer.idanalyzer.com/vaultapi.html).
+
+## Error Catching
+
+Whenever API server returns an error, an `APIException` will be thrown, therefore you should always use try/catch block on functions that calls the API such as `scan`, `createMobile`, `createLiveMobile`, `createIframe`, `createRedirection`, and all the functions for Vault. `InvalidArgumentException` is thrown when you pass incorrect arguments to any of the functions.
+
+```php
+try{
+	...    
+}catch(\IDAnalyzer\APIException $ex){
+    echo("Error Code: " . $ex->getCode() . ", Error Message: " . $ex->getMessage());
+    // View complete list of error codes under API reference: https://developer.idanalyzer.com/
+    switch($ex->getCode()){
+        case 1:
+            // Invalid API Key
+            break;
+        case 8:
+            // Out of API quota
+            break;
+        case 9:
+            // Document not recognized
+            break;
+        default:
+            // Other error
+    }
+}catch(InvalidArgumentException $ex){
+    echo("Argument Error! " . $ex->getMessage());
+}catch(Exception $ex){
+    echo("Unexpected Error! " . $ex->getMessage());
+}
+```
+
 ## Demo
 Check out **/demo** folder for more PHP demo codes.
 

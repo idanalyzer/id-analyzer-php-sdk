@@ -3,9 +3,10 @@ require("../src/DocuPass.php");
 
 use IDAnalyzer\DocuPass;
 
-
-$apikey = "Your API Key"; // ID Analyzer API key available under your web portal https://portal.idanalyzer.com
-$api_region = "US"; // or EU if you are from Europe
+// ID Analyzer API key available under your web portal https://portal.idanalyzer.com
+$apikey = "Your API Key";
+// API region: US or EU
+$api_region = "US";
 
 
 ?>
@@ -107,8 +108,12 @@ $api_region = "US"; // or EU if you are from Europe
 
                         }
 
+                    }catch(\IDAnalyzer\APIException $ex){
+                        echo("Error Code: " . $ex->getCode() . ", Error Message: " . $ex->getMessage());
+                    }catch(InvalidArgumentException $ex){
+                        echo("Argument Error! " . $ex->getMessage());
                     }catch(Exception $ex){
-                        echo("Error! " . $ex->getMessage());
+                        echo("Unexpected Error! " . $ex->getMessage());
                     }
 
                 }
