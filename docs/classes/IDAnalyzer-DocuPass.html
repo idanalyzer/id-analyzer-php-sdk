@@ -87,7 +87,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 </aside>
 
         
@@ -143,7 +143,7 @@
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method___construct">__construct()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Initialize DocuPass API with an API key, company name and optional region (US, EU)</dd>
 
@@ -178,133 +178,133 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_enableAuthentication">enableAuthentication()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Validate the document to check whether the document is authentic and has not been tampered</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_enableDualsideCheck">enableDualsideCheck()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Check if the names, document number and document type matches between the front and the back of the document when performing dual-side scan. If any information mismatches error 14 will be thrown.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_enableFaceVerification">enableFaceVerification()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Whether users will be required to submit a selfie photo or record selfie video for facial verification.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_enableVault">enableVault()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Save document image and parsed information in your secured vault. You can list, search and update document entries in your vault through Vault API or web portal.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_hideBrandingLogo">hideBrandingLogo()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Hide all branding logo</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_resetConfig">resetConfig()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Reset all API configurations except API key and region.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_restrictCountry">restrictCountry()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Check if the document was issued by specified countries, if not error code 10 will be thrown. Separate multiple values with comma. For example &quot;US,CA&quot; would accept documents from United States and Canada.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_restrictState">restrictState()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Check if the document was issued by specified state, if not error code 11 will be thrown. Separate multiple values with comma. For example &quot;CA,TX&quot; would accept documents from California and Texas.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_restrictType">restrictType()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Only accept document of specified types. For example, &quot;PD&quot; would accept both passport and drivers license.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setCallbackImage">setCallbackImage()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Enable/Disable returning user uploaded document and face image in callback, and image data format.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setCallbackURL">setCallbackURL()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Set server-side callback URL to receive verification results</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setCustomID">setCustomID()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
-<dd>Set a custom string that will be sent back to your server&#039;s callback URL, and appended to redirection URLs as a query string. It is useful for identifying your user within your database. This value will be stored under customdata1 under Vault.</dd>
+<dd>Set a custom string that will be sent back to your server&#039;s callback URL, and appended to redirection URLs as a query string. It is useful for identifying your user within your database. This value will be stored under docupass_customid under Vault.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setLanguage">setLanguage()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>DocuPass automatically detects user device language and display corresponding language. Set this parameter to override automatic language detection.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setLogo">setLogo()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Replace footer logo with your own logo</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setMaxAttempt">setMaxAttempt()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Set max verification attempt per user</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setQRCodeFormat">setQRCodeFormat()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Configure QR code generated for DocuPass Mobile and Live Mobile</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setRedirectionURL">setRedirectionURL()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Redirect client browser to set URLs after verification. DocuPass reference code and customid will be appended to the end of URL, e.g. https://www.example.com/success.php?reference=XXXXXXXX&amp;customid=XXXXXXXX</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setReusable">setReusable()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Enabling this parameter will allow multiple users to verify their identity through the same URL, a new DocuPass reference code will be generated for each user automatically.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setWelcomeMessage">setWelcomeMessage()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Display a custom message to the user in the beginning of verification</dd>
 
@@ -318,56 +318,56 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_verifyAddress">verifyAddress()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Check if supplied address matches with document.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_verifyAge">verifyAge()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Check if the document holder is aged between the given range.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_verifyDOB">verifyDOB()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Check if supplied date of birth matches with document.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_verifyDocumentNumber">verifyDocumentNumber()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Check if supplied document or personal number matches with document.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_verifyExpiry">verifyExpiry()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Check if the document is still valid based on its expiry date.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_verifyName">verifyName()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Check if supplied name matches with document.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_verifyPostcode">verifyPostcode()</a>
     <span>
-                        &nbsp;: null    </span>
+                        &nbsp;: void    </span>
 </dt>
 <dd>Check if supplied postcode matches with document.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/IDAnalyzer-DocuPass.html#method_create">create()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                        &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 <dd></dd>
 
@@ -399,7 +399,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 </aside>
 
     
@@ -429,7 +429,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 </aside>
 
     
@@ -459,7 +459,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 </aside>
 
     
@@ -489,7 +489,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 </aside>
 
     
@@ -497,7 +497,7 @@
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">$defaultconfig</span>
-     = <span class="phpdocumentor-signature__default-value">array(&quot;companyname&quot; =&gt; &quot;&quot;, &quot;callbackurl&quot; =&gt; &quot;&quot;, &quot;biometric&quot; =&gt; 0, &quot;authenticate_minscore&quot; =&gt; 0, &quot;authenticate_module&quot; =&gt; 2, &quot;maxattempt&quot; =&gt; 1, &quot;documenttype&quot; =&gt; &quot;&quot;, &quot;documentcountry&quot; =&gt; &quot;&quot;, &quot;documentregion&quot; =&gt; &quot;&quot;, &quot;dualsidecheck&quot; =&gt; false, &quot;verify_expiry&quot; =&gt; false, &quot;verify_documentno&quot; =&gt; &quot;&quot;, &quot;verify_name&quot; =&gt; &quot;&quot;, &quot;verify_dob&quot; =&gt; &quot;&quot;, &quot;verify_age&quot; =&gt; &quot;&quot;, &quot;verify_address&quot; =&gt; &quot;&quot;, &quot;verify_postcode&quot; =&gt; &quot;&quot;, &quot;successredir&quot; =&gt; &quot;&quot;, &quot;failredir&quot; =&gt; &quot;&quot;, &quot;customid&quot; =&gt; &quot;&quot;, &quot;vault_save&quot; =&gt; &quot;&quot;, &quot;return_documentimage&quot; =&gt; &quot;&quot;, &quot;return_faceimage&quot; =&gt; &quot;&quot;, &quot;return_type&quot; =&gt; &quot;&quot;, &quot;qr_color&quot; =&gt; &quot;&quot;, &quot;qr_bgcolor&quot; =&gt; &quot;&quot;, &quot;qr_size&quot; =&gt; &quot;&quot;, &quot;qr_margin&quot; =&gt; &quot;&quot;, &quot;welcomemessage&quot; =&gt; &quot;&quot;, &quot;nobranding&quot; =&gt; &quot;&quot;, &quot;logo&quot; =&gt; &quot;&quot;, &quot;language&quot; =&gt; &quot;&quot;, &quot;biometric_threshold&quot; =&gt; 0.4, &quot;reusable&quot; =&gt; false)</span></code>
+     = <span class="phpdocumentor-signature__default-value">array(&quot;companyname&quot; =&gt; &quot;&quot;, &quot;callbackurl&quot; =&gt; &quot;&quot;, &quot;biometric&quot; =&gt; 0, &quot;authenticate_minscore&quot; =&gt; 0, &quot;authenticate_module&quot; =&gt; 2, &quot;maxattempt&quot; =&gt; 1, &quot;documenttype&quot; =&gt; &quot;&quot;, &quot;documentcountry&quot; =&gt; &quot;&quot;, &quot;documentregion&quot; =&gt; &quot;&quot;, &quot;dualsidecheck&quot; =&gt; false, &quot;verify_expiry&quot; =&gt; false, &quot;verify_documentno&quot; =&gt; &quot;&quot;, &quot;verify_name&quot; =&gt; &quot;&quot;, &quot;verify_dob&quot; =&gt; &quot;&quot;, &quot;verify_age&quot; =&gt; &quot;&quot;, &quot;verify_address&quot; =&gt; &quot;&quot;, &quot;verify_postcode&quot; =&gt; &quot;&quot;, &quot;successredir&quot; =&gt; &quot;&quot;, &quot;failredir&quot; =&gt; &quot;&quot;, &quot;customid&quot; =&gt; &quot;&quot;, &quot;vault_save&quot; =&gt; true, &quot;return_documentimage&quot; =&gt; true, &quot;return_faceimage&quot; =&gt; true, &quot;return_type&quot; =&gt; 1, &quot;return_type&quot; =&gt; 1, &quot;qr_color&quot; =&gt; &quot;&quot;, &quot;qr_bgcolor&quot; =&gt; &quot;&quot;, &quot;qr_size&quot; =&gt; &quot;&quot;, &quot;qr_margin&quot; =&gt; &quot;&quot;, &quot;welcomemessage&quot; =&gt; &quot;&quot;, &quot;nobranding&quot; =&gt; &quot;&quot;, &quot;logo&quot; =&gt; &quot;&quot;, &quot;language&quot; =&gt; &quot;&quot;, &quot;biometric_threshold&quot; =&gt; 0.4, &quot;reusable&quot; =&gt; false, &quot;client&quot; =&gt; &#039;php-sdk&#039;)</span></code>
 
     
     
@@ -519,7 +519,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 </aside>
 
     
@@ -553,14 +553,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">499</span>
+    <span class="phpdocumentor-element-found-in__line">491</span>
 </aside>
 
         <p class="phpdocumentor-summary">Initialize DocuPass API with an API key, company name and optional region (US, EU)</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$apikey</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$companyName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;My Company Name&quot;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$region</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;US&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$apikey</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$companyName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;My Company Name&quot;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$region</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;US&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -605,7 +605,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -613,7 +613,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -632,7 +632,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">520</span>
+    <span class="phpdocumentor-element-found-in__line">512</span>
 </aside>
 
         <p class="phpdocumentor-summary">Create a DocuPass session for embedding in web page as iframe</p>
@@ -654,7 +654,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/IDAnalyzer-APIException.html"><abbr title="\IDAnalyzer\APIException">APIException</abbr></a></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -681,7 +681,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">547</span>
+    <span class="phpdocumentor-element-found-in__line">539</span>
 </aside>
 
         <p class="phpdocumentor-summary">Create a DocuPass Live Mobile verification session for users to open on mobile phone</p>
@@ -703,7 +703,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/IDAnalyzer-APIException.html"><abbr title="\IDAnalyzer\APIException">APIException</abbr></a></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -730,7 +730,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">529</span>
+    <span class="phpdocumentor-element-found-in__line">521</span>
 </aside>
 
         <p class="phpdocumentor-summary">Create a DocuPass session for users to open on mobile phone, or embedding in mobile app</p>
@@ -752,7 +752,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/IDAnalyzer-APIException.html"><abbr title="\IDAnalyzer\APIException">APIException</abbr></a></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -779,7 +779,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">538</span>
+    <span class="phpdocumentor-element-found-in__line">530</span>
 </aside>
 
         <p class="phpdocumentor-summary">Create a DocuPass session for users to open in any browser</p>
@@ -801,7 +801,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/IDAnalyzer-APIException.html"><abbr title="\IDAnalyzer\APIException">APIException</abbr></a></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -828,14 +828,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">190</span>
+    <span class="phpdocumentor-element-found-in__line">196</span>
 </aside>
 
         <p class="phpdocumentor-summary">Validate the document to check whether the document is authentic and has not been tampered</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">enableAuthentication</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$module</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">2</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$minimum_score</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0.3</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">enableAuthentication</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$module</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">2</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$minimum_score</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0.3</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -880,7 +880,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -888,7 +888,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -907,14 +907,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">303</span>
+    <span class="phpdocumentor-element-found-in__line">304</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the names, document number and document type matches between the front and the back of the document when performing dual-side scan. If any information mismatches error 14 will be thrown.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">enableDualsideCheck</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">enableDualsideCheck</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -933,7 +933,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -952,14 +952,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">220</span>
+    <span class="phpdocumentor-element-found-in__line">226</span>
 </aside>
 
         <p class="phpdocumentor-summary">Whether users will be required to submit a selfie photo or record selfie video for facial verification.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">enableFaceVerification</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$verification_type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$threshold</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0.4</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">enableFaceVerification</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$verification_type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$threshold</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0.4</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1004,7 +1004,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -1012,7 +1012,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1031,14 +1031,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">485</span>
+    <span class="phpdocumentor-element-found-in__line">477</span>
 </aside>
 
         <p class="phpdocumentor-summary">Save document image and parsed information in your secured vault. You can list, search and update document entries in your vault through Vault API or web portal.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">enableVault</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">enableVault</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1058,7 +1058,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1077,14 +1077,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">111</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 </aside>
 
         <p class="phpdocumentor-summary">Hide all branding logo</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">hideBrandingLogo</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$hide</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">hideBrandingLogo</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$hide</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1103,7 +1103,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1122,14 +1122,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 </aside>
 
         <p class="phpdocumentor-summary">Reset all API configurations except API key and region.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">resetConfig</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">resetConfig</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1137,7 +1137,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1156,14 +1156,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">440</span>
+    <span class="phpdocumentor-element-found-in__line">432</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document was issued by specified countries, if not error code 10 will be thrown. Separate multiple values with comma. For example &quot;US,CA&quot; would accept documents from United States and Canada.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">restrictCountry</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$countryCodes</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;US,CA,UK&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">restrictCountry</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$countryCodes</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;US,CA,UK&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1183,7 +1183,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1202,14 +1202,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">455</span>
+    <span class="phpdocumentor-element-found-in__line">447</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document was issued by specified state, if not error code 11 will be thrown. Separate multiple values with comma. For example &quot;CA,TX&quot; would accept documents from California and Texas.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">restrictState</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$states</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;CA,TX&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">restrictState</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$states</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;CA,TX&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1229,7 +1229,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1248,14 +1248,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">470</span>
+    <span class="phpdocumentor-element-found-in__line">462</span>
 </aside>
 
         <p class="phpdocumentor-summary">Only accept document of specified types. For example, &quot;PD&quot; would accept both passport and drivers license.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">restrictType</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;DIP&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">restrictType</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentType</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;DIP&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1275,7 +1275,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1294,14 +1294,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">256</span>
+    <span class="phpdocumentor-element-found-in__line">259</span>
 </aside>
 
         <p class="phpdocumentor-summary">Enable/Disable returning user uploaded document and face image in callback, and image data format.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setCallbackImage</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$return_documentimage</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$return_faceimage</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$return_type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">setCallbackImage</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$return_documentimage</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$return_faceimage</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$return_type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1339,7 +1339,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1358,14 +1358,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">134</span>
+    <span class="phpdocumentor-element-found-in__line">140</span>
 </aside>
 
         <p class="phpdocumentor-summary">Set server-side callback URL to receive verification results</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setCallbackURL</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;https://www.example.com/docupass_callback.php&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">setCallbackURL</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;https://www.example.com/docupass_callback.php&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1392,7 +1392,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -1400,7 +1400,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1419,14 +1419,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 </aside>
 
-        <p class="phpdocumentor-summary">Set a custom string that will be sent back to your server&#039;s callback URL, and appended to redirection URLs as a query string. It is useful for identifying your user within your database. This value will be stored under customdata1 under Vault.</p>
+        <p class="phpdocumentor-summary">Set a custom string that will be sent back to your server&#039;s callback URL, and appended to redirection URLs as a query string. It is useful for identifying your user within your database. This value will be stored under docupass_customid under Vault.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setCustomID</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$customID</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;12345&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">setCustomID</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$customID</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;12345&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1446,7 +1446,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1465,14 +1465,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 </aside>
 
         <p class="phpdocumentor-summary">DocuPass automatically detects user device language and display corresponding language. Set this parameter to override automatic language detection.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setLanguage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$language</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">setLanguage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$language</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1492,7 +1492,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1511,14 +1511,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">106</span>
 </aside>
 
         <p class="phpdocumentor-summary">Replace footer logo with your own logo</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setLogo</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;https://docupass.app/asset/logo1.png&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">setLogo</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$url</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;https://docupass.app/asset/logo1.png&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1538,7 +1538,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1557,14 +1557,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 </aside>
 
         <p class="phpdocumentor-summary">Set max verification attempt per user</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setMaxAttempt</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max_attempt</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">setMaxAttempt</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max_attempt</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1591,7 +1591,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -1599,7 +1599,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1618,14 +1618,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">275</span>
+    <span class="phpdocumentor-element-found-in__line">276</span>
 </aside>
 
         <p class="phpdocumentor-summary">Configure QR code generated for DocuPass Mobile and Live Mobile</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setQRCodeFormat</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$foregroundColor</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;000000&quot;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$backgroundColor</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;FFFFFF&quot;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">5</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$margin</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">setQRCodeFormat</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$foregroundColor</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;000000&quot;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$backgroundColor</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;FFFFFF&quot;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$size</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">5</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$margin</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">1</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1679,7 +1679,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -1687,7 +1687,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1706,14 +1706,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">168</span>
+    <span class="phpdocumentor-element-found-in__line">174</span>
 </aside>
 
         <p class="phpdocumentor-summary">Redirect client browser to set URLs after verification. DocuPass reference code and customid will be appended to the end of URL, e.g. https://www.example.com/success.php?reference=XXXXXXXX&amp;customid=XXXXXXXX</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setRedirectionURL</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$successURL</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;https://www.example.com/success.php&quot;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$failURL</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;https://www.example.com/failed.php&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">setRedirectionURL</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$successURL</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;https://www.example.com/success.php&quot;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$failURL</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;https://www.example.com/failed.php&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1749,7 +1749,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -1757,7 +1757,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1776,14 +1776,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">240</span>
+    <span class="phpdocumentor-element-found-in__line">246</span>
 </aside>
 
         <p class="phpdocumentor-summary">Enabling this parameter will allow multiple users to verify their identity through the same URL, a new DocuPass reference code will be generated for each user automatically.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setReusable</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$reusable</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">setReusable</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$reusable</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1803,7 +1803,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1822,14 +1822,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">95</span>
 </aside>
 
         <p class="phpdocumentor-summary">Display a custom message to the user in the beginning of verification</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setWelcomeMessage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">setWelcomeMessage</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1849,7 +1849,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1868,14 +1868,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">592</span>
+    <span class="phpdocumentor-element-found-in__line">588</span>
 </aside>
 
         <p class="phpdocumentor-summary">Validate a data received through DocuPass Callback against DocuPass Server to prevent request spoofing</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">validate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$reference</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$hash</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                <span class="phpdocumentor-signature__name">validate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$reference</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$hash</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1883,17 +1883,21 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$reference</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>DocuPass reference</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$hash</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>DocuPass callback hash</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1907,7 +1911,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/IDAnalyzer-APIException.html"><abbr title="\IDAnalyzer\APIException">APIException</abbr></a></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -1934,14 +1938,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">410</span>
+    <span class="phpdocumentor-element-found-in__line">402</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied address matches with document.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">verifyAddress</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$address</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;123 Sample St, California, US&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">verifyAddress</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$address</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;123 Sample St, California, US&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -1961,7 +1965,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -1980,14 +1984,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">390</span>
+    <span class="phpdocumentor-element-found-in__line">382</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document holder is aged between the given range.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">verifyAge</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ageRange</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;18-99&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">verifyAge</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ageRange</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;18-99&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -2014,7 +2018,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -2022,7 +2026,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -2041,14 +2045,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">369</span>
+    <span class="phpdocumentor-element-found-in__line">361</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied date of birth matches with document.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">verifyDOB</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dob</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;1990/01/01&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">verifyDOB</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dob</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;1990/01/01&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -2075,7 +2079,7 @@
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
                                                  <section class="phpdocumentor-description"></section>
 
@@ -2083,7 +2087,7 @@
                         </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -2109,7 +2113,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">verifyDocumentNumber</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentNumber</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;X1234567&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">verifyDocumentNumber</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$documentNumber</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;X1234567&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -2127,24 +2131,9 @@
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
-                                                            
-                                                 <section class="phpdocumentor-description"></section>
-
-                                    </dd>
-                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -2163,14 +2152,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">314</span>
+    <span class="phpdocumentor-element-found-in__line">315</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document is still valid based on its expiry date.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">verifyExpiry</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">verifyExpiry</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -2190,7 +2179,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -2209,14 +2198,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">346</span>
+    <span class="phpdocumentor-element-found-in__line">342</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied name matches with document.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">verifyName</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fullName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;ELON MUSK&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">verifyName</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$fullName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;ELON MUSK&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -2234,24 +2223,9 @@
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
-                                                            
-                                                 <section class="phpdocumentor-description"></section>
-
-                                    </dd>
-                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -2270,14 +2244,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">425</span>
+    <span class="phpdocumentor-element-found-in__line">417</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied postcode matches with document.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">verifyPostcode</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$postcode</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;90001&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null</span></code>
+                <span class="phpdocumentor-signature__name">verifyPostcode</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$postcode</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;90001&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -2297,7 +2271,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 
@@ -2316,15 +2290,16 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">552</span>
+    <span class="phpdocumentor-element-found-in__line">547</span>
 </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$docupass_module</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$docupass_module</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
-    
+        <section class="phpdocumentor-description"></section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -2337,9 +2312,24 @@
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/IDAnalyzer-APIException.html"><abbr title="\IDAnalyzer\APIException">APIException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"></section>
+
+                                    </dd>
+                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             &mdash;
             <section class="phpdocumentor-description"></section>
 

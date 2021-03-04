@@ -1,10 +1,20 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\IDAnalyzer\\APIException",
+            "name": "APIException",
+            "summary": "",
+            "url": "classes/IDAnalyzer-APIException.html"
+        },                {
             "fqsen": "\\IDAnalyzer\\CoreAPI",
             "name": "CoreAPI",
             "summary": "",
             "url": "classes/IDAnalyzer-CoreAPI.html"
+        },                {
+            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initialize\u0020Core\u0020API\u0020with\u0020an\u0020API\u0020key\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
+            "url": "classes/IDAnalyzer-CoreAPI.html#method___construct"
         },                {
             "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003AresetConfig\u0028\u0029",
             "name": "resetConfig",
@@ -106,11 +116,6 @@ Search.appendIndex(
             "summary": "Add\u0020up\u0020to\u00205\u0020custom\u0020strings\u0020that\u0020will\u0020be\u0020associated\u0020with\u0020the\u0020vault\u0020entry,\u0020this\u0020can\u0020be\u0020useful\u0020for\u0020filtering\u0020and\u0020searching\u0020entries.",
             "url": "classes/IDAnalyzer-CoreAPI.html#method_setVaultData"
         },                {
-            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Initialize\u0020Core\u0020API\u0020with\u0020an\u0020API\u0020key\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
-            "url": "classes/IDAnalyzer-CoreAPI.html#method___construct"
-        },                {
             "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003Ascan\u0028\u0029",
             "name": "scan",
             "summary": "Scan\u0020an\u0020ID\u0020document\u0020with\u0020Core\u0020API,\u0020optionally\u0020specify\u0020document\u0020back\u0020image,\u0020face\u0020verification\u0020image,\u0020face\u0020verification\u0020video\u0020and\u0020video\u0020passcode",
@@ -153,7 +158,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetCustomID\u0028\u0029",
             "name": "setCustomID",
-            "summary": "Set\u0020a\u0020custom\u0020string\u0020that\u0020will\u0020be\u0020sent\u0020back\u0020to\u0020your\u0020server\u0027s\u0020callback\u0020URL,\u0020and\u0020appended\u0020to\u0020redirection\u0020URLs\u0020as\u0020a\u0020query\u0020string.\u0020It\u0020is\u0020useful\u0020for\u0020identifying\u0020your\u0020user\u0020within\u0020your\u0020database.\u0020This\u0020value\u0020will\u0020be\u0020stored\u0020under\u0020customdata1\u0020under\u0020Vault.",
+            "summary": "Set\u0020a\u0020custom\u0020string\u0020that\u0020will\u0020be\u0020sent\u0020back\u0020to\u0020your\u0020server\u0027s\u0020callback\u0020URL,\u0020and\u0020appended\u0020to\u0020redirection\u0020URLs\u0020as\u0020a\u0020query\u0020string.\u0020It\u0020is\u0020useful\u0020for\u0020identifying\u0020your\u0020user\u0020within\u0020your\u0020database.\u0020This\u0020value\u0020will\u0020be\u0020stored\u0020under\u0020docupass_customid\u0020under\u0020Vault.",
             "url": "classes/IDAnalyzer-DocuPass.html#method_setCustomID"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetWelcomeMessage\u0028\u0029",
@@ -336,6 +341,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/IDAnalyzer-Vault.html"
         },                {
+            "fqsen": "\\IDAnalyzer\\Vault\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initialize\u0020Vault\u0020API\u0020with\u0020an\u0020API\u0020key,\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
+            "url": "classes/IDAnalyzer-Vault.html#method___construct"
+        },                {
             "fqsen": "\\IDAnalyzer\\Vault\u003A\u003Aget\u0028\u0029",
             "name": "get",
             "summary": "Get\u0020a\u0020single\u0020vault\u0020entry",
@@ -380,11 +390,6 @@ Search.appendIndex(
             "name": "trainingStatus",
             "summary": "Get\u0020vault\u0020training\u0020status",
             "url": "classes/IDAnalyzer-Vault.html#method_trainingStatus"
-        },                {
-            "fqsen": "\\IDAnalyzer\\Vault\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Initialize\u0020Vault\u0020API\u0020with\u0020an\u0020API\u0020key,\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
-            "url": "classes/IDAnalyzer-Vault.html#method___construct"
         },                {
             "fqsen": "\\IDAnalyzer\\Vault\u003A\u003AcallAPI\u0028\u0029",
             "name": "callAPI",
