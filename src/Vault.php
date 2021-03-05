@@ -9,7 +9,7 @@ class Vault
 {
     private $apikey;
     private $apiendpoint = "";
-
+    private $throwError = false;
     /**
      * Initialize Vault API with an API key, and optional region (US, EU)
      * @param string $apikey You API key
@@ -28,6 +28,16 @@ class Vault
         }else{
             $this->apiendpoint = $region;
         }
+    }
+
+    /**
+     * Whether an exception should be thrown if API response contains an error message
+     * @param bool $throwException
+     * @return void
+     */
+    public function throwAPIException($throwException = false)
+    {
+        $this->$throwException = $throwException == true;
     }
 
     /**
@@ -223,6 +233,7 @@ class Vault
      * @param array $payload
      * @return array
      * @throws APIException
+     * @throws Exception
      */
     private function callAPI(string $action, array $payload = array()){
 
@@ -242,17 +253,24 @@ class Vault
         $response = curl_exec($ch);
 
         if(curl_error($ch) || curl_errno($ch)){
-            throw new APIException("Failed to connect to API server: ".curl_error($ch), curl_errno($ch) );
+            throw new Exception("Failed to connect to API server: ". curl_error($ch) . " (" . curl_errno($ch) . ")" );
         }else{
             $result = json_decode($response,true);
-            if(is_array($result['error'])){
-                throw new APIException($result['error']['message'], $result['error']['code'] );
+
+            if($this->throwError){
+                if(is_array($result['error'])){
+
+                    throw new APIException($result['error']['message'], $result['error']['code'] );
+
+                }else{
+                    return $result;
+                }
             }else{
                 return $result;
             }
 
-        }
 
+        }
     }
 
 

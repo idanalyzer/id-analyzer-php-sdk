@@ -11,6 +11,7 @@ class DocuPass
 {
     private $apikey;
     private $apiendpoint = "";
+    private $throwError = false;
     private $config, $defaultconfig = array(
         "companyname" => "",
         "callbackurl" => "",
@@ -52,6 +53,42 @@ class DocuPass
     );
 
     private $urlRegex = "#(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))#iS";
+
+
+    /**
+     * Initialize DocuPass API with an API key, company name and optional region (US, EU)
+     * @param string $apikey You API key
+     * @param string $companyName Your company name
+     * @param string $region US/EU
+     * @throws InvalidArgumentException
+     * @return void
+     */
+    public function __construct($apikey, $companyName = "My Company Name", $region = "US")
+    {
+        if($apikey == "") throw new InvalidArgumentException("Please provide an API key");
+        if($companyName == "") throw new InvalidArgumentException("Please provide your company name");
+        $this->apikey = $apikey;
+        $this->config['companyname'] = $companyName;
+        if($region === 'eu' || $region === "EU"){
+            $this->apiendpoint = "https://api-eu.idanalyzer.com/";
+        }else if($region === 'us' || $region === "US"){
+            $this->apiendpoint = "https://api.idanalyzer.com/";
+        }else{
+            $this->apiendpoint = $region;
+        }
+
+    }
+
+
+    /**
+     * Whether an exception should be thrown if API response contains an error message
+     * @param bool $throwException
+     * @return void
+     */
+    public function throwAPIException($throwException = false)
+    {
+        $this->$throwException = $throwException == true;
+    }
 
     /**
      * Reset all API configurations except API key and region.
@@ -479,31 +516,6 @@ class DocuPass
         $this->config['vault_save'] = $enabled == true;
     }
 
-
-    /**
-     * Initialize DocuPass API with an API key, company name and optional region (US, EU)
-     * @param string $apikey You API key
-     * @param string $companyName Your company name
-     * @param string $region US/EU
-     * @throws InvalidArgumentException
-     * @return void
-     */
-    public function __construct($apikey, $companyName = "My Company Name", $region = "US")
-    {
-        if($apikey == "") throw new InvalidArgumentException("Please provide an API key");
-        if($companyName == "") throw new InvalidArgumentException("Please provide your company name");
-        $this->apikey = $apikey;
-        $this->config['companyname'] = $companyName;
-        if($region === 'eu' || $region === "EU"){
-            $this->apiendpoint = "https://api-eu.idanalyzer.com/";
-        }else if($region === 'us' || $region === "US"){
-            $this->apiendpoint = "https://api.idanalyzer.com/";
-        }else{
-            $this->apiendpoint = $region;
-        }
-
-    }
-
     /**
      * Create a DocuPass session for embedding in web page as iframe
      * @return array
@@ -543,6 +555,7 @@ class DocuPass
     /**
      * @return array
      * @throws APIException
+     * @throws Exception
      */
     private function create($docupass_module){
 
@@ -562,18 +575,30 @@ class DocuPass
         curl_setopt($ch, CURLOPT_FAILONERROR, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
         $response = curl_exec($ch);
 
-        if(curl_error($ch)){
-            throw new APIException("Failed to connect to API server: ".curl_error($ch), curl_errno($ch) );
+        if(curl_error($ch) || curl_errno($ch)){
+            throw new Exception("Failed to connect to API server: ". curl_error($ch) . " (" . curl_errno($ch) . ")" );
         }else{
             $result = json_decode($response,true);
-            if(is_array($result['error'])){
-                throw new APIException($result['error']['message'], $result['error']['code'] );
+
+            if($this->throwError){
+                if(is_array($result['error'])){
+
+                    throw new APIException($result['error']['message'], $result['error']['code'] );
+
+                }else{
+                    return $result;
+                }
             }else{
                 return $result;
             }
+
+
         }
+
+
 
     }
 
@@ -583,7 +608,7 @@ class DocuPass
      * @param string $reference DocuPass reference
      * @param string $hash DocuPass callback hash
      * @return bool
-     * @throws APIException
+     * @throws Exception
      */
     public function validate($reference, $hash){
 
@@ -604,7 +629,7 @@ class DocuPass
         $response = curl_exec($ch);
 
         if(curl_error($ch)){
-            throw new APIException("Failed to connect to API server: ".curl_error($ch), curl_errno($ch) );
+            throw new Exception("Failed to connect to API server: ".curl_error($ch), curl_errno($ch) );
         }else{
             $result = json_decode($response, true);
 

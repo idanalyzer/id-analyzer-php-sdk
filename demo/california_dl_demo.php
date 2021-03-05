@@ -13,6 +13,9 @@ try{
     // Initialize Core API US Region with your credentials
     $coreapi = new CoreAPI($apikey, $api_region);
 
+    // Make API error raise exceptions for API level errors (such as out of quota, document not recognized)
+    $coreapi->throwAPIException(true);
+
     // Enable authentication module v2 to check if ID is authentic
     $coreapi->enableAuthentication(true, 2);
 

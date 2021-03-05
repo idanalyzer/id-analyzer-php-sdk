@@ -15,20 +15,31 @@ if ($_POST['email'] != "") {
     try {
         // Initialize DocuPass with your credentials and company name
         $docupass = new DocuPass($apikey, "My Company Inc.", $api_region);
+
+        // Make API error raise exceptions for API level errors
+        $docupass->throwAPIException(true);
+
         // We need to set an identifier so that we know internally who we are verifying, this string will be returned in the callback. You can use your own user/customer id.
         $docupass->setCustomID($_POST['email']);
+
         // Enable vault cloud storage to store verification results
         $docupass->enableVault(true);
+
         // Set a callback URL where verification results will be sent, you can use docupass_callback.php under this folder as a template
         $docupass->setCallbackURL("https://www.your-website.com/docupass_callback.php");
+
         // We want DocuPass to return document image and user face image in URL format.
         $docupass->setCallbackImage(true, true, 1);
+
         // We will do a quick check on whether user have uploaded a fake ID
         $docupass->enableAuthentication(true, "quick", 0.3);
+
         // Enable photo facial biometric verification with threshold of 0.5
         $docupass->enableFaceVerification(true, 1, 0.5);
+
         // Users will have only 1 attempt for verification
         $docupass->setMaxAttempt(1);
+
         // We want to redirect user back to your website when they are done with verification
         $docupass->setRedirectionURL("https://www.your-website.com/verification_succeeded.html", "https://www.your-website.com/verification_failed.html");
         /*

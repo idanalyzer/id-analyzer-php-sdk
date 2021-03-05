@@ -47,6 +47,9 @@ $api_region = "US";
                         // Initialize DocuPass with your credentials and company name
                         $docupass = new DocuPass($apikey, "My Company Inc.", $api_region);
 
+                        // Make API error raise exceptions for API level errors
+                        $docupass->throwAPIException(true);
+
                         // We need to set an identifier so that we know internally who we are verifying, this string will be returned in the callback. You can use your own user/customer id.
                         $docupass->setCustomID($_POST['email']);
 

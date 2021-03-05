@@ -26,6 +26,11 @@ Search.appendIndex(
             "summary": "Set\u0020OCR\u0020Accuracy",
             "url": "classes/IDAnalyzer-CoreAPI.html#method_setAccuracy"
         },                {
+            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003AthrowAPIException\u0028\u0029",
+            "name": "throwAPIException",
+            "summary": "Whether\u0020an\u0020exception\u0020should\u0020be\u0020thrown\u0020if\u0020API\u0020response\u0020contains\u0020an\u0020error\u0020message",
+            "url": "classes/IDAnalyzer-CoreAPI.html#method_throwAPIException"
+        },                {
             "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003AenableAuthentication\u0028\u0029",
             "name": "enableAuthentication",
             "summary": "Validate\u0020the\u0020document\u0020to\u0020check\u0020whether\u0020the\u0020document\u0020is\u0020authentic\u0020and\u0020has\u0020not\u0020been\u0020tampered,\u0020and\u0020set\u0020authentication\u0020module",
@@ -131,6 +136,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/IDAnalyzer-CoreAPI.html#property_apiendpoint"
         },                {
+            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003A\u0024throwError",
+            "name": "throwError",
+            "summary": "",
+            "url": "classes/IDAnalyzer-CoreAPI.html#property_throwError"
+        },                {
             "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003A\u0024config",
             "name": "config",
             "summary": "",
@@ -145,6 +155,16 @@ Search.appendIndex(
             "name": "DocuPass",
             "summary": "",
             "url": "classes/IDAnalyzer-DocuPass.html"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initialize\u0020DocuPass\u0020API\u0020with\u0020an\u0020API\u0020key,\u0020company\u0020name\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
+            "url": "classes/IDAnalyzer-DocuPass.html#method___construct"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AthrowAPIException\u0028\u0029",
+            "name": "throwAPIException",
+            "summary": "Whether\u0020an\u0020exception\u0020should\u0020be\u0020thrown\u0020if\u0020API\u0020response\u0020contains\u0020an\u0020error\u0020message",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_throwAPIException"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AresetConfig\u0028\u0029",
             "name": "resetConfig",
@@ -276,11 +296,6 @@ Search.appendIndex(
             "summary": "Save\u0020document\u0020image\u0020and\u0020parsed\u0020information\u0020in\u0020your\u0020secured\u0020vault.\u0020You\u0020can\u0020list,\u0020search\u0020and\u0020update\u0020document\u0020entries\u0020in\u0020your\u0020vault\u0020through\u0020Vault\u0020API\u0020or\u0020web\u0020portal.",
             "url": "classes/IDAnalyzer-DocuPass.html#method_enableVault"
         },                {
-            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Initialize\u0020DocuPass\u0020API\u0020with\u0020an\u0020API\u0020key,\u0020company\u0020name\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
-            "url": "classes/IDAnalyzer-DocuPass.html#method___construct"
-        },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AcreateIframe\u0028\u0029",
             "name": "createIframe",
             "summary": "Create\u0020a\u0020DocuPass\u0020session\u0020for\u0020embedding\u0020in\u0020web\u0020page\u0020as\u0020iframe",
@@ -321,6 +336,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/IDAnalyzer-DocuPass.html#property_apiendpoint"
         },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003A\u0024throwError",
+            "name": "throwError",
+            "summary": "",
+            "url": "classes/IDAnalyzer-DocuPass.html#property_throwError"
+        },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003A\u0024config",
             "name": "config",
             "summary": "",
@@ -345,6 +365,11 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Initialize\u0020Vault\u0020API\u0020with\u0020an\u0020API\u0020key,\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
             "url": "classes/IDAnalyzer-Vault.html#method___construct"
+        },                {
+            "fqsen": "\\IDAnalyzer\\Vault\u003A\u003AthrowAPIException\u0028\u0029",
+            "name": "throwAPIException",
+            "summary": "Whether\u0020an\u0020exception\u0020should\u0020be\u0020thrown\u0020if\u0020API\u0020response\u0020contains\u0020an\u0020error\u0020message",
+            "url": "classes/IDAnalyzer-Vault.html#method_throwAPIException"
         },                {
             "fqsen": "\\IDAnalyzer\\Vault\u003A\u003Aget\u0028\u0029",
             "name": "get",
@@ -405,6 +430,11 @@ Search.appendIndex(
             "name": "apiendpoint",
             "summary": "",
             "url": "classes/IDAnalyzer-Vault.html#property_apiendpoint"
+        },                {
+            "fqsen": "\\IDAnalyzer\\Vault\u003A\u003A\u0024throwError",
+            "name": "throwError",
+            "summary": "",
+            "url": "classes/IDAnalyzer-Vault.html#property_throwError"
         },                {
             "fqsen": "\\",
             "name": "\\",

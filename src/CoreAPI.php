@@ -13,6 +13,7 @@ class CoreAPI
 
     private $apikey;
     private $apiendpoint = "";
+    private $throwError = false;
     private $config, $defaultconfig = array(
         "accuracy" => 2,
         "authenticate" => false,
@@ -32,11 +33,11 @@ class CoreAPI
         "country" => "",
         "region" => "",
         "type" => "",
-        "checkblocklist" => "",
+        "checkblocklist" => false,
         "vault_save" => true,
-        "vault_saveunrecognized" => "",
-        "vault_noduplicate" => "",
-        "vault_automerge" => "",
+        "vault_saveunrecognized" => false,
+        "vault_noduplicate" => false,
+        "vault_automerge" => false,
         "vault_customdata1" => "",
         "vault_customdata2" => "",
         "vault_customdata3" => "",
@@ -79,12 +80,22 @@ class CoreAPI
 
     /**
      * Set OCR Accuracy
-     * @param integer $accuracy 0 = Fast, 1 = Balanced, 2 = Accurate
+     * @param int $accuracy 0 = Fast, 1 = Balanced, 2 = Accurate
      * @return void
      */
     public function setAccuracy($accuracy = 2)
     {
         $this->config['accuracy'] = $accuracy;
+    }
+
+    /**
+     * Whether an exception should be thrown if API response contains an error message
+     * @param bool $throwException
+     * @return void
+     */
+    public function throwAPIException($throwException = false)
+    {
+        $this->$throwException = $throwException == true;
     }
 
 
@@ -383,6 +394,7 @@ class CoreAPI
      * @return array
      * @throws InvalidArgumentException
      * @throws APIException
+     * @throws Exception
      */
     public function scan($document_primary, $document_secondary = "", $biometric_photo = "", $biometric_video = "", $biometric_video_passcode = ""){
 
@@ -449,16 +461,22 @@ class CoreAPI
 
 
         if(curl_error($ch) || curl_errno($ch)){
-            throw new APIException("Failed to connect to API server: ".curl_error($ch), curl_errno($ch) );
+            throw new Exception("Failed to connect to API server: ". curl_error($ch) . " (" . curl_errno($ch) . ")" );
         }else{
             $result = json_decode($response,true);
-            if(is_array($result['error'])){
 
-                throw new APIException($result['error']['message'], $result['error']['code'] );
+            if($this->throwError){
+                if(is_array($result['error'])){
 
+                    throw new APIException($result['error']['message'], $result['error']['code'] );
+
+                }else{
+                    return $result;
+                }
             }else{
                 return $result;
             }
+
 
         }
 

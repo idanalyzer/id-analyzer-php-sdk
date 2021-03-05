@@ -57,6 +57,9 @@ $api_region = "US";
                         // Initialize Core API with your credentials
                         $coreapi = new CoreAPI($apikey, $api_region);
 
+                        // Make API error raise exceptions for API level errors (such as out of quota, document not recognized)
+                        $coreapi->throwAPIException(true);
+
                         // enable vault cloud storage to store document information and image
                         $coreapi->enableVault(true,false,false,false);
 
@@ -180,6 +183,7 @@ $api_region = "US";
                         }
 
                     }catch(\IDAnalyzer\APIException $ex){
+                        // We can catch API level exceptions if we call throwAPIException(true);
                         echo("Error Code: " . $ex->getCode() . ", Error Message: " . $ex->getMessage());
 
                         // View complete error codes under API reference: https://developer.idanalyzer.com/coreapi.html
