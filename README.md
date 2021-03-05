@@ -168,7 +168,7 @@ if($result['error']){
 
 }
 ```
-If you are looking to embed DocuPass into your mobile application, simply embed `$result['url']` inside a WebView. To tell if verification has been completed monitor the WebView URL and check if it matches the URLs set in setRedirectionURL. (DocuPass Live Mobile currently cannot be embedded into native iOS App due to OS restrictions, you will need to open it with Safari)
+If you are looking to embed DocuPass into your mobile application, simply embed `$result['url']` inside a WebView. To tell if verification has been completed monitor the WebView URL and check if it matches the URLs set in `setRedirectionURL`. (DocuPass Live Mobile currently cannot be embedded into native iOS App due to OS restrictions, you will need to open it with Safari)
 
 Check out additional DocuPass settings:
 
@@ -293,9 +293,10 @@ Learn more about [Vault API](https://developer.idanalyzer.com/vaultapi.html).
 
 ## Error Catching
 
-Whenever API server returns an error, an `APIException` will be thrown, therefore you should always use try/catch block on functions that calls the API such as `scan`, `createMobile`, `createLiveMobile`, `createIframe`, `createRedirection`, and all the functions for Vault. `InvalidArgumentException` is thrown when you pass incorrect arguments to any of the functions.
+The API server may return error responses such as when document cannot be recognized. You can either manually inspect the response returned by API, or you may set `$api->throwAPIException(true);` to raise an `APIException` when API error is encountered. You can then use try/catch block on functions that calls the API such as `scan`, `createMobile`, `createLiveMobile`, `createIframe`, `createRedirection`, and all the functions for Vault to catch the errors. `InvalidArgumentException` is thrown when you pass incorrect arguments to any of the functions.
 
 ```php
+
 try{
 	...    
 }catch(\IDAnalyzer\APIException $ex){
