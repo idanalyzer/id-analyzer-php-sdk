@@ -158,7 +158,7 @@ class DocuPass
 
     /**
      * DocuPass automatically detects user device language and display corresponding language. Set this parameter to override automatic language detection.
-     * @param string $language Language Code: en fr nl de es zh-TW zh-CN
+     * @param string $language Check DocuPass API reference for language code
      * @return void
      */
     public function setLanguage($language)
@@ -169,7 +169,7 @@ class DocuPass
 
 
     /**
-     * Set server-side callback URL to receive verification results
+     * Set server-side callback/webhook URL to receive verification results
      * @param string $url Callback URL
      * @return void
      * @throws InvalidArgumentException
@@ -224,8 +224,8 @@ class DocuPass
 
     /**
      * Validate the document to check whether the document is authentic and has not been tampered
-     * @param boolean $enabled Enable/Disable Document Authentication
-     * @param mixed $module Module: 1, 2 or quick
+     * @param boolean $enabled Enable or disable Document Authentication
+     * @param mixed $module Authentication Module: "1", "2" or "quick"
      * @param float $minimum_score Minimum score to pass verification
      * @return void
      * @throws InvalidArgumentException
@@ -254,7 +254,7 @@ class DocuPass
 
     /**
      * Whether users will be required to submit a selfie photo or record selfie video for facial verification.
-     * @param boolean $enabled Enable/Disable Facial Biometric Verification
+     * @param boolean $enabled Enable or disable Facial Biometric Verification
      * @param int $verification_type 1 for photo verification, 2 for video verification
      * @param float $threshold Minimum confidence score required to pass verification, value between 0 to 1
      * @return void
@@ -287,7 +287,7 @@ class DocuPass
 
 
     /**
-     * Enable/Disable returning user uploaded document and face image in callback, and image data format.
+     * Enable or disable returning user uploaded document and face image in callback, and image data format.
      * @param bool $return_documentimage Return document image in callback data
      * @param bool $return_faceimage Return face image in callback data
      * @param int $return_type Image type: 0=base64, 1=url
@@ -335,7 +335,7 @@ class DocuPass
 
     /**
      * Check if the names, document number and document type matches between the front and the back of the document when performing dual-side scan. If any information mismatches error 14 will be thrown.
-     * @param boolean $enabled
+     * @param boolean $enabled Enable or disable dual-side information check
      * @return void
      */
     public function enableDualsideCheck($enabled = false)
@@ -346,7 +346,7 @@ class DocuPass
 
     /**
      * Check if the document is still valid based on its expiry date.
-     * @param boolean $enabled Enable/Disable expiry check
+     * @param boolean $enabled Enable or disable expiry check
      * @return void
      */
     public function verifyExpiry($enabled = false)
@@ -492,8 +492,8 @@ class DocuPass
     }
 
     /**
-     * Only accept document of specified types. For example, "PD" would accept both passport and drivers license.
-     * @param string $documentType P: Passport, D: Driver's License, I: Identity Card
+     * Only accept document of specified types.
+     * @param string $documentType P: Passport, D: Driver's License, I: Identity Card. For example, "PD" would only accept passport and drivers license but not ID card.
      * @return void
      */
     public function restrictType($documentType = "DIP")
@@ -508,7 +508,7 @@ class DocuPass
 
     /**
      * Save document image and parsed information in your secured vault. You can list, search and update document entries in your vault through Vault API or web portal.
-     * @param boolean $enabled Enable/Disable Vault
+     * @param boolean $enabled Enable or disable Vault
      * @return void
      */
     public function enableVault($enabled = true)

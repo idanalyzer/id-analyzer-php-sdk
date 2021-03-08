@@ -32,7 +32,7 @@ class Vault
 
     /**
      * Whether an exception should be thrown if API response contains an error message
-     * @param bool $throwException
+     * @param bool $throwException Enable or Disable APIException being thrown
      * @return void
      */
     public function throwAPIException($throwException = false)
@@ -86,9 +86,9 @@ class Vault
 
 
     /**
-     * List multiple vault entries with optional filter, sorting and paging arguments
+     * Update vault entry with new data
      * @param string $vault_id Vault entry ID
-     * @param array $data Key-value pairs of the field name and its value
+     * @param array $data Key-value associative array of the field name and its value
      * @return bool
      * @throws InvalidArgumentException
      * @throws APIException
@@ -127,8 +127,8 @@ class Vault
 
 
     /**
-     * Delete a single or multiple vault entries
-     * @param string $vault_id Vault entry ID or array of IDs
+     * Add a document or face image into an existing vault entry
+     * @param string $vault_id Vault entry ID
      * @param string $image Image file path or URL
      * @param int $type Type of image: 0 = document, 1 = person
      * @return array New image information array
@@ -193,7 +193,7 @@ class Vault
     public function searchFace($image, $maxEntry = 10, $threshold = 0.5)
     {
 
-        $payload = array("maxentry"=>$maxEntry, "$threshold"=>$threshold);
+        $payload = array("maxentry"=>$maxEntry, "threshold"=>$threshold);
         if(filter_var($image, FILTER_VALIDATE_URL)){
             $payload['imageurl'] = $image;
         }else if(file_exists($image)){

@@ -90,7 +90,7 @@ class CoreAPI
 
     /**
      * Whether an exception should be thrown if API response contains an error message
-     * @param bool $throwException
+     * @param bool $throwException Throw exception upon API error, defaults to false
      * @return void
      */
     public function throwAPIException($throwException = false)
@@ -102,8 +102,8 @@ class CoreAPI
 
     /**
      * Validate the document to check whether the document is authentic and has not been tampered, and set authentication module
-     * @param boolean $enabled Enable/Disable Document Authentication
-     * @param mixed $module Module: 1, 2 or quick
+     * @param boolean $enabled Enable or disable  Document Authentication
+     * @param mixed $module Authentication Module: 1, 2 or quick
      * @return void
      * @throws InvalidArgumentException
      */
@@ -135,7 +135,7 @@ class CoreAPI
 
     /**
      * Set the minimum confidence score to consider faces being identical
-     * @param float $threshold float between 0 to 1
+     * @param float $threshold float between 0 to 1, higher value yields more strict verification
      * @return void
      * @throws InvalidArgumentException
      */
@@ -151,9 +151,9 @@ class CoreAPI
 
     /**
      * Generate cropped image of document and/or face, and set output format [url, base64]
-     * @param bool $cropDocument Crop document
-     * @param bool $cropFace Crop face
-     * @param string $outputFormat url/base64
+     * @param bool $cropDocument Enable or disable document cropping
+     * @param bool $cropFace Enable or disable face cropping
+     * @param string $outputFormat "url" or "base64", defaults to "url"
      * @return void
      * @throws InvalidArgumentException
      */
@@ -170,7 +170,7 @@ class CoreAPI
 
     /**
      * Check if the names, document number and document type matches between the front and the back of the document when performing dual-side scan. If any information mismatches error 14 will be thrown.
-     * @param boolean $enabled
+     * @param boolean $enabled Enable or disable dual-side information check
      * @return void
      */
     public function enableDualsideCheck($enabled = false)
@@ -181,7 +181,7 @@ class CoreAPI
 
     /**
      * Check if the document is still valid based on its expiry date.
-     * @param boolean $enabled Enable/Disable expiry check
+     * @param boolean $enabled Enable or disable  expiry check
      * @return void
      */
     public function verifyExpiry($enabled = false)
@@ -261,7 +261,7 @@ class CoreAPI
 
     /**
      * Check if supplied address matches with document.
-     * @param string $address Address requiring validation
+         * @param string $address Address requiring validation
      * @return void
      */
     public function verifyAddress($address = "123 Sample St, California, US")
@@ -337,7 +337,7 @@ class CoreAPI
 
     /**
      * Disable Visual OCR and read data from AAMVA Barcodes only
-     * @param boolean $enabled Enable/Disable Barcode Mode
+     * @param boolean $enabled Enable or disable Barcode Mode
      * @return void
      */
     public function enableBarcodeMode($enabled = false)
@@ -349,10 +349,10 @@ class CoreAPI
 
     /**
      * Save document image and parsed information in your secured vault. You can list, search and update document entries in your vault through Vault API or web portal.
-     * @param boolean $enabled Enable/Disable Vault
-     * @param boolean $saveUnrecognized Save document image in your vault even if the document cannot be recognized.
-     * @param boolean $noDuplicateImage Prevent duplicated images from being saved.
-     * @param boolean $autoMergeDocument Automatically merge images with same document number into a single entry inside vault.
+     * @param boolean $enabled Enable or disable Vault
+     * @param boolean $saveUnrecognized Save document image in your vault even if the document cannot be recognized
+     * @param boolean $noDuplicateImage Prevent duplicated images from being saved
+     * @param boolean $autoMergeDocument Automatically merge images with same document number into a single entry inside vault
      * @return void
      */
     public function enableVault($enabled = true, $saveUnrecognized = false, $noDuplicateImage = false, $autoMergeDocument = false)
