@@ -21,6 +21,11 @@ Search.appendIndex(
             "summary": "Reset\u0020all\u0020API\u0020configurations\u0020except\u0020API\u0020key\u0020and\u0020region.",
             "url": "classes/IDAnalyzer-CoreAPI.html#method_resetConfig"
         },                {
+            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003AsetParameter\u0028\u0029",
+            "name": "setParameter",
+            "summary": "Set\u0020an\u0020API\u0020parameter\u0020and\u0020its\u0020value,\u0020this\u0020function\u0020allows\u0020you\u0020to\u0020set\u0020any\u0020API\u0020parameter\u0020without\u0020using\u0020the\u0020built\u002Din\u0020functions",
+            "url": "classes/IDAnalyzer-CoreAPI.html#method_setParameter"
+        },                {
             "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003AsetAccuracy\u0028\u0029",
             "name": "setAccuracy",
             "summary": "Set\u0020OCR\u0020Accuracy",
@@ -196,6 +201,16 @@ Search.appendIndex(
             "summary": "Hide\u0020all\u0020branding\u0020logo",
             "url": "classes/IDAnalyzer-DocuPass.html#method_hideBrandingLogo"
         },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetCustomHTML\u0028\u0029",
+            "name": "setCustomHTML",
+            "summary": "Replace\u0020DocuPass\u0020page\u0020content\u0020with\u0020your\u0020own\u0020HTML\u0020and\u0020CSS,\u0020you\u0020can\u0020download\u0020the\u0020HTML\/CSS\u0020template\u0020from\u0020DocuPass\u0020API\u0020Reference\u0020page",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_setCustomHTML"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetParameter\u0028\u0029",
+            "name": "setParameter",
+            "summary": "Set\u0020an\u0020API\u0020parameter\u0020and\u0020its\u0020value,\u0020this\u0020function\u0020allows\u0020you\u0020to\u0020set\u0020any\u0020API\u0020parameter\u0020without\u0020using\u0020the\u0020built\u002Din\u0020functions",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_setParameter"
+        },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetLanguage\u0028\u0029",
             "name": "setLanguage",
             "summary": "DocuPass\u0020automatically\u0020detects\u0020user\u0020device\u0020language\u0020and\u0020display\u0020corresponding\u0020language.\u0020Set\u0020this\u0020parameter\u0020to\u0020override\u0020automatic\u0020language\u0020detection.",
@@ -203,7 +218,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetCallbackURL\u0028\u0029",
             "name": "setCallbackURL",
-            "summary": "Set\u0020server\u002Dside\u0020callback\u0020URL\u0020to\u0020receive\u0020verification\u0020results",
+            "summary": "Set\u0020server\u002Dside\u0020callback\/webhook\u0020URL\u0020to\u0020receive\u0020verification\u0020results",
             "url": "classes/IDAnalyzer-DocuPass.html#method_setCallbackURL"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetRedirectionURL\u0028\u0029",
@@ -228,7 +243,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetCallbackImage\u0028\u0029",
             "name": "setCallbackImage",
-            "summary": "Enable\/Disable\u0020returning\u0020user\u0020uploaded\u0020document\u0020and\u0020face\u0020image\u0020in\u0020callback,\u0020and\u0020image\u0020data\u0020format.",
+            "summary": "Enable\u0020or\u0020disable\u0020returning\u0020user\u0020uploaded\u0020document\u0020and\u0020face\u0020image\u0020in\u0020callback,\u0020and\u0020image\u0020data\u0020format.",
             "url": "classes/IDAnalyzer-DocuPass.html#method_setCallbackImage"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetQRCodeFormat\u0028\u0029",
@@ -288,7 +303,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003ArestrictType\u0028\u0029",
             "name": "restrictType",
-            "summary": "Only\u0020accept\u0020document\u0020of\u0020specified\u0020types.\u0020For\u0020example,\u0020\u0022PD\u0022\u0020would\u0020accept\u0020both\u0020passport\u0020and\u0020drivers\u0020license.",
+            "summary": "Only\u0020accept\u0020document\u0020of\u0020specified\u0020types.",
             "url": "classes/IDAnalyzer-DocuPass.html#method_restrictType"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AenableVault\u0028\u0029",
@@ -383,7 +398,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\IDAnalyzer\\Vault\u003A\u003Aupdate\u0028\u0029",
             "name": "update",
-            "summary": "List\u0020multiple\u0020vault\u0020entries\u0020with\u0020optional\u0020filter,\u0020sorting\u0020and\u0020paging\u0020arguments",
+            "summary": "Update\u0020vault\u0020entry\u0020with\u0020new\u0020data",
             "url": "classes/IDAnalyzer-Vault.html#method_update"
         },                {
             "fqsen": "\\IDAnalyzer\\Vault\u003A\u003Adelete\u0028\u0029",
@@ -393,7 +408,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\IDAnalyzer\\Vault\u003A\u003AaddImage\u0028\u0029",
             "name": "addImage",
-            "summary": "Delete\u0020a\u0020single\u0020or\u0020multiple\u0020vault\u0020entries",
+            "summary": "Add\u0020a\u0020document\u0020or\u0020face\u0020image\u0020into\u0020an\u0020existing\u0020vault\u0020entry",
             "url": "classes/IDAnalyzer-Vault.html#method_addImage"
         },                {
             "fqsen": "\\IDAnalyzer\\Vault\u003A\u003AdeleteImage\u0028\u0029",

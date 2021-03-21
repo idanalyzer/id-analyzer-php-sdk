@@ -239,6 +239,13 @@
 <dd>Scale down the uploaded image before sending to OCR engine. Adjust this value to fine tune recognition accuracy on large full-resolution images. Set 0 to disable image resizing.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/IDAnalyzer-CoreAPI.html#method_setParameter">setParameter()</a>
+    <span>
+                        &nbsp;: void    </span>
+</dt>
+<dd>Set an API parameter and its value, this function allows you to set any API parameter without using the built-in functions</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-CoreAPI.html#method_setVaultData">setVaultData()</a>
     <span>
                         &nbsp;: void    </span>
@@ -553,7 +560,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">110</span>
+    <span class="phpdocumentor-element-found-in__line">122</span>
 </aside>
 
         <p class="phpdocumentor-summary">Validate the document to check whether the document is authentic and has not been tampered, and set authentication module</p>
@@ -571,7 +578,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Enable/Disable Document Authentication</p>
+                    <section class="phpdocumentor-description"><p>Enable or disable  Document Authentication</p>
 </section>
 
             </dd>
@@ -580,7 +587,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                  = <span class="phpdocumentor-signature__argument__default-value">2</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Module: 1, 2 or quick</p>
+                    <section class="phpdocumentor-description"><p>Authentication Module: 1, 2 or quick</p>
 </section>
 
             </dd>
@@ -623,7 +630,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">343</span>
+    <span class="phpdocumentor-element-found-in__line">355</span>
 </aside>
 
         <p class="phpdocumentor-summary">Disable Visual OCR and read data from AAMVA Barcodes only</p>
@@ -641,7 +648,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Enable/Disable Barcode Mode</p>
+                    <section class="phpdocumentor-description"><p>Enable or disable Barcode Mode</p>
 </section>
 
             </dd>
@@ -669,7 +676,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">176</span>
+    <span class="phpdocumentor-element-found-in__line">188</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the names, document number and document type matches between the front and the back of the document when performing dual-side scan. If any information mismatches error 14 will be thrown.</p>
@@ -687,7 +694,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Enable or disable dual-side information check</p>
+</section>
 
             </dd>
             </dl>
@@ -714,7 +722,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">160</span>
+    <span class="phpdocumentor-element-found-in__line">172</span>
 </aside>
 
         <p class="phpdocumentor-summary">Generate cropped image of document and/or face, and set output format [url, base64]</p>
@@ -732,7 +740,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Crop document</p>
+                    <section class="phpdocumentor-description"><p>Enable or disable document cropping</p>
 </section>
 
             </dd>
@@ -741,7 +749,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Crop face</p>
+                    <section class="phpdocumentor-description"><p>Enable or disable face cropping</p>
 </section>
 
             </dd>
@@ -750,7 +758,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&quot;url&quot;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>url/base64</p>
+                    <section class="phpdocumentor-description"><p>&quot;url&quot; or &quot;base64&quot;, defaults to &quot;url&quot;</p>
 </section>
 
             </dd>
@@ -793,7 +801,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">358</span>
+    <span class="phpdocumentor-element-found-in__line">370</span>
 </aside>
 
         <p class="phpdocumentor-summary">Save document image and parsed information in your secured vault. You can list, search and update document entries in your vault through Vault API or web portal.</p>
@@ -811,7 +819,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Enable/Disable Vault</p>
+                    <section class="phpdocumentor-description"><p>Enable or disable Vault</p>
 </section>
 
             </dd>
@@ -820,7 +828,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Save document image in your vault even if the document cannot be recognized.</p>
+                    <section class="phpdocumentor-description"><p>Save document image in your vault even if the document cannot be recognized</p>
 </section>
 
             </dd>
@@ -829,7 +837,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Prevent duplicated images from being saved.</p>
+                    <section class="phpdocumentor-description"><p>Prevent duplicated images from being saved</p>
 </section>
 
             </dd>
@@ -838,7 +846,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Automatically merge images with same document number into a single entry inside vault.</p>
+                    <section class="phpdocumentor-description"><p>Automatically merge images with same document number into a single entry inside vault</p>
 </section>
 
             </dd>
@@ -900,7 +908,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">297</span>
+    <span class="phpdocumentor-element-found-in__line">309</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document was issued by specified countries, if not error code 10 will be thrown. Separate multiple values with comma. For example &quot;US,CA&quot; would accept documents from United States and Canada.</p>
@@ -946,7 +954,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">312</span>
+    <span class="phpdocumentor-element-found-in__line">324</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document was issued by specified state, if not error code 11 will be thrown. Separate multiple values with comma. For example &quot;CA,TX&quot; would accept documents from California and Texas.</p>
@@ -992,7 +1000,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">327</span>
+    <span class="phpdocumentor-element-found-in__line">339</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document was one of the specified types, if not error code 12 will be thrown. For example, &quot;PD&quot; would accept both passport and drivers license.</p>
@@ -1038,7 +1046,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">399</span>
+    <span class="phpdocumentor-element-found-in__line">411</span>
 </aside>
 
         <p class="phpdocumentor-summary">Scan an ID document with Core API, optionally specify document back image, face verification image, face verification video and video passcode</p>
@@ -1153,7 +1161,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">86</span>
+    <span class="phpdocumentor-element-found-in__line">98</span>
 </aside>
 
         <p class="phpdocumentor-summary">Set OCR Accuracy</p>
@@ -1199,7 +1207,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">142</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 </aside>
 
         <p class="phpdocumentor-summary">Set the minimum confidence score to consider faces being identical</p>
@@ -1217,7 +1225,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">float</span>
                  = <span class="phpdocumentor-signature__argument__default-value">0.4</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>float between 0 to 1</p>
+                    <section class="phpdocumentor-description"><p>float between 0 to 1, higher value yields more strict verification</p>
 </section>
 
             </dd>
@@ -1260,7 +1268,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">127</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 </aside>
 
         <p class="phpdocumentor-summary">Scale down the uploaded image before sending to OCR engine. Adjust this value to fine tune recognition accuracy on large full-resolution images. Set 0 to disable image resizing.</p>
@@ -1314,6 +1322,61 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_setParameter">
+        setParameter()
+        <a href="classes/IDAnalyzer-CoreAPI.html#method_setParameter" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">87</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Set an API parameter and its value, this function allows you to set any API parameter without using the built-in functions</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">setParameter</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$parameterKey</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$parameterValue</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$parameterKey</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Parameter key</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$parameterValue</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Parameter value</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setVaultData">
         setVaultData()
         <a href="classes/IDAnalyzer-CoreAPI.html#method_setVaultData" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1321,7 +1384,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">376</span>
+    <span class="phpdocumentor-element-found-in__line">388</span>
 </aside>
 
         <p class="phpdocumentor-summary">Add up to 5 custom strings that will be associated with the vault entry, this can be useful for filtering and searching entries.</p>
@@ -1403,7 +1466,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">96</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 </aside>
 
         <p class="phpdocumentor-summary">Whether an exception should be thrown if API response contains an error message</p>
@@ -1421,7 +1484,8 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Throw exception upon API error, defaults to false</p>
+</section>
 
             </dd>
             </dl>
@@ -1448,7 +1512,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">267</span>
+    <span class="phpdocumentor-element-found-in__line">279</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied address matches with document.</p>
@@ -1494,7 +1558,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">248</span>
+    <span class="phpdocumentor-element-found-in__line">260</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document holder is aged between the given range.</p>
@@ -1555,7 +1619,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">230</span>
+    <span class="phpdocumentor-element-found-in__line">242</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied date of birth matches with document.</p>
@@ -1616,7 +1680,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">197</span>
+    <span class="phpdocumentor-element-found-in__line">209</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied document or personal number matches with document.</p>
@@ -1662,7 +1726,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">187</span>
+    <span class="phpdocumentor-element-found-in__line">199</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document is still valid based on its expiry date.</p>
@@ -1680,7 +1744,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                  = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Enable/Disable expiry check</p>
+                    <section class="phpdocumentor-description"><p>Enable or disable  expiry check</p>
 </section>
 
             </dd>
@@ -1708,7 +1772,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">212</span>
+    <span class="phpdocumentor-element-found-in__line">224</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied name matches with document.</p>
@@ -1754,7 +1818,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CoreAPI.php"><a href="files/coreapi.html"><abbr title="CoreAPI.php">CoreAPI.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">282</span>
+    <span class="phpdocumentor-element-found-in__line">294</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied postcode matches with document.</p>
