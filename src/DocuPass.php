@@ -157,6 +157,29 @@ class DocuPass
     }
 
     /**
+     * Replace DocuPass page content with your own HTML and CSS, you can download the HTML/CSS template from DocuPass API Reference page
+     * @param string $url URL pointing to your own HTML page
+     * @return void
+     */
+    public function setCustomHTML($url)
+    {
+        $this->config['customhtmlurl'] = $url;
+    }
+
+    /**
+     * Set an API parameter and its value, this function allows you to set any API parameter without using the built-in functions
+     * @param string $parameterKey Parameter key
+     * @param string $parameterValue Parameter value
+     * @return void
+     */
+    public function setParameter($parameterKey, $parameterValue)
+    {
+        $this->config[$parameterKey] = $parameterValue;
+    }
+
+
+
+    /**
      * DocuPass automatically detects user device language and display corresponding language. Set this parameter to override automatic language detection.
      * @param string $language Check DocuPass API reference for language code
      * @return void
