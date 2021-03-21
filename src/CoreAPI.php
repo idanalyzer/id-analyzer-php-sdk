@@ -79,18 +79,6 @@ class CoreAPI
     }
 
     /**
-     * Set an API parameter and its value, this function allows you to set any API parameter without using the built-in functions
-     * @param string $parameterKey Parameter key
-     * @param string $parameterValue Parameter value
-     * @return void
-     */
-    public function setParameter($parameterKey, $parameterValue)
-    {
-        $this->config[$parameterKey] = $parameterValue;
-    }
-
-
-    /**
      * Set OCR Accuracy
      * @param int $accuracy 0 = Fast, 1 = Balanced, 2 = Accurate
      * @return void
