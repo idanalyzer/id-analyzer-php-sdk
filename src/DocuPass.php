@@ -53,6 +53,7 @@ class DocuPass
         "phoneverification" => false,
         "verify_phone" => "",
         "sms_verification_link" => "",
+        "customhtmlurl" => "",
         "client" => 'php-sdk'
 
     );
@@ -92,7 +93,7 @@ class DocuPass
      */
     public function throwAPIException($throwException = false)
     {
-        $this->$throwException = $throwException == true;
+        $this->throwError = $throwException == true;
     }
 
     /**

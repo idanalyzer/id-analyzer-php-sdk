@@ -37,7 +37,7 @@ class Vault
      */
     public function throwAPIException($throwException = false)
     {
-        $this->$throwException = $throwException == true;
+        $this->throwError = $throwException == true;
     }
 
     /**
