@@ -275,10 +275,10 @@ If you have enabled Vault, Core API and DocuPass will both return a vault entry 
 
 ```php
 // use composer autoload
-require("vendor/autoload.php);
+require("vendor/autoload.php");
 
 // or manually load DocuPass class
-require("../src/Vault.php");  
+//require("../src/Vault.php");  
 
 use IDAnalyzer\Vault;
 
@@ -306,6 +306,14 @@ Learn more about [Vault API](https://developer.idanalyzer.com/vaultapi.html).
 ID Analyzer provides Anti-Money Laundering AML database consolidated from worldwide authorities,  AML API allows our subscribers to lookup the database using either a name or document number. It allows you to instantly check if a person or company is listed under **any kind of sanction, criminal record or is a politically exposed person(PEP)**, as part of your **AML compliance KYC**. You may also use automated check built within Core API and DocuPass.
 
 ```c#
+// use composer autoload
+require("vendor/autoload.php");
+
+// or manually load DocuPass class
+//require("../src/AMLAPI.php");  
+
+use IDAnalyzer\AMLAPI;
+
 // Initialize AML API with your credentials
 $aml = new AMLAPI($apikey, $api_region);
 
