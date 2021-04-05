@@ -21,7 +21,7 @@ The sample code below will extract data from this sample Driver License issued i
 
 ```php
 // use composer autoload
-require("vendor/autoload.php);
+require("vendor/autoload.php");
 
 // or manually load CoreAPI class
 //require("../src/CoreAPI.php");  
@@ -123,7 +123,7 @@ To start, we will assume you are trying to **verify one of your user that has an
 
 ```php
 // use composer autoload
-require("vendor/autoload.php);
+require("vendor/autoload.php");
 
 // or manually load DocuPass class
 //require("../src/DocuPass.php");  
