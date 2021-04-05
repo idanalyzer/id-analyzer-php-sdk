@@ -94,6 +94,13 @@ $api_region = "US";
                         $docupass->verifyName("Elon Musk"); // check if the person is named Elon Musk
                         $docupass->verifyAddress("123 Sunny Rd, California"); // Check if address on ID matches with provided address
                         $docupass->verifyPostcode("90001"); // check if postcode on ID matches with provided postcode
+                        $docupass->setCustomHTML("https://www.yourwebsite.com/docupass_template.html"); // use your own HTML/CSS for DocuPass page
+                        $docupass->smsVerificationLink("+1333444555"); // Send verification link to user's mobile phone
+                        $docupass->enablePhoneVerification(true); // get user to input their own phone number for verification
+                        $docupass->verifyPhone("+1333444555"); // verify user's phone number you already have in your database
+                        $docupass->enableAMLCheck(true); // enable AML/PEP compliance check
+                        $docupass->setAMLDatabase("global_politicians,eu_meps,eu_cors"); // limit AML check to only PEPs
+                        $docupass->enableAMLStrictMatch(true); // make AML matching more strict to prevent false positives
                         */
 
 

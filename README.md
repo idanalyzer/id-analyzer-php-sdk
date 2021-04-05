@@ -13,7 +13,7 @@ composer require idanalyzer/id-analyzer-php-sdk
 Alternatively, download this package and manually require the PHP files under **src** folder.
 
 ## Core API
-[ID Analyzer Core API](https://www.idanalyzer.com/products/id-analyzer-core-api.html) allows you to perform OCR data extraction, facial biometric verification, identity verification, age verification, document cropping, document authentication (fake ID check) using an ID image (JPG, PNG, PDF accepted) and user selfie photo or video. Core API has great global coverage, supporting over 98% of the passports, driver licenses and identification cards currently being circulated around the world.
+[ID Analyzer Core API](https://www.idanalyzer.com/products/id-analyzer-core-api.html) allows you to perform OCR data extraction, facial biometric verification, identity verification, age verification, document cropping, document authentication (fake ID check), AML/PEP compliance check using an ID image (JPG, PNG, PDF accepted) and user selfie photo or video. Core API has great global coverage, supporting over 98% of the passports, driver licenses and identification cards currently being circulated around the world.
 
 ![Sample ID](https://www.idanalyzer.com/img/sampleid1.jpg)
 
@@ -90,6 +90,9 @@ $coreapi->verifyDocumentNumber("X1234567"); // check if the person's ID number i
 $coreapi->verifyName("Elon Musk"); // check if the person is named Elon Musk  
 $coreapi->verifyAddress("123 Sunny Rd, California"); // Check if address on ID matches with provided address  
 $coreapi->verifyPostcode("90001"); // check if postcode on ID matches with provided postcode
+$coreapi->enableAMLCheck(true); // enable AML/PEP compliance check
+$coreapi->setAMLDatabase("global_politicians,eu_meps,eu_cors"); // limit AML check to only PEPs
+$coreapi->enableAMLStrictMatch(true); // make AML matching more strict to prevent false positives
 ```
 
 To **scan both front and back of ID**:
@@ -189,13 +192,20 @@ $docupass->verifyDocumentNumber("X1234567"); // check if the person's ID number 
 $docupass->verifyName("Elon Musk"); // check if the person is named Elon Musk  
 $docupass->verifyAddress("123 Sunny Rd, California"); // Check if address on ID matches with provided address  
 $docupass->verifyPostcode("90001"); // check if postcode on ID matches with provided postcode
+$docupass->setCustomHTML("https://www.yourwebsite.com/docupass_template.html"); // use your own HTML/CSS for DocuPass page
+$docupass->smsVerificationLink("+1333444555"); // Send verification link to user's mobile phone
+$docupass->enablePhoneVerification(true); // get user to input their own phone number for verification
+$docupass->verifyPhone("+1333444555"); // verify user's phone number you already have in your database
+$docupass->enableAMLCheck(true); // enable AML/PEP compliance check
+$docupass->setAMLDatabase("global_politicians,eu_meps,eu_cors"); // limit AML check to only PEPs
+$docupass->enableAMLStrictMatch(true); // make AML matching more strict to prevent false positives
 ```
 
 Now we need to write a **callback script** or if you prefer to call it a **webhook**, to receive the verification results. This script will be called as soon as user finishes identity verification. In this guide, we will name it **docupass_callback.php**:
 
 ```php
 // use composer autoload
-require("vendor/autoload.php);
+require("vendor/autoload.php");
 
 // or manually load DocuPass class
 //require("../src/DocuPass.php");  
@@ -290,6 +300,34 @@ Alternatively, you may have a DocuPass reference code which you want to search t
 $vaultItems = $vault->list(["docupass_reference=XXXXXXXXXXXXX"]);
 ```
 Learn more about [Vault API](https://developer.idanalyzer.com/vaultapi.html).
+
+## AML API
+
+ID Analyzer provides Anti-Money Laundering AML database consolidated from worldwide authorities,  AML API allows our subscribers to lookup the database using either a name or document number. It allows you to instantly check if a person or company is listed under **any kind of sanction, criminal record or is a politically exposed person(PEP)**, as part of your **AML compliance KYC**. You may also use automated check built within Core API and DocuPass.
+
+```c#
+// Initialize AML API with your credentials
+$aml = new AMLAPI($apikey, $api_region);
+
+// Make API error raise exceptions for API level errors
+$aml->throwAPIException(true);
+
+// Set AML database to only search the PEP category
+$aml->setAMLDatabase("global_politicians,eu_cors,eu_meps");
+
+// Search for a politician
+$result = $aml->searchByName("Joe Biden");
+print_r($result);
+
+// Set AML database to all databases
+$aml->setAMLDatabase("");
+
+// Search for a sanctioned ID number
+$result = $aml->searchByIDNumber("AALH750218HBCLPC02");
+print_r($result);
+```
+
+Learn more about [AML API](https://developer.idanalyzer.com/amlapi.html).
 
 ## Error Catching
 

@@ -183,6 +183,20 @@
 <dd>Create a DocuPass session for users to open in any browser</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/IDAnalyzer-DocuPass.html#method_enableAMLCheck">enableAMLCheck()</a>
+    <span>
+                        &nbsp;: void    </span>
+</dt>
+<dd>Check document holder&#039;s name and document number against ID Analyzer AML Database for sanctions, crimes and PEPs.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/IDAnalyzer-DocuPass.html#method_enableAMLStrictMatch">enableAMLStrictMatch()</a>
+    <span>
+                        &nbsp;: void    </span>
+</dt>
+<dd>By default, entities with identical name or document number will be considered a match even though their birthday or nationality may be unknown. Enable this parameter to reduce false-positives by only matching entities with exact same nationality and birthday.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_enableAuthentication">enableAuthentication()</a>
     <span>
                         &nbsp;: void    </span>
@@ -202,6 +216,13 @@
                         &nbsp;: void    </span>
 </dt>
 <dd>Whether users will be required to submit a selfie photo or record selfie video for facial verification.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/IDAnalyzer-DocuPass.html#method_enablePhoneVerification">enablePhoneVerification()</a>
+    <span>
+                        &nbsp;: void    </span>
+</dt>
+<dd>Whether to ask user to enter a phone number for verification, DocuPass supports both mobile or landline number verification. Verified phone number will be returned in callback JSON.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_enableVault">enableVault()</a>
@@ -244,6 +265,13 @@
                         &nbsp;: void    </span>
 </dt>
 <dd>Only accept document of specified types.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/IDAnalyzer-DocuPass.html#method_setAMLDatabase">setAMLDatabase()</a>
+    <span>
+                        &nbsp;: void    </span>
+</dt>
+<dd>Specify the source databases to perform AML check, if left blank, all source databases will be checked. Separate each database code with comma, for example: un_sc,us_ofac. For full list of source databases and corresponding code visit AML API Overview.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_setCallbackImage">setCallbackImage()</a>
@@ -330,6 +358,13 @@
 <dd>Display a custom message to the user in the beginning of verification</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/IDAnalyzer-DocuPass.html#method_smsVerificationLink">smsVerificationLink()</a>
+    <span>
+                        &nbsp;: void    </span>
+</dt>
+<dd>DocuPass will send SMS to this number containing DocuPass link to perform identity verification, the number provided will be automatically considered as verified if user completes identity verification. If an invalid or unreachable number is provided error 1050 will be thrown. You should add your own thresholding mechanism to prevent abuse as you will be charged 1 quota to send the SMS.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_throwAPIException">throwAPIException()</a>
     <span>
                         &nbsp;: void    </span>
@@ -384,6 +419,13 @@
                         &nbsp;: void    </span>
 </dt>
 <dd>Check if supplied name matches with document.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/IDAnalyzer-DocuPass.html#method_verifyPhone">verifyPhone()</a>
+    <span>
+                        &nbsp;: void    </span>
+</dt>
+<dd>DocuPass will attempt to verify this phone number as part of the identity verification process, both mobile or landline are supported, users will not be able to enter their own numbers or change the provided number.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/IDAnalyzer-DocuPass.html#method_verifyPostcode">verifyPostcode()</a>
@@ -525,7 +567,7 @@
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">$defaultconfig</span>
-     = <span class="phpdocumentor-signature__default-value">array(&quot;companyname&quot; =&gt; &quot;&quot;, &quot;callbackurl&quot; =&gt; &quot;&quot;, &quot;biometric&quot; =&gt; 0, &quot;authenticate_minscore&quot; =&gt; 0, &quot;authenticate_module&quot; =&gt; 2, &quot;maxattempt&quot; =&gt; 1, &quot;documenttype&quot; =&gt; &quot;&quot;, &quot;documentcountry&quot; =&gt; &quot;&quot;, &quot;documentregion&quot; =&gt; &quot;&quot;, &quot;dualsidecheck&quot; =&gt; false, &quot;verify_expiry&quot; =&gt; false, &quot;verify_documentno&quot; =&gt; &quot;&quot;, &quot;verify_name&quot; =&gt; &quot;&quot;, &quot;verify_dob&quot; =&gt; &quot;&quot;, &quot;verify_age&quot; =&gt; &quot;&quot;, &quot;verify_address&quot; =&gt; &quot;&quot;, &quot;verify_postcode&quot; =&gt; &quot;&quot;, &quot;successredir&quot; =&gt; &quot;&quot;, &quot;failredir&quot; =&gt; &quot;&quot;, &quot;customid&quot; =&gt; &quot;&quot;, &quot;vault_save&quot; =&gt; true, &quot;return_documentimage&quot; =&gt; true, &quot;return_faceimage&quot; =&gt; true, &quot;return_type&quot; =&gt; 1, &quot;return_type&quot; =&gt; 1, &quot;qr_color&quot; =&gt; &quot;&quot;, &quot;qr_bgcolor&quot; =&gt; &quot;&quot;, &quot;qr_size&quot; =&gt; &quot;&quot;, &quot;qr_margin&quot; =&gt; &quot;&quot;, &quot;welcomemessage&quot; =&gt; &quot;&quot;, &quot;nobranding&quot; =&gt; &quot;&quot;, &quot;logo&quot; =&gt; &quot;&quot;, &quot;language&quot; =&gt; &quot;&quot;, &quot;biometric_threshold&quot; =&gt; 0.4, &quot;reusable&quot; =&gt; false, &quot;client&quot; =&gt; &#039;php-sdk&#039;)</span></code>
+     = <span class="phpdocumentor-signature__default-value">array(&quot;companyname&quot; =&gt; &quot;&quot;, &quot;callbackurl&quot; =&gt; &quot;&quot;, &quot;biometric&quot; =&gt; 0, &quot;authenticate_minscore&quot; =&gt; 0, &quot;authenticate_module&quot; =&gt; 2, &quot;maxattempt&quot; =&gt; 1, &quot;documenttype&quot; =&gt; &quot;&quot;, &quot;documentcountry&quot; =&gt; &quot;&quot;, &quot;documentregion&quot; =&gt; &quot;&quot;, &quot;dualsidecheck&quot; =&gt; false, &quot;verify_expiry&quot; =&gt; false, &quot;verify_documentno&quot; =&gt; &quot;&quot;, &quot;verify_name&quot; =&gt; &quot;&quot;, &quot;verify_dob&quot; =&gt; &quot;&quot;, &quot;verify_age&quot; =&gt; &quot;&quot;, &quot;verify_address&quot; =&gt; &quot;&quot;, &quot;verify_postcode&quot; =&gt; &quot;&quot;, &quot;successredir&quot; =&gt; &quot;&quot;, &quot;failredir&quot; =&gt; &quot;&quot;, &quot;customid&quot; =&gt; &quot;&quot;, &quot;vault_save&quot; =&gt; true, &quot;return_documentimage&quot; =&gt; true, &quot;return_faceimage&quot; =&gt; true, &quot;return_type&quot; =&gt; 1, &quot;qr_color&quot; =&gt; &quot;&quot;, &quot;qr_bgcolor&quot; =&gt; &quot;&quot;, &quot;qr_size&quot; =&gt; &quot;&quot;, &quot;qr_margin&quot; =&gt; &quot;&quot;, &quot;welcomemessage&quot; =&gt; &quot;&quot;, &quot;nobranding&quot; =&gt; &quot;&quot;, &quot;logo&quot; =&gt; &quot;&quot;, &quot;language&quot; =&gt; &quot;&quot;, &quot;biometric_threshold&quot; =&gt; 0.4, &quot;reusable&quot; =&gt; false, &quot;aml_check&quot; =&gt; false, &quot;aml_strict_match&quot; =&gt; false, &quot;aml_database&quot; =&gt; &quot;&quot;, &quot;phoneverification&quot; =&gt; false, &quot;verify_phone&quot; =&gt; &quot;&quot;, &quot;sms_verification_link&quot; =&gt; &quot;&quot;, &quot;client&quot; =&gt; &#039;php-sdk&#039;)</span></code>
 
     
     
@@ -577,7 +619,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 </aside>
 
     
@@ -611,7 +653,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 </aside>
 
         <p class="phpdocumentor-summary">Initialize DocuPass API with an API key, company name and optional region (US, EU)</p>
@@ -690,7 +732,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">547</span>
+    <span class="phpdocumentor-element-found-in__line">616</span>
 </aside>
 
         <p class="phpdocumentor-summary">Create a DocuPass session for embedding in web page as iframe</p>
@@ -739,7 +781,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">574</span>
+    <span class="phpdocumentor-element-found-in__line">643</span>
 </aside>
 
         <p class="phpdocumentor-summary">Create a DocuPass Live Mobile verification session for users to open on mobile phone</p>
@@ -788,7 +830,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">556</span>
+    <span class="phpdocumentor-element-found-in__line">625</span>
 </aside>
 
         <p class="phpdocumentor-summary">Create a DocuPass session for users to open on mobile phone, or embedding in mobile app</p>
@@ -837,7 +879,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">565</span>
+    <span class="phpdocumentor-element-found-in__line">634</span>
 </aside>
 
         <p class="phpdocumentor-summary">Create a DocuPass session for users to open in any browser</p>
@@ -879,6 +921,98 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_enableAMLCheck">
+        enableAMLCheck()
+        <a href="classes/IDAnalyzer-DocuPass.html#method_enableAMLCheck" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">380</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Check document holder&#039;s name and document number against ID Analyzer AML Database for sanctions, crimes and PEPs.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">enableAMLCheck</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$enabled</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Enable or disable AML/PEP check</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_enableAMLStrictMatch">
+        enableAMLStrictMatch()
+        <a href="classes/IDAnalyzer-DocuPass.html#method_enableAMLStrictMatch" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">400</span>
+</aside>
+
+        <p class="phpdocumentor-summary">By default, entities with identical name or document number will be considered a match even though their birthday or nationality may be unknown. Enable this parameter to reduce false-positives by only matching entities with exact same nationality and birthday.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">enableAMLStrictMatch</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$enabled</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Enable or disable AML strict match mode</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_enableAuthentication">
         enableAuthentication()
         <a href="classes/IDAnalyzer-DocuPass.html#method_enableAuthentication" class="headerlink"><i class="fas fa-link"></i></a>
@@ -886,7 +1020,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">256</span>
+    <span class="phpdocumentor-element-found-in__line">261</span>
 </aside>
 
         <p class="phpdocumentor-summary">Validate the document to check whether the document is authentic and has not been tampered</p>
@@ -965,7 +1099,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">364</span>
+    <span class="phpdocumentor-element-found-in__line">369</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the names, document number and document type matches between the front and the back of the document when performing dual-side scan. If any information mismatches error 14 will be thrown.</p>
@@ -1011,7 +1145,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">286</span>
+    <span class="phpdocumentor-element-found-in__line">291</span>
 </aside>
 
         <p class="phpdocumentor-summary">Whether users will be required to submit a selfie photo or record selfie video for facial verification.</p>
@@ -1083,6 +1217,52 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_enablePhoneVerification">
+        enablePhoneVerification()
+        <a href="classes/IDAnalyzer-DocuPass.html#method_enablePhoneVerification" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">413</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Whether to ask user to enter a phone number for verification, DocuPass supports both mobile or landline number verification. Verified phone number will be returned in callback JSON.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">enablePhoneVerification</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$enabled</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$enabled</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Enable or disable user phone verification</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_enableVault">
         enableVault()
         <a href="classes/IDAnalyzer-DocuPass.html#method_enableVault" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1090,7 +1270,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">537</span>
+    <span class="phpdocumentor-element-found-in__line">606</span>
 </aside>
 
         <p class="phpdocumentor-summary">Save document image and parsed information in your secured vault. You can list, search and update document entries in your vault through Vault API or web portal.</p>
@@ -1136,7 +1316,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">154</span>
+    <span class="phpdocumentor-element-found-in__line">159</span>
 </aside>
 
         <p class="phpdocumentor-summary">Hide all branding logo</p>
@@ -1181,7 +1361,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">102</span>
 </aside>
 
         <p class="phpdocumentor-summary">Reset all API configurations except API key and region.</p>
@@ -1215,7 +1395,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">492</span>
+    <span class="phpdocumentor-element-found-in__line">561</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document was issued by specified countries, if not error code 10 will be thrown. Separate multiple values with comma. For example &quot;US,CA&quot; would accept documents from United States and Canada.</p>
@@ -1261,7 +1441,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">507</span>
+    <span class="phpdocumentor-element-found-in__line">576</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document was issued by specified state, if not error code 11 will be thrown. Separate multiple values with comma. For example &quot;CA,TX&quot; would accept documents from California and Texas.</p>
@@ -1307,7 +1487,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">522</span>
+    <span class="phpdocumentor-element-found-in__line">591</span>
 </aside>
 
         <p class="phpdocumentor-summary">Only accept document of specified types.</p>
@@ -1346,6 +1526,52 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_setAMLDatabase">
+        setAMLDatabase()
+        <a href="classes/IDAnalyzer-DocuPass.html#method_setAMLDatabase" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">390</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Specify the source databases to perform AML check, if left blank, all source databases will be checked. Separate each database code with comma, for example: un_sc,us_ofac. For full list of source databases and corresponding code visit AML API Overview.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">setAMLDatabase</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$databases</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;au_dfat,ca_dfatd,ch_seco,eu_fsf,fr_tresor_gels_avoir,gb_hmt,ua_sfms,un_sc,us_ofac,eu_cor,eu_meps,global_politicians,interpol_red&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$databases</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&quot;au_dfat,ca_dfatd,ch_seco,eu_fsf,fr_tresor_gels_avoir,gb_hmt,ua_sfms,un_sc,us_ofac,eu_cor,eu_meps,global_politicians,interpol_red&quot;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Database codes separated by comma</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setCallbackImage">
         setCallbackImage()
         <a href="classes/IDAnalyzer-DocuPass.html#method_setCallbackImage" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1353,7 +1579,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">319</span>
+    <span class="phpdocumentor-element-found-in__line">324</span>
 </aside>
 
         <p class="phpdocumentor-summary">Enable or disable returning user uploaded document and face image in callback, and image data format.</p>
@@ -1417,7 +1643,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">200</span>
+    <span class="phpdocumentor-element-found-in__line">205</span>
 </aside>
 
         <p class="phpdocumentor-summary">Set server-side callback/webhook URL to receive verification results</p>
@@ -1478,7 +1704,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">164</span>
+    <span class="phpdocumentor-element-found-in__line">169</span>
 </aside>
 
         <p class="phpdocumentor-summary">Replace DocuPass page content with your own HTML and CSS, you can download the HTML/CSS template from DocuPass API Reference page</p>
@@ -1524,7 +1750,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">122</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 </aside>
 
         <p class="phpdocumentor-summary">Set a custom string that will be sent back to your server&#039;s callback URL, and appended to redirection URLs as a query string. It is useful for identifying your user within your database. This value will be stored under docupass_customid under Vault.</p>
@@ -1570,7 +1796,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">187</span>
+    <span class="phpdocumentor-element-found-in__line">192</span>
 </aside>
 
         <p class="phpdocumentor-summary">DocuPass automatically detects user device language and display corresponding language. Set this parameter to override automatic language detection.</p>
@@ -1616,7 +1842,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">143</span>
+    <span class="phpdocumentor-element-found-in__line">148</span>
 </aside>
 
         <p class="phpdocumentor-summary">Replace footer logo with your own logo</p>
@@ -1662,7 +1888,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">113</span>
 </aside>
 
         <p class="phpdocumentor-summary">Set max verification attempt per user</p>
@@ -1723,7 +1949,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">175</span>
+    <span class="phpdocumentor-element-found-in__line">180</span>
 </aside>
 
         <p class="phpdocumentor-summary">Set an API parameter and its value, this function allows you to set any API parameter without using the built-in functions</p>
@@ -1778,7 +2004,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">336</span>
+    <span class="phpdocumentor-element-found-in__line">341</span>
 </aside>
 
         <p class="phpdocumentor-summary">Configure QR code generated for DocuPass Mobile and Live Mobile</p>
@@ -1866,7 +2092,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">234</span>
+    <span class="phpdocumentor-element-found-in__line">239</span>
 </aside>
 
         <p class="phpdocumentor-summary">Redirect client browser to set URLs after verification. DocuPass reference code and customid will be appended to the end of URL, e.g. https://www.example.com/success.php?reference=XXXXXXXX&amp;customid=XXXXXXXX</p>
@@ -1936,7 +2162,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">306</span>
+    <span class="phpdocumentor-element-found-in__line">311</span>
 </aside>
 
         <p class="phpdocumentor-summary">Enabling this parameter will allow multiple users to verify their identity through the same URL, a new DocuPass reference code will be generated for each user automatically.</p>
@@ -1982,7 +2208,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">137</span>
 </aside>
 
         <p class="phpdocumentor-summary">Display a custom message to the user in the beginning of verification</p>
@@ -2021,6 +2247,52 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_smsVerificationLink">
+        smsVerificationLink()
+        <a href="classes/IDAnalyzer-DocuPass.html#method_smsVerificationLink" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">424</span>
+</aside>
+
+        <p class="phpdocumentor-summary">DocuPass will send SMS to this number containing DocuPass link to perform identity verification, the number provided will be automatically considered as verified if user completes identity verification. If an invalid or unreachable number is provided error 1050 will be thrown. You should add your own thresholding mechanism to prevent abuse as you will be charged 1 quota to send the SMS.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">smsVerificationLink</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$mobileNumber</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;+1333444555&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$mobileNumber</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&quot;+1333444555&quot;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Mobile number should be provided in international format such as +1333444555</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_throwAPIException">
         throwAPIException()
         <a href="classes/IDAnalyzer-DocuPass.html#method_throwAPIException" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2028,7 +2300,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">93</span>
 </aside>
 
         <p class="phpdocumentor-summary">Whether an exception should be thrown if API response contains an error message</p>
@@ -2073,7 +2345,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">636</span>
+    <span class="phpdocumentor-element-found-in__line">705</span>
 </aside>
 
         <p class="phpdocumentor-summary">Validate a data received through DocuPass Callback against DocuPass Server to prevent request spoofing</p>
@@ -2143,7 +2415,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">462</span>
+    <span class="phpdocumentor-element-found-in__line">531</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied address matches with document.</p>
@@ -2189,7 +2461,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">442</span>
+    <span class="phpdocumentor-element-found-in__line">511</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document holder is aged between the given range.</p>
@@ -2250,7 +2522,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">421</span>
+    <span class="phpdocumentor-element-found-in__line">490</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied date of birth matches with document.</p>
@@ -2311,7 +2583,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">385</span>
+    <span class="phpdocumentor-element-found-in__line">454</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied document or personal number matches with document.</p>
@@ -2357,7 +2629,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">375</span>
+    <span class="phpdocumentor-element-found-in__line">444</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if the document is still valid based on its expiry date.</p>
@@ -2403,7 +2675,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">402</span>
+    <span class="phpdocumentor-element-found-in__line">471</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied name matches with document.</p>
@@ -2442,6 +2714,52 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_verifyPhone">
+        verifyPhone()
+        <a href="classes/IDAnalyzer-DocuPass.html#method_verifyPhone" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">434</span>
+</aside>
+
+        <p class="phpdocumentor-summary">DocuPass will attempt to verify this phone number as part of the identity verification process, both mobile or landline are supported, users will not be able to enter their own numbers or change the provided number.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">verifyPhone</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$phoneNumber</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&quot;+1333444555&quot;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$phoneNumber</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">&quot;+1333444555&quot;</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Mobile or landline number should be provided in international format such as +1333444555</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_verifyPostcode">
         verifyPostcode()
         <a href="classes/IDAnalyzer-DocuPass.html#method_verifyPostcode" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2449,7 +2767,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">477</span>
+    <span class="phpdocumentor-element-found-in__line">546</span>
 </aside>
 
         <p class="phpdocumentor-summary">Check if supplied postcode matches with document.</p>
@@ -2495,7 +2813,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="DocuPass.php"><a href="files/docupass.html"><abbr title="DocuPass.php">DocuPass.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">583</span>
+    <span class="phpdocumentor-element-found-in__line">652</span>
 </aside>
 
     

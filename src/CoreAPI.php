@@ -45,6 +45,9 @@ class CoreAPI
         "vault_customdata5" => "",
         "barcodemode" => false,
         "biometric_threshold" => 0.4,
+        "aml_check" => false,
+        "aml_strict_match" => false,
+        "aml_database" => "",
         "client" => 'php-sdk'
     );
 
@@ -356,6 +359,36 @@ class CoreAPI
     {
         $this->config['barcodemode'] = $enabled == true;
 
+    }
+
+    /**
+     * Check document holder's name and document number against ID Analyzer AML Database for sanctions, crimes and PEPs.
+     * @param boolean $enabled Enable or disable AML/PEP check
+     * @return void
+     */
+    public function enableAMLCheck($enabled = false)
+    {
+        $this->config["aml_check"] = $enabled == true;
+    }
+
+    /**
+     * Specify the source databases to perform AML check, if left blank, all source databases will be checked. Separate each database code with comma, for example: un_sc,us_ofac. For full list of source databases and corresponding code visit AML API Overview.
+     * @param string $databases Database codes separated by comma
+     * @return void
+     */
+    public function setAMLDatabase($databases = "au_dfat,ca_dfatd,ch_seco,eu_fsf,fr_tresor_gels_avoir,gb_hmt,ua_sfms,un_sc,us_ofac,eu_cor,eu_meps,global_politicians,interpol_red")
+    {
+        $this->config["aml_database"] = $databases;
+    }
+
+    /**
+     * By default, entities with identical name or document number will be considered a match even though their birthday or nationality may be unknown. Enable this parameter to reduce false-positives by only matching entities with exact same nationality and birthday.
+     * @param boolean $enabled Enable or disable AML strict match mode
+     * @return void
+     */
+    public function enableAMLStrictMatch($enabled = false)
+    {
+        $this->config["aml_strict_match"] = $enabled == true;
     }
 
 

@@ -235,7 +235,7 @@ class Vault
      * @throws APIException
      * @throws Exception
      */
-    private function callAPI(string $action, array $payload = array()){
+    private function callAPI($action, $payload = array()){
 
         $payload["apikey"] = $this->apikey;
         $payload["client"] = "php-sdk";

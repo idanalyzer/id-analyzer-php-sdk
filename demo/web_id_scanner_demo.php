@@ -86,6 +86,9 @@ $api_region = "US";
                         $coreapi->verifyName("Elon Musk"); // check if the person is named Elon Musk
                         $coreapi->verifyAddress("123 Sunny Rd, California"); // Check if address on ID matches with provided address
                         $coreapi->verifyPostcode("90001"); // check if postcode on ID matches with provided postcode
+                        $coreapi->enableAMLCheck(true); // enable AML/PEP compliance check
+                        $coreapi->setAMLDatabase("global_politicians,eu_meps,eu_cors"); // limit AML check to only PEPs
+                        $coreapi->enableAMLStrictMatch(true); // make AML matching more strict to prevent false positives
                         */
 
 

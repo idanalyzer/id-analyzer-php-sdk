@@ -1,6 +1,71 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\IDAnalyzer\\AMLAPI",
+            "name": "AMLAPI",
+            "summary": "",
+            "url": "classes/IDAnalyzer-AMLAPI.html"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initialize\u0020AML\u0020API\u0020with\u0020an\u0020API\u0020key,\u0020and\u0020optional\u0020region\u0020\u0028US,\u0020EU\u0029",
+            "url": "classes/IDAnalyzer-AMLAPI.html#method___construct"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003AthrowAPIException\u0028\u0029",
+            "name": "throwAPIException",
+            "summary": "Whether\u0020an\u0020exception\u0020should\u0020be\u0020thrown\u0020if\u0020API\u0020response\u0020contains\u0020an\u0020error\u0020message",
+            "url": "classes/IDAnalyzer-AMLAPI.html#method_throwAPIException"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003AsetAMLDatabase\u0028\u0029",
+            "name": "setAMLDatabase",
+            "summary": "Specify\u0020the\u0020source\u0020databases\u0020to\u0020perform\u0020AML\u0020search,\u0020if\u0020left\u0020blank,\u0020all\u0020source\u0020databases\u0020will\u0020be\u0020checked.\u0020Separate\u0020each\u0020database\u0020code\u0020with\u0020comma,\u0020for\u0020example\u003A\u0020un_sc,us_ofac.\u0020For\u0020full\u0020list\u0020of\u0020source\u0020databases\u0020and\u0020corresponding\u0020code\u0020visit\u0020AML\u0020API\u0020Overview.",
+            "url": "classes/IDAnalyzer-AMLAPI.html#method_setAMLDatabase"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003AsetEntityType\u0028\u0029",
+            "name": "setEntityType",
+            "summary": "Return\u0020only\u0020entities\u0020with\u0020specified\u0020entity\u0020type,\u0020leave\u0020blank\u0020to\u0020return\u0020both\u0020person\u0020and\u0020legal\u0020entity.",
+            "url": "classes/IDAnalyzer-AMLAPI.html#method_setEntityType"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003AsearchByName\u0028\u0029",
+            "name": "searchByName",
+            "summary": "Search\u0020AML\u0020Database\u0020using\u0020a\u0020person\u0020or\u0020company\u0027s\u0020name\u0020or\u0020alias",
+            "url": "classes/IDAnalyzer-AMLAPI.html#method_searchByName"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003AsearchByIDNumber\u0028\u0029",
+            "name": "searchByIDNumber",
+            "summary": "Search\u0020AML\u0020Database\u0020using\u0020a\u0020document\u0020number\u0020\u0028Passport,\u0020ID\u0020Card\u0020or\u0020any\u0020identification\u0020documents\u0029",
+            "url": "classes/IDAnalyzer-AMLAPI.html#method_searchByIDNumber"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003AcallAPI\u0028\u0029",
+            "name": "callAPI",
+            "summary": "",
+            "url": "classes/IDAnalyzer-AMLAPI.html#method_callAPI"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003A\u0024apikey",
+            "name": "apikey",
+            "summary": "",
+            "url": "classes/IDAnalyzer-AMLAPI.html#property_apikey"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003A\u0024apiendpoint",
+            "name": "apiendpoint",
+            "summary": "",
+            "url": "classes/IDAnalyzer-AMLAPI.html#property_apiendpoint"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003A\u0024AMLDatabases",
+            "name": "AMLDatabases",
+            "summary": "",
+            "url": "classes/IDAnalyzer-AMLAPI.html#property_AMLDatabases"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003A\u0024AMLEntityType",
+            "name": "AMLEntityType",
+            "summary": "",
+            "url": "classes/IDAnalyzer-AMLAPI.html#property_AMLEntityType"
+        },                {
+            "fqsen": "\\IDAnalyzer\\AMLAPI\u003A\u003A\u0024throwError",
+            "name": "throwError",
+            "summary": "",
+            "url": "classes/IDAnalyzer-AMLAPI.html#property_throwError"
+        },                {
             "fqsen": "\\IDAnalyzer\\APIException",
             "name": "APIException",
             "summary": "",
@@ -115,6 +180,21 @@ Search.appendIndex(
             "name": "enableBarcodeMode",
             "summary": "Disable\u0020Visual\u0020OCR\u0020and\u0020read\u0020data\u0020from\u0020AAMVA\u0020Barcodes\u0020only",
             "url": "classes/IDAnalyzer-CoreAPI.html#method_enableBarcodeMode"
+        },                {
+            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003AenableAMLCheck\u0028\u0029",
+            "name": "enableAMLCheck",
+            "summary": "Check\u0020document\u0020holder\u0027s\u0020name\u0020and\u0020document\u0020number\u0020against\u0020ID\u0020Analyzer\u0020AML\u0020Database\u0020for\u0020sanctions,\u0020crimes\u0020and\u0020PEPs.",
+            "url": "classes/IDAnalyzer-CoreAPI.html#method_enableAMLCheck"
+        },                {
+            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003AsetAMLDatabase\u0028\u0029",
+            "name": "setAMLDatabase",
+            "summary": "Specify\u0020the\u0020source\u0020databases\u0020to\u0020perform\u0020AML\u0020check,\u0020if\u0020left\u0020blank,\u0020all\u0020source\u0020databases\u0020will\u0020be\u0020checked.\u0020Separate\u0020each\u0020database\u0020code\u0020with\u0020comma,\u0020for\u0020example\u003A\u0020un_sc,us_ofac.\u0020For\u0020full\u0020list\u0020of\u0020source\u0020databases\u0020and\u0020corresponding\u0020code\u0020visit\u0020AML\u0020API\u0020Overview.",
+            "url": "classes/IDAnalyzer-CoreAPI.html#method_setAMLDatabase"
+        },                {
+            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003AenableAMLStrictMatch\u0028\u0029",
+            "name": "enableAMLStrictMatch",
+            "summary": "By\u0020default,\u0020entities\u0020with\u0020identical\u0020name\u0020or\u0020document\u0020number\u0020will\u0020be\u0020considered\u0020a\u0020match\u0020even\u0020though\u0020their\u0020birthday\u0020or\u0020nationality\u0020may\u0020be\u0020unknown.\u0020Enable\u0020this\u0020parameter\u0020to\u0020reduce\u0020false\u002Dpositives\u0020by\u0020only\u0020matching\u0020entities\u0020with\u0020exact\u0020same\u0020nationality\u0020and\u0020birthday.",
+            "url": "classes/IDAnalyzer-CoreAPI.html#method_enableAMLStrictMatch"
         },                {
             "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003AenableVault\u0028\u0029",
             "name": "enableVault",
@@ -255,6 +335,36 @@ Search.appendIndex(
             "name": "enableDualsideCheck",
             "summary": "Check\u0020if\u0020the\u0020names,\u0020document\u0020number\u0020and\u0020document\u0020type\u0020matches\u0020between\u0020the\u0020front\u0020and\u0020the\u0020back\u0020of\u0020the\u0020document\u0020when\u0020performing\u0020dual\u002Dside\u0020scan.\u0020If\u0020any\u0020information\u0020mismatches\u0020error\u002014\u0020will\u0020be\u0020thrown.",
             "url": "classes/IDAnalyzer-DocuPass.html#method_enableDualsideCheck"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AenableAMLCheck\u0028\u0029",
+            "name": "enableAMLCheck",
+            "summary": "Check\u0020document\u0020holder\u0027s\u0020name\u0020and\u0020document\u0020number\u0020against\u0020ID\u0020Analyzer\u0020AML\u0020Database\u0020for\u0020sanctions,\u0020crimes\u0020and\u0020PEPs.",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_enableAMLCheck"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsetAMLDatabase\u0028\u0029",
+            "name": "setAMLDatabase",
+            "summary": "Specify\u0020the\u0020source\u0020databases\u0020to\u0020perform\u0020AML\u0020check,\u0020if\u0020left\u0020blank,\u0020all\u0020source\u0020databases\u0020will\u0020be\u0020checked.\u0020Separate\u0020each\u0020database\u0020code\u0020with\u0020comma,\u0020for\u0020example\u003A\u0020un_sc,us_ofac.\u0020For\u0020full\u0020list\u0020of\u0020source\u0020databases\u0020and\u0020corresponding\u0020code\u0020visit\u0020AML\u0020API\u0020Overview.",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_setAMLDatabase"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AenableAMLStrictMatch\u0028\u0029",
+            "name": "enableAMLStrictMatch",
+            "summary": "By\u0020default,\u0020entities\u0020with\u0020identical\u0020name\u0020or\u0020document\u0020number\u0020will\u0020be\u0020considered\u0020a\u0020match\u0020even\u0020though\u0020their\u0020birthday\u0020or\u0020nationality\u0020may\u0020be\u0020unknown.\u0020Enable\u0020this\u0020parameter\u0020to\u0020reduce\u0020false\u002Dpositives\u0020by\u0020only\u0020matching\u0020entities\u0020with\u0020exact\u0020same\u0020nationality\u0020and\u0020birthday.",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_enableAMLStrictMatch"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AenablePhoneVerification\u0028\u0029",
+            "name": "enablePhoneVerification",
+            "summary": "Whether\u0020to\u0020ask\u0020user\u0020to\u0020enter\u0020a\u0020phone\u0020number\u0020for\u0020verification,\u0020DocuPass\u0020supports\u0020both\u0020mobile\u0020or\u0020landline\u0020number\u0020verification.\u0020Verified\u0020phone\u0020number\u0020will\u0020be\u0020returned\u0020in\u0020callback\u0020JSON.",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_enablePhoneVerification"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsmsVerificationLink\u0028\u0029",
+            "name": "smsVerificationLink",
+            "summary": "DocuPass\u0020will\u0020send\u0020SMS\u0020to\u0020this\u0020number\u0020containing\u0020DocuPass\u0020link\u0020to\u0020perform\u0020identity\u0020verification,\u0020the\u0020number\u0020provided\u0020will\u0020be\u0020automatically\u0020considered\u0020as\u0020verified\u0020if\u0020user\u0020completes\u0020identity\u0020verification.\u0020If\u0020an\u0020invalid\u0020or\u0020unreachable\u0020number\u0020is\u0020provided\u0020error\u00201050\u0020will\u0020be\u0020thrown.\u0020You\u0020should\u0020add\u0020your\u0020own\u0020thresholding\u0020mechanism\u0020to\u0020prevent\u0020abuse\u0020as\u0020you\u0020will\u0020be\u0020charged\u00201\u0020quota\u0020to\u0020send\u0020the\u0020SMS.",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_smsVerificationLink"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AverifyPhone\u0028\u0029",
+            "name": "verifyPhone",
+            "summary": "DocuPass\u0020will\u0020attempt\u0020to\u0020verify\u0020this\u0020phone\u0020number\u0020as\u0020part\u0020of\u0020the\u0020identity\u0020verification\u0020process,\u0020both\u0020mobile\u0020or\u0020landline\u0020are\u0020supported,\u0020users\u0020will\u0020not\u0020be\u0020able\u0020to\u0020enter\u0020their\u0020own\u0020numbers\u0020or\u0020change\u0020the\u0020provided\u0020number.",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_verifyPhone"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AverifyExpiry\u0028\u0029",
             "name": "verifyExpiry",
