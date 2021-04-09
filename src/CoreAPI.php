@@ -431,10 +431,10 @@ class CoreAPI
 
     /**
      * Scan an ID document with Core API, optionally specify document back image, face verification image, face verification video and video passcode
-     * @param string $document_primary Front of Document (File path or URL)
-     * @param string $document_secondary Back of Document (File path or URL)
-     * @param string $biometric_photo Face Photo (File path or URL)
-     * @param string $biometric_video Face Video (File path or URL)
+     * @param string $document_primary Front of Document (File path, base64 content or URL)
+     * @param string $document_secondary Back of Document (File path, base64 content or URL)
+     * @param string $biometric_photo Face Photo (File path, base64 content or URL)
+     * @param string $biometric_video Face Video (File path, base64 content or URL)
      * @param string $biometric_video_passcode Face Video Passcode (4 Digit Number)
      * @return array
      * @throws InvalidArgumentException
@@ -452,8 +452,10 @@ class CoreAPI
         }
         if(filter_var($document_primary, FILTER_VALIDATE_URL)){
             $payload['url'] = $document_primary;
-        }else if(file_exists($document_primary)){
+        }else if(file_exists($document_primary)) {
             $payload['file_base64'] = base64_encode(file_get_contents($document_primary));
+        }else if(strlen($document_primary)>100){
+            $payload['file_base64'] = $document_primary;
         }else{
             throw new InvalidArgumentException("Invalid primary document image, file not found or malformed URL.");
         }
@@ -462,6 +464,8 @@ class CoreAPI
                 $payload['url_back'] = $document_secondary;
             }else if(file_exists($document_secondary)){
                 $payload['file_back_base64'] = base64_encode(file_get_contents($document_secondary));
+            }else if(strlen($document_secondary)>100){
+                $payload['file_back_base64'] = $document_secondary;
             }else {
                 throw new InvalidArgumentException("Invalid secondary document image, file not found or malformed URL.");
             }
@@ -471,6 +475,8 @@ class CoreAPI
                 $payload['faceurl'] = $biometric_photo;
             }else if(file_exists($biometric_photo)){
                 $payload['face_base64'] = base64_encode(file_get_contents($biometric_photo));
+            }else if(strlen($biometric_photo)>100){
+                $payload['face_base64'] = $biometric_photo;
             }else {
                 throw new InvalidArgumentException("Invalid face image, file not found or malformed URL.");
             }
@@ -480,6 +486,8 @@ class CoreAPI
                 $payload['videourl'] = $biometric_video;
             }else if(file_exists($biometric_video)){
                 $payload['video_base64'] = base64_encode(file_get_contents($biometric_video));
+            }else if(strlen($biometric_video)>100){
+                $payload['video_base64'] = $biometric_video;
             }else {
                 throw new InvalidArgumentException("Invalid face video, file not found or malformed URL.");
             }

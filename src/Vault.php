@@ -129,7 +129,7 @@ class Vault
     /**
      * Add a document or face image into an existing vault entry
      * @param string $vault_id Vault entry ID
-     * @param string $image Image file path or URL
+     * @param string $image Image file path, base64 content or URL
      * @param int $type Type of image: 0 = document, 1 = person
      * @return array New image information array
      * @throws InvalidArgumentException
@@ -148,6 +148,8 @@ class Vault
             $payload['imageurl'] = $image;
         }else if(file_exists($image)){
             $payload['image'] = base64_encode(file_get_contents($image));
+        }else if(strlen($image)>100){
+            $payload['image'] = $image;
         }else{
             throw new InvalidArgumentException("Invalid image, file not found or malformed URL.");
         }
@@ -183,7 +185,7 @@ class Vault
 
     /**
      * Search vault using a person's face image
-     * @param string $image Face image file path or URL
+     * @param string $image Face image file path, base64 content or URL
      * @param int $maxEntry Number of entries to return, 1 to 10.
      * @param float $threshold Minimum confidence score required for face matching
      * @return array List of vault entries
@@ -198,6 +200,8 @@ class Vault
             $payload['imageurl'] = $image;
         }else if(file_exists($image)){
             $payload['image'] = base64_encode(file_get_contents($image));
+        }else if(strlen($image)>100){
+            $payload['image'] = $image;
         }else{
             throw new InvalidArgumentException("Invalid image, file not found or malformed URL.");
         }
