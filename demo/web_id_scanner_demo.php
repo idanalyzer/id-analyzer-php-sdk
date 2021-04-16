@@ -99,8 +99,7 @@ $api_region = "US";
                         // $result = $coreapi->scan("https://www.idanalyzer.com/img/sampleid1.jpg");
 
 
-                        // We gotten the result array
-
+                        // We've gotten the result array
                         $data_result = $result['result'];
                         $face_result = $result['face'];
                         $authentication_result = $result['authentication'];

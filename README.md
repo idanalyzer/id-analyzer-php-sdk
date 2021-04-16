@@ -204,6 +204,7 @@ $docupass->enableAMLCheck(true); // enable AML/PEP compliance check
 $docupass->setAMLDatabase("global_politicians,eu_meps,eu_cors"); // limit AML check to only PEPs
 $docupass->enableAMLStrictMatch(true); // make AML matching more strict to prevent false positives
 $docupass->generateContract("Template ID", "PDF", array("somevariable"=>"somevalue")); // automate paperwork by generating a document autofilled with ID data 
+$docupass->signContract("Template ID", "PDF", array("somevariable"=>"somevalue")); // get user to sign a document as part of the identity verification process
 ```
 
 Now we need to write a **callback script** or if you prefer to call it a **webhook**, to receive the verification results. This script will be called as soon as user finishes identity verification. In this guide, we will name it **docupass_callback.php**:
@@ -275,7 +276,7 @@ For the final step, you could create two web pages (URLS set via `setRedirection
 
 ## DocuPass Signature API
 
-You can get user to solely review and sign document in DocuPass without identity verification, to do so you need to create a DocuPass Signature session.
+You can get user to review and remotely sign legal document in DocuPass without identity verification, to do so you need to create a DocuPass Signature session.
 
 ```php
 $docupass = new DocuPass($apikey, "My Company Inc.", $api_region);
