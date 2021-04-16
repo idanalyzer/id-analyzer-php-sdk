@@ -48,6 +48,9 @@ class CoreAPI
         "aml_check" => false,
         "aml_strict_match" => false,
         "aml_database" => "",
+        "contract_generate" => "",
+        "contract_format" => "",
+        "contract_prefill_data" => "",
         "client" => 'php-sdk'
     );
 
@@ -428,6 +431,24 @@ class CoreAPI
 
     }
 
+    /**
+     * Generate legal document using data from user uploaded ID
+     * @param string $templateId Contract Template ID displayed under web portal
+     * @param string $format Output file format: PDF, DOCX or HTML
+     * @param mixed $prefillData Associative array or JSON string, to autofill dynamic fields in contract template.
+     * @return void
+     * @throws InvalidArgumentException
+     */
+    public function generateContract($templateId, $format = "PDF", $prefillData = array())
+    {
+        if ($templateId == "") {
+            throw new InvalidArgumentException("Invalid template ID");
+        }
+        $this->config['contract_generate'] = $templateId;
+        $this->config['contract_format'] = $format;
+        $this->config['contract_prefill_data'] = $prefillData;
+
+    }
 
     /**
      * Scan an ID document with Core API, optionally specify document back image, face verification image, face verification video and video passcode

@@ -89,8 +89,8 @@ $api_region = "US";
                         $coreapi->enableAMLCheck(true); // enable AML/PEP compliance check
                         $coreapi->setAMLDatabase("global_politicians,eu_meps,eu_cors"); // limit AML check to only PEPs
                         $coreapi->enableAMLStrictMatch(true); // make AML matching more strict to prevent false positives
+                        $coreapi->generateContract("Template ID", "PDF", array("email"=>"user@example.com")); // generate a PDF document autofilled with data from user ID
                         */
-
 
                         // perform a scan using uploaded image
                         $result = $coreapi->scan($_FILES['DocumentFront']['tmp_name'], $_FILES['DocumentBack']['tmp_name'], $_FILES['FacePhoto']['tmp_name']);

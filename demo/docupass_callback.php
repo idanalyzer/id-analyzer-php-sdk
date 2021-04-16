@@ -38,7 +38,7 @@ try{
         $userEmail = $data['customid']; // We've asked user's email in the demo, now we can get the emails they have entered.
 
         if($data['success'] === true){
-            // User has completed verification successfully
+            // User has completed verification successfully, or has signed legal document
 
             // Maybe we could email them!
             mail($userEmail, "Identity Verification Success", "Dear {$data['data']['firstName']} {$data['data']['lastName']},\n Thank you for verifying your identity.");
@@ -51,30 +51,34 @@ try{
             file_put_contents("failed_verifications.txt", "$userEmail has failed identity verification, reference: {$data['reference']}, reason: {$data['failreason']} code: {$data['failcode']}\n", FILE_APPEND);
 
         }
+
         // Save user's document images
-        foreach($data['documentimage'] as $image){
-            $savePath = $data['reference'] . "_" . $image['side']. ".jpg";
-            if($image['url']!=""){
-                // Download image from remote url
-                downloadUrlToFile($image['url'],$savePath);
-            }else if($image['content']!=""){
-                // Save base64 content as file
-                file_put_contents($savePath, base64_decode($image['content']));
+        if(is_array($data['documentimage'])){
+            foreach($data['documentimage'] as $image){
+                $savePath = $data['reference'] . "_" . $image['side']. ".jpg";
+                if($image['url']!=""){
+                    // Download image from remote url
+                    downloadUrlToFile($image['url'],$savePath);
+                }else if($image['content']!=""){
+                    // Save base64 content as file
+                    file_put_contents($savePath, base64_decode($image['content']));
+                }
             }
         }
 
         // Save user's face image
-        foreach($data['faceimage'] as $image){
-            $savePath = $data['reference'] . "_face.jpg";
-            if($image['url']!=""){
-                // Download image from remote url
-                downloadUrlToFile($image['url'],$savePath);
-            }else if($image['content']!=""){
-                // Save base64 content as file
-                file_put_contents($savePath, base64_decode($image['content']));
+        if(is_array($data['faceimage'])) {
+            foreach ($data['faceimage'] as $image) {
+                $savePath = $data['reference'] . "_face.jpg";
+                if ($image['url'] != "") {
+                    // Download image from remote url
+                    downloadUrlToFile($image['url'], $savePath);
+                } else if ($image['content'] != "") {
+                    // Save base64 content as file
+                    file_put_contents($savePath, base64_decode($image['content']));
+                }
             }
         }
-
         // We could use the Vault ID and get verification results from Vault
         if($data['vaultid'] != ""){
             // Initialize Vault API with your credentials
@@ -83,9 +87,7 @@ try{
             // Get the vault entry using Vault Entry ID received from Core API
             $vaultdata = $vault->get($data['vaultid']);
 
-
             file_put_contents("docupass_from_vault.txt",  print_r($vaultdata, true), FILE_APPEND);
-
         }
 
         // We could also query the vault with DocuPass reference
@@ -99,9 +101,14 @@ try{
             if(count($vaultItems['items'])>0){
                 file_put_contents("docupass_from_vault.txt",  print_r($vaultItems['items'][0], true), FILE_APPEND);
             }
-
-
         }
+
+        // If you have generated a legal document or have your user signed a contract, the contract file URL will be contained in contract.document_url
+        if($data['contract']['document_url'] != ""){
+            // Download contract and save it as user_contract.pdf
+            downloadUrlToFile($data['contract']['document_url'], "user_contract.pdf");
+        }
+
     }else{
         writeDebugLog("Could not validate the authenticity of this request");
     }

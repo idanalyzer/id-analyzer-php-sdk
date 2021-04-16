@@ -13,7 +13,7 @@ composer require idanalyzer/id-analyzer-php-sdk
 Alternatively, download this package and manually require the PHP files under **src** folder.
 
 ## Core API
-[ID Analyzer Core API](https://www.idanalyzer.com/products/id-analyzer-core-api.html) allows you to perform OCR data extraction, facial biometric verification, identity verification, age verification, document cropping, document authentication (fake ID check), AML/PEP compliance check using an ID image (JPG, PNG, PDF accepted) and user selfie photo or video. Core API has great global coverage, supporting over 98% of the passports, driver licenses and identification cards currently being circulated around the world.
+[ID Analyzer Core API](https://www.idanalyzer.com/products/id-analyzer-core-api.html) allows you to perform OCR data extraction, facial biometric verification, identity verification, age verification, document cropping, document authentication (fake ID check), AML/PEP compliance check, and paperwork automation using an ID image (JPG, PNG, PDF accepted) and user selfie photo or video. Core API has great global coverage, supporting over 98% of the passports, driver licenses and identification cards currently being circulated around the world.
 
 ![Sample ID](https://www.idanalyzer.com/img/sampleid1.jpg)
 
@@ -93,6 +93,7 @@ $coreapi->verifyPostcode("90001"); // check if postcode on ID matches with provi
 $coreapi->enableAMLCheck(true); // enable AML/PEP compliance check
 $coreapi->setAMLDatabase("global_politicians,eu_meps,eu_cors"); // limit AML check to only PEPs
 $coreapi->enableAMLStrictMatch(true); // make AML matching more strict to prevent false positives
+$coreapi->generateContract("Template ID", "PDF", array("email"=>"user@example.com")); // generate a PDF document autofilled with data from user ID 
 ```
 
 To **scan both front and back of ID**:
@@ -112,7 +113,7 @@ $result = $coreapi->scan("path/to/id.jpg", "", "", "path/to/video.mp4", "1234");
 ```
 Check out sample response array fields visit [Core API reference](https://developer.idanalyzer.com/coreapi.html##readingresponse).
 
-## DocuPass API
+## DocuPass Identity Verification API
 [DocuPass](https://www.idanalyzer.com/products/docupass.html) allows you to verify your users without designing your own web page or mobile UI. A unique DocuPass URL can be generated for each of your users and your users can verify their own identity by simply opening the URL in their browser. DocuPass URLs can be directly opened using any browser,  you can also embed the URL inside an iframe on your website, or within a WebView inside your iOS/Android/Cordova mobile app.
 
 ![DocuPass Screen](https://www.idanalyzer.com/img/docupassliveflow.jpg)
@@ -157,6 +158,9 @@ $docupass->setMaxAttempt(1);
 // We want to redirect user back to your website when they are done with verification  
 $docupass->setRedirectionURL("https://www.your-website.com/verification_succeeded.php", "https://www.your-website.com/verification_failed.php");
 
+// Get user to review and sign legal document (such as rental contract) prefilled with ID data
+$docupass->signContract("Template ID", "PDF"); 
+
 // Create a session using DocuPass Standard Mobile module
 $result = $docupass->createMobile();
   
@@ -199,6 +203,7 @@ $docupass->verifyPhone("+1333444555"); // verify user's phone number you already
 $docupass->enableAMLCheck(true); // enable AML/PEP compliance check
 $docupass->setAMLDatabase("global_politicians,eu_meps,eu_cors"); // limit AML check to only PEPs
 $docupass->enableAMLStrictMatch(true); // make AML matching more strict to prevent false positives
+$docupass->generateContract("Template ID", "PDF", array("somevariable"=>"somevalue")); // automate paperwork by generating a document autofilled with ID data 
 ```
 
 Now we need to write a **callback script** or if you prefer to call it a **webhook**, to receive the verification results. This script will be called as soon as user finishes identity verification. In this guide, we will name it **docupass_callback.php**:
@@ -236,7 +241,7 @@ try{
         $userID = $data['customid']; // This value should be "5678" matching the User ID in your database
       
         if($data['success'] === true){  
-            // User has completed verification successfully  
+            // User has completed identity verification successfully, or has signed legal document
 
             // Get some information about your user
             $firstName = $data['data']['firstName'];
@@ -268,7 +273,60 @@ Visit [DocuPass Callback reference](https://developer.idanalyzer.com/docupass_ca
 
 For the final step, you could create two web pages (URLS set via `setRedirectionURL`) that display the results to your user. DocuPass reference will be passed as a GET parameter when users are redirected, for example: https://www.your-website.com/verification_succeeded.php?reference=XXXXXXXXX, you could use the reference code to fetch the results from your database. P.S. We will always send callbacks to your server before redirecting your user to the set URL.
 
+## DocuPass Signature API
+
+You can get user to solely review and sign document in DocuPass without identity verification, to do so you need to create a DocuPass Signature session.
+
+```php
+$docupass = new DocuPass($apikey, "My Company Inc.", $api_region);
+
+// Raise exceptions for API level errors
+$docupass->throwAPIException(true);
+
+// We need to set an identifier so that we know internally who is signing the document, this string will be returned in the callback. You can use your own user/customer id.
+$docupass->setCustomID($_POST['email']);
+
+// Enable vault cloud storage to store signed document
+$docupass->enableVault(true);
+
+// Set a callback URL where signed document will be sent, you can use docupass_callback.php under this folder as a template to receive the result
+$docupass->setCallbackURL("https://www.your-website.com/docupass_callback.php");
+
+// We want to redirect user back to your website when they are done with document signing, there will be no fail URL unlike identity verification
+$docupass->setRedirectionURL("https://www.your-website.com/document_signed.html", "");
+
+/*
+ * more settings
+$docupass->setReusable(true); // allow DocuPass URL/QR Code to be used by multiple users
+$docupass->setLanguage("en"); // override auto language detection
+$docupass->setQRCodeFormat("000000","FFFFFF",5,1); // generate a QR code using custom colors and size
+$docupass->hideBrandingLogo(true); // hide default branding footer
+$docupass->setCustomHTML("https://www.yourwebsite.com/docupass_template.html"); // use your own HTML/CSS for DocuPass page
+$docupass->smsContractLink("+1333444555"); // Send signing link to user's mobile phone
+*/
+
+// Assuming in your contract template you have a dynamic field %{email} and you want to fill it with user email
+$prefill = array(
+  "email" => $_POST['email']
+);
+
+// Create a signature session
+$result = $docupass->createSignature("Template ID", "PDF", $prefill);
+
+if ($result['error']) {
+    // Something went wrong
+    die("Error Code: {$result['error']['code']}<br/>Error Message: {$result['error']['message']}");
+} else {
+    // Redirect browser to DocuPass URL, the URL will work on both Desktop and Mobile
+    header("Location: " . $result['url']);
+    die();
+}
+```
+
+Once user has reviewed and signed the document, the signed document will be sent back to your server using callback under the `contract.document_url` field, the contract will also be saved to vault if you have enabled vault.
+
 ## Vault API
+
 ID Analyzer provides free cloud database storage (Vault) for you to store data obtained through Core API and DocuPass. You can set whether you want to store your user data into Vault through `enableVault` while making an API request with PHP SDK. Data stored in Vault can be looked up through [Web Portal](https://portal.idanalyzer.com) or via Vault API.
 
 If you have enabled Vault, Core API and DocuPass will both return a vault entry identifier string called `vaultid`,  you can use the identifier to look up your user data:

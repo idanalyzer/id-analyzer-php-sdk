@@ -206,6 +206,11 @@ Search.appendIndex(
             "summary": "Add\u0020up\u0020to\u00205\u0020custom\u0020strings\u0020that\u0020will\u0020be\u0020associated\u0020with\u0020the\u0020vault\u0020entry,\u0020this\u0020can\u0020be\u0020useful\u0020for\u0020filtering\u0020and\u0020searching\u0020entries.",
             "url": "classes/IDAnalyzer-CoreAPI.html#method_setVaultData"
         },                {
+            "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003AgenerateContract\u0028\u0029",
+            "name": "generateContract",
+            "summary": "Generate\u0020legal\u0020document\u0020using\u0020data\u0020from\u0020user\u0020uploaded\u0020ID",
+            "url": "classes/IDAnalyzer-CoreAPI.html#method_generateContract"
+        },                {
             "fqsen": "\\IDAnalyzer\\CoreAPI\u003A\u003Ascan\u0028\u0029",
             "name": "scan",
             "summary": "Scan\u0020an\u0020ID\u0020document\u0020with\u0020Core\u0020API,\u0020optionally\u0020specify\u0020document\u0020back\u0020image,\u0020face\u0020verification\u0020image,\u0020face\u0020verification\u0020video\u0020and\u0020video\u0020passcode",
@@ -361,6 +366,11 @@ Search.appendIndex(
             "summary": "DocuPass\u0020will\u0020send\u0020SMS\u0020to\u0020this\u0020number\u0020containing\u0020DocuPass\u0020link\u0020to\u0020perform\u0020identity\u0020verification,\u0020the\u0020number\u0020provided\u0020will\u0020be\u0020automatically\u0020considered\u0020as\u0020verified\u0020if\u0020user\u0020completes\u0020identity\u0020verification.\u0020If\u0020an\u0020invalid\u0020or\u0020unreachable\u0020number\u0020is\u0020provided\u0020error\u00201050\u0020will\u0020be\u0020thrown.\u0020You\u0020should\u0020add\u0020your\u0020own\u0020thresholding\u0020mechanism\u0020to\u0020prevent\u0020abuse\u0020as\u0020you\u0020will\u0020be\u0020charged\u00201\u0020quota\u0020to\u0020send\u0020the\u0020SMS.",
             "url": "classes/IDAnalyzer-DocuPass.html#method_smsVerificationLink"
         },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsmsContractLink\u0028\u0029",
+            "name": "smsContractLink",
+            "summary": "DocuPass\u0020will\u0020send\u0020SMS\u0020to\u0020this\u0020number\u0020containing\u0020DocuPass\u0020link\u0020to\u0020review\u0020and\u0020sign\u0020legal\u0020document.",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_smsContractLink"
+        },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AverifyPhone\u0028\u0029",
             "name": "verifyPhone",
             "summary": "DocuPass\u0020will\u0020attempt\u0020to\u0020verify\u0020this\u0020phone\u0020number\u0020as\u0020part\u0020of\u0020the\u0020identity\u0020verification\u0020process,\u0020both\u0020mobile\u0020or\u0020landline\u0020are\u0020supported,\u0020users\u0020will\u0020not\u0020be\u0020able\u0020to\u0020enter\u0020their\u0020own\u0020numbers\u0020or\u0020change\u0020the\u0020provided\u0020number.",
@@ -421,25 +431,40 @@ Search.appendIndex(
             "summary": "Save\u0020document\u0020image\u0020and\u0020parsed\u0020information\u0020in\u0020your\u0020secured\u0020vault.\u0020You\u0020can\u0020list,\u0020search\u0020and\u0020update\u0020document\u0020entries\u0020in\u0020your\u0020vault\u0020through\u0020Vault\u0020API\u0020or\u0020web\u0020portal.",
             "url": "classes/IDAnalyzer-DocuPass.html#method_enableVault"
         },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AgenerateContract\u0028\u0029",
+            "name": "generateContract",
+            "summary": "Generate\u0020legal\u0020document\u0020using\u0020data\u0020from\u0020user\u0020uploaded\u0020ID",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_generateContract"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AsignContract\u0028\u0029",
+            "name": "signContract",
+            "summary": "Have\u0020user\u0020review\u0020and\u0020sign\u0020autofilled\u0020legal\u0020document\u0020after\u0020successful\u0020identity\u0020verification",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_signContract"
+        },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AcreateIframe\u0028\u0029",
             "name": "createIframe",
-            "summary": "Create\u0020a\u0020DocuPass\u0020session\u0020for\u0020embedding\u0020in\u0020web\u0020page\u0020as\u0020iframe",
+            "summary": "Create\u0020a\u0020DocuPass\u0020identity\u0020verification\u0020session\u0020for\u0020embedding\u0020in\u0020web\u0020page\u0020as\u0020iframe",
             "url": "classes/IDAnalyzer-DocuPass.html#method_createIframe"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AcreateMobile\u0028\u0029",
             "name": "createMobile",
-            "summary": "Create\u0020a\u0020DocuPass\u0020session\u0020for\u0020users\u0020to\u0020open\u0020on\u0020mobile\u0020phone,\u0020or\u0020embedding\u0020in\u0020mobile\u0020app",
+            "summary": "Create\u0020a\u0020DocuPass\u0020identity\u0020verification\u0020session\u0020for\u0020users\u0020to\u0020open\u0020on\u0020mobile\u0020phone,\u0020or\u0020embedding\u0020in\u0020mobile\u0020app",
             "url": "classes/IDAnalyzer-DocuPass.html#method_createMobile"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AcreateRedirection\u0028\u0029",
             "name": "createRedirection",
-            "summary": "Create\u0020a\u0020DocuPass\u0020session\u0020for\u0020users\u0020to\u0020open\u0020in\u0020any\u0020browser",
+            "summary": "Create\u0020a\u0020DocuPass\u0020identity\u0020verification\u0020session\u0020for\u0020users\u0020to\u0020open\u0020in\u0020any\u0020browser",
             "url": "classes/IDAnalyzer-DocuPass.html#method_createRedirection"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AcreateLiveMobile\u0028\u0029",
             "name": "createLiveMobile",
-            "summary": "Create\u0020a\u0020DocuPass\u0020Live\u0020Mobile\u0020verification\u0020session\u0020for\u0020users\u0020to\u0020open\u0020on\u0020mobile\u0020phone",
+            "summary": "Create\u0020a\u0020DocuPass\u0020Live\u0020Mobile\u0020identity\u0020verification\u0020session\u0020for\u0020users\u0020to\u0020open\u0020on\u0020mobile\u0020phone",
             "url": "classes/IDAnalyzer-DocuPass.html#method_createLiveMobile"
+        },                {
+            "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003AcreateSignature\u0028\u0029",
+            "name": "createSignature",
+            "summary": "Create\u0020a\u0020DocuPass\u0020signature\u0020session\u0020for\u0020user\u0020to\u0020review\u0020and\u0020sign\u0020legal\u0020document\u0020without\u0020identity\u0020verification",
+            "url": "classes/IDAnalyzer-DocuPass.html#method_createSignature"
         },                {
             "fqsen": "\\IDAnalyzer\\DocuPass\u003A\u003Acreate\u0028\u0029",
             "name": "create",

@@ -54,6 +54,11 @@ class DocuPass
         "verify_phone" => "",
         "sms_verification_link" => "",
         "customhtmlurl" => "",
+        "contract_generate" => "",
+        "contract_sign" => "",
+        "contract_format" => "",
+        "contract_prefill_data" => "",
+        "sms_contract_link" => "",
         "client" => 'php-sdk'
 
     );
@@ -239,10 +244,10 @@ class DocuPass
      */
     public function setRedirectionURL($successURL = "https://www.example.com/success.php", $failURL = "https://www.example.com/failed.php")
     {
-        if (!preg_match($this->urlRegex,$successURL)) {
+        if ($successURL!="" && !preg_match($this->urlRegex,$successURL)) {
             throw new InvalidArgumentException("Invalid URL format for success URL");
         }
-        if (!preg_match($this->urlRegex,$failURL)) {
+        if ($failURL!="" && !preg_match($this->urlRegex,$failURL)) {
             throw new InvalidArgumentException("Invalid URL format for fail URL");
         }
 
@@ -428,6 +433,16 @@ class DocuPass
     }
 
     /**
+     * DocuPass will send SMS to this number containing DocuPass link to review and sign legal document.
+     * @param string $mobileNumber Mobile number should be provided in international format such as +1333444555
+     * @return void
+     */
+    public function smsContractLink($mobileNumber = "+1333444555")
+    {
+        $this->config["sms_contract_link"] = $mobileNumber;
+    }
+
+    /**
      * DocuPass will attempt to verify this phone number as part of the identity verification process, both mobile or landline are supported, users will not be able to enter their own numbers or change the provided number.
      * @param string $phoneNumber Mobile or landline number should be provided in international format such as +1333444555
      * @return void
@@ -610,7 +625,45 @@ class DocuPass
     }
 
     /**
-     * Create a DocuPass session for embedding in web page as iframe
+     * Generate legal document using data from user uploaded ID
+     * @param string $templateId Contract Template ID displayed under web portal
+     * @param string $format Output file format: PDF, DOCX or HTML
+     * @param mixed $prefillData Associative array or JSON string, to autofill dynamic fields in contract template.
+     * @return void
+     * @throws InvalidArgumentException
+     */
+    public function generateContract($templateId, $format = "PDF", $prefillData = array())
+    {
+        if ($templateId == "") {
+            throw new InvalidArgumentException("Invalid template ID");
+        }
+        $this->config['contract_sign'] = "";
+        $this->config['contract_generate'] = $templateId;
+        $this->config['contract_format'] = $format;
+        $this->config['contract_prefill_data'] = $prefillData;
+    }
+
+    /**
+     * Have user review and sign autofilled legal document after successful identity verification
+     * @param string $templateId Contract Template ID displayed under web portal
+     * @param string $format Output file format: PDF, DOCX or HTML
+     * @param mixed $prefillData Associative array or JSON string, to autofill dynamic fields in contract template.
+     * @return void
+     * @throws InvalidArgumentException
+     */
+    public function signContract($templateId, $format = "PDF", $prefillData = array())
+    {
+        if ($templateId == "") {
+            throw new InvalidArgumentException("Invalid template ID");
+        }
+        $this->config['contract_generate'] = "";
+        $this->config['contract_sign'] = $templateId;
+        $this->config['contract_format'] = $format;
+        $this->config['contract_prefill_data'] = $prefillData;
+    }
+
+    /**
+     * Create a DocuPass identity verification session for embedding in web page as iframe
      * @return array
      * @throws APIException
      */
@@ -619,7 +672,7 @@ class DocuPass
     }
 
     /**
-     * Create a DocuPass session for users to open on mobile phone, or embedding in mobile app
+     * Create a DocuPass identity verification session for users to open on mobile phone, or embedding in mobile app
      * @return array
      * @throws APIException
      */
@@ -628,7 +681,7 @@ class DocuPass
     }
 
     /**
-     * Create a DocuPass session for users to open in any browser
+     * Create a DocuPass identity verification session for users to open in any browser
      * @return array
      * @throws APIException
      */
@@ -637,12 +690,61 @@ class DocuPass
     }
 
     /**
-     * Create a DocuPass Live Mobile verification session for users to open on mobile phone
+     * Create a DocuPass Live Mobile identity verification session for users to open on mobile phone
      * @return array
      * @throws APIException
      */
     public function createLiveMobile(){
         return $this->create(3);
+    }
+
+    /**
+     * Create a DocuPass signature session for user to review and sign legal document without identity verification
+     * @param string $templateId Contract Template ID displayed under web portal
+     * @param string $format Output file format: PDF, DOCX or HTML
+     * @param mixed $prefillData Associative array or JSON string, to autofill dynamic fields in contract template.
+     * @return array
+     * @throws APIException
+     */
+    public function createSignature($templateId, $format = "PDF", $prefillData = array()){
+        $payload = $this->config;
+        $payload["apikey"] = $this->apikey;
+        $payload["template_id"] = $templateId;
+        $payload['contract_format'] = $format;
+        $payload['contract_prefill_data'] = $prefillData;
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->apiendpoint . "docupass/sign");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_FAILONERROR, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+        $response = curl_exec($ch);
+
+        if(curl_error($ch) || curl_errno($ch)){
+            throw new Exception("Failed to connect to API server: ". curl_error($ch) . " (" . curl_errno($ch) . ")" );
+        }else{
+            $result = json_decode($response,true);
+
+            if($this->throwError){
+                if(is_array($result['error'])){
+
+                    throw new APIException($result['error']['message'], $result['error']['code'] );
+
+                }else{
+                    return $result;
+                }
+            }else{
+                return $result;
+            }
+
+
+        }
     }
 
     /**

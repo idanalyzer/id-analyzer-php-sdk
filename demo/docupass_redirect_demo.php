@@ -67,6 +67,8 @@ if ($_POST['email'] != "") {
         $docupass->enableAMLCheck(true); // enable AML/PEP compliance check
         $docupass->setAMLDatabase("global_politicians,eu_meps,eu_cors"); // limit AML check to only PEPs
         $docupass->enableAMLStrictMatch(true); // make AML matching more strict to prevent false positives
+        $docupass->generateContract("Template ID", "PDF", array("somevariable"=>"somevalue")); // automate paperwork by generating a document autofilled with ID data
+        $docupass->signContract("Template ID", "PDF", array("somevariable"=>"somevalue")); // get user to review and sign legal document prefilled with ID data
         */
 
         // Create a verification session for this user
