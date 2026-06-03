@@ -1,4 +1,13 @@
 
+> # ⚠️ DEPRECATED — use the v2 SDK
+> This is the legacy **API v1** PHP SDK (Composer package `idanalyzer/id-analyzer-php-sdk`).
+> It targets the older `api.idanalyzer.com` fleet and is no longer actively maintained.
+>
+> **New projects should use the API v2 SDK:**
+> Composer `idanalyzer/id-analyzer-v2-php-sdk` ·
+> repo [idanalyzer/id-analyzer-v2-php](https://github.com/idanalyzer/id-analyzer-v2-php)
+> (`composer require idanalyzer/id-analyzer-v2-php-sdk`).
+
 # ID Analyzer PHP SDK
 This is a PHP SDK for [ID Analyzer Identity Verification APIs](https://www.idanalyzer.com), though all the APIs can be called with without the SDK using simple HTTP requests as outlined in the [documentation](https://developer.idanalyzer.com), you can use this SDK to accelerate server-side development.
 
