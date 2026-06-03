@@ -1,7 +1,7 @@
 
 > # ⚠️ DEPRECATED — use the v2 SDK
 > This is the legacy **API v1** PHP SDK (Composer package `idanalyzer/id-analyzer-php-sdk`).
-> It targets the older `api.idanalyzer.com` fleet and is no longer actively maintained.
+> It targets the older `api.idanalyzer.com` endpoint and is no longer actively maintained.
 >
 > **New projects should use the API v2 SDK:**
 > Composer `idanalyzer/id-analyzer-v2-php-sdk` ·
